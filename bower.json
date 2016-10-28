@@ -20,7 +20,8 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "deploy.sh"
   ],
   "dependencies": {
     "angular": "^1.5.0",
