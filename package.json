@@ -1,8 +1,8 @@
 {
   "name": "md-form-builder",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "AngularJS - Material Design - Form Builder",
-  "main": "index.js",
+  "main": "src/mdFormBuilder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +11,9 @@
     "url": "git+https://github.com/jembi/md-form-builder.git"
   },
   "keywords": [
-    "AngularJS",
-    "Material",
-    "Design",
-    "Forms"
+    "angularjs",
+    "material design",
+    "forms"
   ],
   "author": "Martin Brocker <martin@jembi.org> (http://jembi.org)",
   "license": "ISC",
