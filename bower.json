@@ -1,6 +1,6 @@
 {
   "name": "md-form-builder",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "AngularJS - Material Design - Form Builder",
   "main": "src/mdFormBuilder.js",
   "authors": [
@@ -21,5 +21,20 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-sanitize": "^1.5.0",
+    "angular-touch": "^1.5.0",
+    "angular-material": "^1.0.6",
+    "angular-messages": "^1.5.2",
+    "moment": "~2.11.1",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0",
+    "angular-notification-icons": "^0.4.3",
+    "v-accordion": "^1.6.0",
+    "mdPickers": "^0.7.5",
+    "angular-recaptcha": "^3.0.3",
+    "webcam": "webcam-directive#^3.1.1"
+  },
 }
