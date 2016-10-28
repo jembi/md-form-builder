@@ -1,0 +1,8 @@
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" ng-show="field.show">
+  <label>{{field.title}}</label>
+  <input ng-model="$parent[field.name]" ng-value="{{field.value}}" name="{{field.name}}" ng-disabled="field.settings.disabled || globals.viewModeOnly" type="number" min="" max="" ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" />
+  <div ng-messages="form[field.name].$error">
+    <div ng-message="required">This field is required</div>
+  </div>
+</md-input-container>
+

@@ -1,0 +1,61 @@
+<md-dialog aria-label="Profile Picture"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Profile Picture</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        
+        <div class="alert alert-error ng-scope" ng-show="webcamError" style="">
+          <span>Webcam could not be started. Did you give access to it?</span>
+        </div>
+        <webcam 
+          placeholder="'images/loading.gif'"
+          ng-show="!showCanvasPhoto"
+          channel="channel" 
+          on-streaming="onSuccess()" 
+          on-error="onError(err)" 
+          on-stream="onStream(stream)">
+        </webcam>
+        
+
+        <canvas id="snapshot" ng-show="showCanvasPhoto"></canvas>
+
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+
+      <div ng-show="!showCanvasPhoto">
+        <span flex></span>
+        <md-button ng-click="makeSnapshot()">
+         Take Picture
+        </md-button>  
+      </div>
+
+      <div ng-show="showCanvasPhoto">
+        <md-button ng-click="savePhoto(false)">
+         Lets take a new one!
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="savePhoto(true)">
+          Save This Photo!
+        </md-button>
+      </div>
+
+
+
+
+
+
+    </md-dialog-actions>
+
+
+
+  </form>
+</md-dialog>

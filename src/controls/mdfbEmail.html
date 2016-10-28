@@ -1,0 +1,10 @@
+
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" ng-show="field.show">
+  <label>{{field.title}}</label>
+  <input ng-model="field.value" name="{{field.name}}" ng-disabled="field.settings.disabled || globals.viewModeOnly" ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" type="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+  <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+      Your email must be between 10 and 100 characters long and look like an e-mail address.
+    </div>
+  </div>
+</md-input-container>

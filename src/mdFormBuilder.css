@@ -1,0 +1,96 @@
+
+md-input-container {
+	margin: 15px 0px;
+}
+md-input-container label{
+	color: #666;
+}
+
+md-select.md-default-theme .md-select-value.md-select-placeholder, md-select .md-select-value.md-select-placeholder {
+	color: #666;
+}
+
+
+#FormBuilder .angular-notifications-icon {
+  right: -22px;
+  top: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  text-align: center;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  min-width: 20px;
+  height: 20px;
+  background: red;
+  color: white;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+#FormBuilder .angular-notifications-icon div {
+  margin-top: -2px;
+}
+
+md-input-container:not(.md-input-has-value) input:not(:focus), 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text {
+	color: inherit;
+}
+
+
+md-chips-wrap .md-errors-spacer { display: none; }
+
+
+md-input-container.md-has-icon {
+  padding-left: 0px;
+}
+
+.selectdemoSelectHeader {
+/* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ }
+.selectdemoSelectHeader .demo-header-searchbox {
+  border: none;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  padding: 0; }
+.selectdemoSelectHeader .demo-select-header {
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+  padding-left: 10.667px;
+  height: 48px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: auto; }
+.selectdemoSelectHeader md-content._md {
+  max-height: 240px; }
+
+.FormBuilderMsg { padding: 10px; color: #fff; position: relative; }
+.FormBuilderMsgClose { font-size: 22px; right: 10px; position: absolute; outline: 0 }
+.FormBuilderMsgClose:hover { cursor: pointer; }
+.FormBuilderMsg.error { background: #DE3641; }
+.FormBuilderMsg.success { background: rgb(0,150,136); }
+.FormBuilderMsg.processing { background: #00ffff; color: #555; }
+
+md-input-container [disabled]{
+	color: #555 !important;
+	font-size: 18px;
+}
+
+
+
+.matrix-row {
+  margin: 20px 0;
+}

@@ -1,0 +1,28 @@
+<md-input-container>
+
+  <img ng-if="!photo" src="/images/avatar.jpg" width="60" height="60" style="float: right" />
+  <img ng-if="photo" ng-src="{{photo}}" width="60" height="60" style="float: right" />
+
+	<span style="float: left; margin-top: 7px; color: #777;">
+    {{field.title}}<br />
+    <md-button style="padding: 5px;
+      font-size: 13px;
+      min-width: inherit;
+      min-height: inherit;
+      text-transform: capitalize;
+      margin: 0px;
+      line-height: inherit;
+      margin-top: 10px;" class="md-raised md-primary" ng-click="showAdvanced()" type="button" flex-sm="100">
+      Take photo
+    </md-button>
+  </span>
+
+
+  
+  <input style="display: none;" ng-model="$parent[field.name]" name="{{field.name}}" ng-value="photo" />
+    
+
+  <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+    <div ng-message="required">This field is required</div>
+  </div>
+</md-input-container>

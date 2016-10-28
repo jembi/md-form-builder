@@ -1,0 +1,18 @@
+
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" ng-show="field.show">
+  <label>{{field.title}}</label>
+  <md-chips ng-if="!field.transformFunc" ng-init="$parent[field.name] = []" ng-model="$parent[field.name]" placeholder="Type to add option" ng-disabled="field.settings.disabled || globals.viewModeOnly" ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" name="{{field.name}}"></md-chips>
+  <md-chips ng-if="field.transformFunc" ng-init="$parent[field.name] = []"  md-transform-chip="transformFunc($chip)" ng-model="$parent[field.name]" placeholder="Type to add option" ng-disabled="field.settings.disabled || globals.viewModeOnly" ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" name="{{field.name}}">
+    <md-chip-template>
+      <span ng-style="!$chip.valid && {'color':'red'}">
+        <strong>{{$chip.code}}</strong>
+        <em ng-if="$chip.valid">({{$chip.text}})</em>
+        <em ng-if="!$chip.valid">(Not Valid)</em>
+      </span>
+    </md-chip-template>
+  </md-chips>
+
+  <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+    <div ng-message="required">This field is required</div>
+  </div>
+</md-input-container>

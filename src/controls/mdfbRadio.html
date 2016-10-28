@@ -1,0 +1,18 @@
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" ng-show="field.show">
+  <div style="margin-bottom: 10px;">{{field.title}}</div>
+  <!--<div style="margin-bottom: 10px;">{{field.title}}</div>
+  <div layout="row">-->
+    <md-radio-group name="{{field.name}}"
+              ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+              ng-model="field.value"
+              layout="{{field.layout}}">
+      <md-radio-button ng-repeat="option in field.options track by $index" ng-disabled="field.settings.disabled || globals.viewModeOnly" value="{{option.key}}" aria-label="...">
+        {{option.value}}
+      </md-radio-button>
+    </md-radio-group>
+
+    <div layout="column" ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+      <div ng-message="required">This field is required</div>
+    </div>
+  <!--</div>-->
+</md-input-container>
