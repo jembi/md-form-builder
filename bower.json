@@ -2,7 +2,7 @@
   "name": "md-form-builder",
   "version": "0.0.6",
   "description": "AngularJS - Material Design - Form Builder",
-  "main": "src/mdFormBuilder.js",
+  "main": "src/main.js",
   "authors": [
     "Martin Brocker <martin@jembi.org> (http://jembi.org)"
   ],
