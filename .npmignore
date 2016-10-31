@@ -3,3 +3,5 @@ bower.json
 src/
 .gitignore
 .git/
+deploy.sh
+npm-debug.log
