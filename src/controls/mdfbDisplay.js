@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbDisplay', function($compile) {
+module.exports = function($compile) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbDisplay.html',
+    templateUrl: 'mdfbDisplay.html',
     scope: {
       field: '=',
       form: '=',
@@ -21,7 +20,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 

@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbPassword', function($compile) {
+module.exports = function($compile) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbPassword.html',
+    templateUrl: 'mdfbPassword.html',
     scope: {
       field: '=',
       form: '=',
@@ -28,7 +27,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 

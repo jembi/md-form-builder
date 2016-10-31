@@ -3,8 +3,16 @@
   "version": "0.0.1",
   "description": "AngularJS - Material Design - Form Builder",
   "main": "index.js",
+  "browserify": {
+    "transform": [
+      [ "ngify", { "moduleName": "mdFormBuilderApplication" } ],
+      "browserify-css"
+    ]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify --entry src/index.js --outfile dist/bundle.js",
+    "publish": "npm run build && npm pulish"
   },
   "repository": {
     "type": "git",
@@ -21,5 +29,13 @@
   "bugs": {
     "url": "https://github.com/jembi/md-form-builder/issues"
   },
-  "homepage": "https://github.com/jembi/md-form-builder#readme"
+  "homepage": "https://github.com/jembi/md-form-builder#readme",
+  "dependencies": {
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "browserify-css": "^0.9.2",
+    "ngify": "^1.6.2"
+  }
 }

@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbRadio', function($timeout) {
+module.exports = function($timeout) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbRadio.html',
+    templateUrl: 'mdfbRadio.html',
     scope: {
       field: '=',
       form: '=',
@@ -27,7 +26,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 
