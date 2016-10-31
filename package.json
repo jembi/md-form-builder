@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/browserify/bin/cmd.js --entry src/index.js --outfile dist/bundle.js",
+    "build": "browserify --entry src/index.js --outfile dist/bundle.js",
     "publish": "npm run build && npm pulish"
   },
   "repository": {
