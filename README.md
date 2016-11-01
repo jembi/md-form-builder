@@ -14,7 +14,7 @@ npm adduser
 
 Once your NPM user has been setup, execute
 ```
-npm run publish
+npm publish ./
 ```
 
 **Bower**
