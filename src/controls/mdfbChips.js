@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbChips', function($timeout) {
+module.exports = function($timeout) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbChips.html',
+    templateUrl: 'mdfbChips.html',
     scope: {
       field: '=',
       form: '=',
@@ -62,7 +61,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 

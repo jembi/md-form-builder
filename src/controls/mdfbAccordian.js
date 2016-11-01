@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbAccordian', function($compile) {
+module.exports = function($compile) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbAccordian.html',
+    templateUrl: 'mdfbAccordian.html',
     scope: {
       field: '=',
       form: '=',
@@ -21,7 +20,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 

@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbWebcam', function($rootScope, $timeout, $compile, $mdMedia, $mdDialog) {
+module.exports = function($rootScope, $timeout, $compile, $mdMedia, $mdDialog) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbWebcam.html',
+    templateUrl: 'mdfbWebcam.html',
     scope: {
       field: '=',
       form: '=',
@@ -35,7 +34,7 @@ angular.module('mdFormBuilderApp')
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && scope.customFullscreen;
         $mdDialog.show({
           controller: DialogController,
-          templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbWebcamDialogPopup.html',
+          templateUrl: 'mdfbWebcamDialogPopup.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:true,
@@ -180,7 +179,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 

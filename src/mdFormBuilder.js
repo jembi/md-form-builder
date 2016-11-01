@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdFormBuilder', function($window, $timeout, $anchorScroll, $location, $mdpDatePicker, hotkeys) {
+module.exports = function($window, $timeout, $anchorScroll, $location, $mdpDatePicker, hotkeys) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/mdFormBuilder.html',
+    templateUrl: 'mdFormBuilder.html',
     scope: {
       form: '='
     },
@@ -36,7 +35,7 @@ angular.module('mdFormBuilderApp')
     controllerAs: 'FormBuilder',
     bindToController: false
   }
-});
+};
 
 function FormBuilderCtrl($scope, $window, $timeout, $anchorScroll, $location, $mdpDatePicker, hotkeys) {
 

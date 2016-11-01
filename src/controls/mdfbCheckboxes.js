@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbCheckboxes', function($compile) {
+module.exports = function($compile) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbCheckboxes.html',
+    templateUrl: 'mdfbCheckboxes.html',
     scope: {
       field: '=',
       form: '=',
@@ -27,7 +26,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 

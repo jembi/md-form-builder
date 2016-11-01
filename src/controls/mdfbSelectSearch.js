@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbSelectSearch', function($compile) {
+module.exports = function($compile) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbSelectSearch.html',
+    templateUrl: 'mdfbSelectSearch.html',
     scope: {
       field: '=',
       form: '=',
@@ -37,7 +36,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 
 

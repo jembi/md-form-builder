@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mdFormBuilderApp')   
-.directive('mdfbInputNumber', function($compile, $parse) {
+module.exports = function($compile, $parse) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbInputNumber.html',
+    templateUrl: 'mdfbInputNumber.html',
     scope: {
       field: '=',
       form: '=',
@@ -27,7 +26,7 @@ angular.module('mdFormBuilderApp')
 
     }
   }
-});
+};
 
 var initSkipLogicInputNumber = function(scope, elem, attrs, formField){
 
