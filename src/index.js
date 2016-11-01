@@ -16,7 +16,7 @@
 }(this, function (angular) {
   'use strict'
   
-  var moduleName = 'mdFormBuilderApplication'
+  var moduleName = 'md-form-builder'
   var mod = angular.module(moduleName, [])
   
   require('./mdFormBuilder.css')

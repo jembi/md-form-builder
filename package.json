@@ -8,7 +8,7 @@
       [
         "ngify",
         {
-          "moduleName": "mdFormBuilderApplication"
+          "moduleName": "md-form-builder"
         }
       ],
       "browserify-css"
