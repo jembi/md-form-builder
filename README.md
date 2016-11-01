@@ -1,23 +1,19 @@
 # AngularJS - Material Design Form Builder
 ==========================================
 
+This form builder works with AngularJS and Material Design to build dynamic forms and comes with various features.
 
-
-Deploying to NPM and Bower
---------------------------
-**NPM**
-
-Ensure that you have a npm user before trying to publish. Create one by running
+**Installing**
 ```
-npm adduser
+npm install md-form-builder
 ```
 
-Once your NPM user has been setup, execute
+To include this module into your AngularJS application, include the reference to the bundled file
 ```
-npm publish ./
+node_modules/md-form-builder/dist/bundle.js
 ```
 
-**Bower**
+and add the below provider to your app.js
 ```
-bower register md-form-builder https://github.com/jembi/md-form-builder.git
+md-form-builder
 ```
