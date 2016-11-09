@@ -1,18 +1,13 @@
-
 <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" ng-show="field.show">
-
-	<mdp-date-picker 
-    mdp-open-on-click ng-disabled="field.settings.disabled || globals.viewModeOnly" 
-    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" 
+  <label>{{field.title}}</label>
+  <md-datepicker 
     name="{{field.name}}" 
-    mdp-format="YYYY-MM-DD" 
-    ng-model="$parent[field.name]">
-		<label>{{field.title}}</label>
-	  <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
-	    <div ng-message="required">This field is required</div>
-	    <div ng-message="format">Invalid format</div>
-	  </div>
-	</mdp-date-picker>
-
+    ng-model="myDate"
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+    ng-disabled="field.settings.disabled || globals.viewModeOnly"></md-datepicker>
+    
+  <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+    <div ng-message="required">This field is required</div>
+    <div ng-message="format">Invalid format</div>
+  </div>
 </md-input-container>
-

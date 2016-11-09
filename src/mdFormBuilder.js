@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function($window, $timeout, $anchorScroll, $location, $mdpDatePicker, hotkeys) {
+module.exports = function($window, $timeout, $anchorScroll, $location, hotkeys) {
   return {
     restrict: 'E',
     replace: true,
@@ -37,7 +37,7 @@ module.exports = function($window, $timeout, $anchorScroll, $location, $mdpDateP
   }
 };
 
-function FormBuilderCtrl($scope, $window, $timeout, $anchorScroll, $location, $mdpDatePicker, hotkeys) {
+function FormBuilderCtrl($scope, $window, $timeout, $anchorScroll, $location, hotkeys) {
 
   
 
@@ -109,24 +109,6 @@ function FormBuilderCtrl($scope, $window, $timeout, $anchorScroll, $location, $m
     //reset to old to keep any additional routing logic from kicking in
     $location.hash(old);
   };
-
-
-
-
-  $scope.currentDate = new Date();
-  $scope.dateFormat = $scope.dateFormat || "YYYY-MM-DD";
-  $scope.showDatePicker = function(ev) {
-    $mdpDatePicker(ngModel.$modelValue, {
-        minDate: $scope.minDate, 
-        maxDate: $scope.maxDate,
-        dateFilter: $scope.dateFilter,
-        targetEvent: ev
-    }).then(function(time) {
-        ngModel.$setViewValue(moment(time).format($scope.format));
-        ngModel.$render();
-    });
-  };
-
 
 
   $scope.setFormMessage = function( result ){

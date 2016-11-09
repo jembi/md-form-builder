@@ -19,9 +19,6 @@ module.exports = function($compile) {
       scope.form[scope.field.name].$setUntouched();
       scope.form[scope.field.name].$setPristine();
       scope.form[scope.field.name].$render();
-
-      console.log(scope.form[scope.field.name])
-
       
       if ( scope.field.skipLogic ){
         initSkipLogicDatePicker( scope, elem, attrs, scope.field );
@@ -35,7 +32,6 @@ module.exports = function($compile) {
 
 
 var initSkipLogicDatePicker = function(scope, elem, attrs, formField){
-
   // add watchers for any logical functions which need to be executed based on a form variable
   if ( formField.skipLogic.func ){
     angular.forEach(formField.skipLogic.func.watchingVars, function(watchingVar, key) {
