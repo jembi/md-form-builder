@@ -1,5 +1,6 @@
 <form ng-submit="submitForm()" id="FormBuilder" name="{{FormBuilder.name}}" novalidate>
 	<link rel="stylesheet" type="text/css" data-href="mdFormBuilder.css" />
+	<link rel="stylesheet" type="text/css" data-href="node_modules/mdPickers/dist/mdPickers.min.css" />
 
 	<div ng-if="FormBuilder.sections.length === 0">
 		<div class="loadingDiv">
@@ -14,7 +15,7 @@
 	<!--<pre>{{ $eval(FormBuilder.name) | json }}</pre>-->
 
 	<div ng-if="FormBuilder.sections.length > 0">
-		
+
 		<div md-whiteframe="4" class="FormBuilderMsg" ng-show="formMsg.display" ng-class="{'error': formMsg.status == 'error', 'success': formMsg.status == 'success', 'processing': formMsg.status == 'processing'}">
 			{{ formMsg.msg }}
 			<i flex="10" ng-click="formMsg.display = !formMsg.display" class="material-icons ng-binding FormBuilderMsgClose">close</i>
@@ -28,7 +29,7 @@
 					<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
 					<div layout="{{ row.layout }}" layout-wrap layout-align="start start">
 						<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-sm="60" flex-md="50" style="padding: 0px 10px;">
-						
+
 							<mdfb-accordian form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
 							<mdfb-display form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
 							<mdfb-input form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
@@ -43,7 +44,7 @@
 							<mdfb-matrix form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
 							<mdfb-chips form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
 							<mdfb-webcam form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
-							
+
 						</div>
 					</div>
 				</div>
@@ -61,7 +62,7 @@
 				  </notification-icon>
 				</md-tab-label>
 
-				
+
 
 				<md-tab-body>
 					<h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
@@ -70,7 +71,7 @@
 						<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
 						<div layout="{{ row.layout }}" layout-wrap layout-align="start start">
 							<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-sm="60" flex-md="50" style="padding: 0px 10px;">
-							
+
 								<mdfb-accordian form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
 								<mdfb-display form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
 								<mdfb-input form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
@@ -85,13 +86,13 @@
 								<mdfb-matrix form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
 								<mdfb-chips form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
 								<mdfb-webcam form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
-								
+
 							</div>
 						</div>
 					</div>
 				</md-tab-body>
-	    
-	      
+
+
 
 	    </md-tab>
 	  </md-tabs>

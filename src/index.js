@@ -15,12 +15,15 @@
   }
 }(this, function (angular) {
   'use strict'
-  
+
   var moduleName = 'md-form-builder'
-  var mod = angular.module(moduleName, [])
-  
+  require('angular-hotkeys')
+  global.moment = require('moment') // required my mdPickers
+  var mod = angular.module(moduleName, [ require('angular-material'), require('mdPickers'), 'cfp.hotkeys' ])
+
   require('./mdFormBuilder.css')
-  
+  require('../node_modules/mdPickers/dist/mdPickers.min.css')
+
   require('./mdFormBuilder.html')
   require('./controls/mdfbAccordian.html')
   require('./controls/mdfbCheckboxes.html')
