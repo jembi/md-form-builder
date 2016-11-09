@@ -36,7 +36,7 @@ module.exports = function($window, $timeout, $anchorScroll, $location, hotkeys) 
   }
 }
 
-function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, $mdpDatePicker, hotkeys) {
+function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, hotkeys) {
   /* Hotkeys */
   $scope.tabs = {}
   $scope.tabs.selectedIndex = 0
