@@ -1,0 +1,66 @@
+<md-input-container style="border-top: 1px solid #ccc;">
+  <div class="matrix">
+    <div class="matrix-row" flex layout="row">
+      <span class="matrix-cell" flex="25">Levels of Effort</span>
+      <span class="matrix-cell" flex="75" style="margin-left: 25px;">Assessment Findings</span>
+    </div>
+    <div class="matrix-row" ng-repeat="row in field.config.rows track by $index" layout="row">
+      <span class="matrix-cell" flex="25" layout="column" layout-align="top left" ng-bind-html="row.title" style="margin-right: 20px;"></span>
+      <div class="matrix-cell" flex="75" layout="column" layout-align="top left">
+        
+        <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
+          <md-radio-group name="{{row.name}}"
+                    ng-required="row.settings.required && !form.saveAsDraft.$modelValue && row.show"
+                    ng-model="row.value"
+                    layout="{{row.layout}}">
+            <md-radio-button ng-repeat="option in row.options track by $index" ng-disabled="row.settings.disabled || globals.viewModeOnly" value="{{option.key}}" aria-label="...">
+              {{option.value}}
+            </md-radio-button>
+          </md-radio-group>
+
+          <div layout="column" ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+            <div ng-message="required">This field is required</div>
+          </div>
+        </md-input-container>
+        
+
+        <div>
+          <div layout="column" style="padding: 10px; background: #eee; border-bottom: 1px solid #ccc;">
+            <div layout="row">
+              <span style="font-weight: bold;">Findings:</span>
+              <span flex></span>
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'findings', row.data.findings)" flex-sm="100" ng-show="!row.data.findings" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 20px; float: left;">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'findings', row.data.findings)" flex-sm="100" ng-show="row.data.findings" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 16px; float: left;">edit</i></span> Edit</md-button>
+            </div>
+            <input type="hidden" name="{{row.name}}Findings" ng-model="row.data.findings" />
+            <div layout="row" ng-if="row.data.findings" ng-bind-html="row.data.findings" style="padding: 5px 10px 0px 10px;"></div>
+          </div>
+          <div layout="column" style="padding: 10px; background: #eee;">
+            <div layout="row">
+              <span style="font-weight: bold;">Recommendation:</span>
+              <span flex></span>
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'recommendation', row.data.recommendation)" flex-sm="100" ng-show="!row.data.recommendation" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 20px; float: left;">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'recommendation', row.data.recommendation)" flex-sm="100" ng-show="row.data.recommendation" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 16px; float: left;">edit</i></span> Edit</md-button>
+            </div>
+            <input type="hidden" name="{{row.name}}Recommendation" ng-model="row.data.recommendation" />
+            <div layout="row" ng-if="row.data.recommendation" ng-bind-html="row.data.recommendation" style="padding: 5px 10px 0px 10px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-messages="MatrixView.form.$error">
+    <div ng-message="required">This is required</div>
+  </div>
+
+
+  <style>
+    ol, ul { margin: 0px; padding: 16px; }
+    .matrix-row {
+      margin: 20px 0;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+  </style>
+</md-input-container>
