@@ -51,8 +51,6 @@
 	    </div>
 	  </div>
 
-
-
 		<md-tabs md-dynamic-height md-border-bottom md-selected="tabs.selectedIndex" ng-if="FormBuilder.displayType === 'tabs'">
 	    <md-tab ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" label="">
 		    <md-tab-label>
@@ -61,21 +59,14 @@
 				  </notification-icon>
 				</md-tab-label>
 
-
-
 				<md-tab-body>
 					<h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
 
 		    	<div ng-repeat="row in section.rows" style="{{ row.styles }}" layout-padding>
 						<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
 						<div layout="{{ row.layout }}" layout-wrap layout-align="start start">
-<<<<<<< HEAD
-							<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-sm="60" flex-md="50" style="padding: 0px 10px;">
 
-=======
 							<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-md="100" style="padding: 0px 10px; {{ field.styles }}">
-
->>>>>>> origin/upgrades
 								<mdfb-accordian form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
 								<mdfb-display form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
 								<mdfb-input form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
@@ -93,21 +84,13 @@
                 <mdfb-matrix-custom form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
 								<mdfb-chips form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
 								<mdfb-webcam form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
-
 							</div>
 						</div>
 					</div>
 				</md-tab-body>
 
-
-
 	    </md-tab>
 	  </md-tabs>
-
-
-
-
-
 
 		<md-input-container style="padding: 10px 15px; margin: 0px; border-top: 1px dashed #ccc" class="md-block" layout-align="center center">
 	    <div layout="row" layout-sm="column" flex>
