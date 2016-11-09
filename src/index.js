@@ -16,8 +16,34 @@
 }(this, function (angular) {
   'use strict'
   
+  require('angular-animate')
+  require('angular-aria')
+  require('angular-hotkeys')
+  require('angular-material')
+  require('angular-messages')
+  require('angular-notification-icons')
+  require('angular-sanitize')
+  require('angular-touch')
+  require('mdPickers')
+  require('moment')
+  require('v-accordion')
+  require('../node_modules/webcam/dist/webcam.min.js')
+  
   var moduleName = 'md-form-builder'
-  var mod = angular.module(moduleName, [])
+  var mod = angular.module(moduleName, [ 
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'ngMessages',
+    'ngSanitize',
+    'ngMaterial',
+    'cfp.hotkeys',
+    'angular-notification-icons',
+    'vAccordion',
+    'mdPickers',
+    'webcam',
+  ])
   
   require('./mdFormBuilder.css')
   
@@ -31,8 +57,10 @@
   require('./controls/mdfbInput.html')
   require('./controls/mdfbInputNumber.html')
   require('./controls/mdfbMatrix.html')
+  require('./controls/mdfbMatrixCustom.html')
   require('./controls/mdfbPassword.html')
   require('./controls/mdfbRadio.html')
+  require('./controls/mdfbRadioCustom.html')
   require('./controls/mdfbSelect.html')
   require('./controls/mdfbSelectSearch.html')
   require('./controls/mdfbWebcam.html')
@@ -47,8 +75,10 @@
   mod.directive('mdfbInput', require('./controls/mdfbInput'))
   mod.directive('mdfbInputNumber', require('./controls/mdfbInputNumber'))
   mod.directive('mdfbMatrix', require('./controls/mdfbMatrix'))
+  mod.directive('mdfbMatrixCustom', require('./controls/mdfbMatrixCustom'))
   mod.directive('mdfbPassword', require('./controls/mdfbPassword'))
   mod.directive('mdfbRadio', require('./controls/mdfbRadio'))
+  mod.directive('mdfbRadioCustom', require('./controls/mdfbRadioCustom'))
   mod.directive('mdfbSelect', require('./controls/mdfbSelect'))
   mod.directive('mdfbSelectSearch', require('./controls/mdfbSelectSearch'))
   mod.directive('mdfbWebcam', require('./controls/mdfbWebcam'))

@@ -84,9 +84,8 @@ md-input-container.md-has-icon {
 .FormBuilderMsg.success { background: rgb(0,150,136); }
 .FormBuilderMsg.processing { background: #00ffff; color: #555; }
 
-md-input-container [disabled]{
-	color: #555 !important;
-	font-size: 18px;
+md-input-container [disabled], .fieldDisabled{
+	color: #bbb !important;
 }
 
 

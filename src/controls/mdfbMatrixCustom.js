@@ -1,26 +1,64 @@
-'use strict';
+/* global angular */
 
-module.exports = function($compile) {
+'use strict'
+
+module.exports = function ($compile, $mdDialog) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'mdfbDisplay.html',
+    templateUrl: 'mdfbMatrixCustom.html',
     scope: {
-        field: '=',
-        form: '=',
-        globals: '='
-      },
+      field: '=',
+      form: '=',
+      globals: '='
+    },
     link: function (scope, elem, attrs) {
       scope.field.show = true
 
-      if (scope.field.skipLogic) {
-        initSkipLogicDisplay(scope, elem, attrs, scope.field)
+      console.log(scope.field.config.rows)
+      for (var i = 0; i < scope.field.config.rows.length; i++) {
+        if (scope.field.config.rows[i].skipLogic) {
+          initSkipLogicMatrixCustom(scope, elem, attrs, scope.field.config.rows[i])
+        }
+      }
+
+      scope.showPrompt = function (rowIndex, type, value) {
+        function DialogController ($scope, $mdDialog, data) {
+          $scope.data = data
+          $scope.hide = function () {
+            $mdDialog.hide()
+          }
+
+          $scope.cancel = function () {
+            $mdDialog.cancel()
+          }
+
+          $scope.submitForm = function () {
+            if ($scope.commentForm.$valid) {
+              $mdDialog.hide($scope.data.value)
+            }
+          }
+        }
+
+        $mdDialog.show({
+          clickOutsideToClose: false,
+          fullscreen: true,
+          controllerAs: 'ctrl',
+          templateUrl: 'views/findingsRecommendationModal.html',
+          controller: DialogController,
+          locals: { data: { type: type, value: value } }
+        })
+          .then(function (text) {
+            scope.field.config.rows[rowIndex].data[type] = text
+          }, function () {
+            console.log('Did not consent')
+          })
       }
     }
   }
 }
 
-var initSkipLogicDisplay = function (scope, elem, attrs, formField) {
+var initSkipLogicMatrixCustom = function (scope, elem, attrs, formField) {
   // add watchers for any logical functions which need to be executed based on a form variable
   if (formField.skipLogic.func) {
     angular.forEach(formField.skipLogic.func.watchingVars, function (watchingVar, key) {
@@ -40,6 +78,8 @@ var initSkipLogicDisplay = function (scope, elem, attrs, formField) {
       })
     })
   }
+
+  console.log('Matrix Custom Radio')
 
   // add watchers for any logic checks (show/hide)
   if (formField.skipLogic.checks.length > 0) {
