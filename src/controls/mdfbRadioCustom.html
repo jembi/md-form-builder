@@ -1,0 +1,82 @@
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid }" ng-show="field.show" style="margin: 0px;">
+
+  <div class="radio-custom-row" layout="row">
+    <span class="matrix-cell" flex="25" layout="column" layout-align="top left" ng-bind-html="field.title" ng-class="{fieldDisabled: field.settings.disabled}" style="margin-right: 20px;"></span>
+    <div class="matrix-cell" flex="75" layout="column" layout-align="top left">
+
+      <md-input-container ng-show="!globals.normalDisplay" ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" style="margin-top: 0px;">
+        <md-radio-group name="{{field.name}}"
+                  ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+                  ng-model="field.value"
+                  layout="{{field.layout}}">
+          <md-radio-button ng-repeat="option in field.options track by $index" ng-disabled="field.settings.disabled || globals.viewModeOnly" value="{{option.key}}" aria-label="...">
+            <span ng-bind-html="option.value"></span>
+          </md-radio-button>
+        </md-radio-group>
+
+        <div layout="column" ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid">
+          <div ng-message="required">This field is required</div>
+        </div>
+      </md-input-container>
+
+      <style>
+        .normalDisplay {
+          margin-top: 0px;
+        }
+        .normalDisplay md-list-item::before, md-list-item .md-list-item-inner::before {
+          min-height: 35px;
+        }
+
+        .normalDisplay md-list-item{
+          
+          min-height: 35px;
+          margin-left: 16px;
+        }
+      </style>
+
+      <md-input-container class="normalDisplay" ng-show="globals.normalDisplay">
+        <md-list style="padding: 0px; margin-top: -8px;">
+          <md-list-item ng-repeat="option in field.options">
+            <span ng-class="{'selected-option': field.value == $index}" ng-bind-html="option.value"></span>
+          </md-list-item>
+        </md-list>
+      </md-input-container>
+
+
+      <div>
+        <div layout="column" style="padding: 10px; background: #eee; border-bottom: 1px solid #ccc;">
+          <div layout="row">
+            <span style="font-weight: bold;">Findings:</span>
+            <span flex></span>
+            <div ng-if="!globals.normalDisplay">
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="!field.data.findings" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 20px; float: left;">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="field.data.findings" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 16px; float: left;">edit</i></span> Edit</md-button>
+            </div>
+          </div>
+          <input type="hidden" name="{{field.name}}_findings" ng-model="field.data.findings" />
+          <div layout="row" ng-if="field.data.findings" ng-bind-html="field.data.findings" style="padding: 5px 10px 0px 10px;"></div>
+        </div>
+        <div layout="column" style="padding: 10px; background: #eee;">
+          <div layout="row">
+            <span style="font-weight: bold;">Recommendations:</span>
+            <span flex></span>
+            <div ng-if="!globals.normalDisplay">
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="!field.data.recommendations" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 20px; float: left;">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="field.data.recommendations" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 16px; float: left;">edit</i></span> Edit</md-button>
+            </div>
+          </div>
+          <input type="hidden" name="{{field.name}}_recommendations" ng-model="field.data.recommendations" />
+          <div layout="row" ng-if="field.data.recommendations" ng-bind-html="field.data.recommendations" style="padding: 5px 10px 0px 10px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .radio-custom-row {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+    md-radio-button .md-container { top: 8px; }
+  </style>
+</md-input-container>
