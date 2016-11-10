@@ -2,7 +2,7 @@
   "name": "md-form-builder",
   "version": "0.1.1",
   "description": "AngularJS - Material Design - Form Builder",
-  "main": "index.js",
+  "main": "src/index.js",
   "browserify": {
     "transform": [
       [
@@ -44,14 +44,13 @@
     "ngify": "^1.6.2"
   },
   "dependencies": {
-    "angular-animate": "^1.5.8",
-    "angular-aria": "^1.5.8",
     "angular-hotkeys": "^1.7.0",
     "angular-material": "^1.1.1",
     "angular-messages": "^1.5.8",
     "angular-notification-icons": "^0.4.4",
     "angular-sanitize": "^1.5.8",
     "angular-touch": "^1.5.8",
+    "mdPickers": "^0.7.5",
     "moment": "^2.15.2",
     "v-accordion": "^1.6.0",
     "webcam": "^3.1.1"

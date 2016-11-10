@@ -29,7 +29,7 @@
   require('../node_modules/webcam/dist/webcam.min.js')
   
   var moduleName = 'md-form-builder'
-  var mod = angular.module(moduleName, [ 
+  var mod = angular.module(moduleName, [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -42,9 +42,10 @@
     'vAccordion',
     'webcam',
   ])
-  
+
   require('./mdFormBuilder.css')
-  
+  require('../node_modules/mdPickers/dist/mdPickers.min.css')
+
   require('./mdFormBuilder.html')
   require('./controls/mdfbAccordian.html')
   require('./controls/mdfbCheckboxes.html')
@@ -88,7 +89,7 @@
   // validators
   require('./validators/south-african-id-number-validator')
   mod.directive('checkIdNumber', require('./validators/idNumber'))
-  
+
 
   return moduleName
 }))
