@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify --standalone md-form-builder --entry src/index.js --outfile dist/bundle.js",
+    "build": "browserify --entry src/index.js --outfile dist/bundle.js",
     "prepublish": "npm run build"
   },
   "repository": {
