@@ -40,10 +40,11 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
   /* Hotkeys */
   $scope.tabs = {}
   $scope.tabs.selectedIndex = 0
+  $scope.submitButtonText = 'Submit'
   $scope.$watch('selectedIndex', function (current, old) {})
   $scope.$watch('FormBuilder.buttons.submit', function (current, old) {
     if (current !== old) {
-      $scope.submitButtonText = $scope.FormBuilder.buttons.submit || 'submit form'
+      $scope.submitButtonText = $scope.FormBuilder.buttons.submit || 'Submit'
     }
   })
 
