@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify --entry src/index.js --outfile dist/bundle.js",
+    "build": "browserify --entry src/index.js | uglifyjs --output dist/bundle.js",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -35,7 +35,8 @@
   },
   "homepage": "https://github.com/jembi/md-form-builder#readme",
   "devDependencies": {
-    "browserify": "^13.1.1"
+    "browserify": "^13.1.1",
+    "uglify-js": "^2.7.4"
   },
   "dependencies": {
     "angular": "^1.5.8",
