@@ -15,12 +15,37 @@
   }
 }(this, function (angular) {
   'use strict'
-  
-  var moduleName = 'md-form-builder'
-  var mod = angular.module(moduleName, [])
-  
+
+  require('angular-animate')
+  require('angular-aria')
+  require('angular-hotkeys')
+  require('angular-material')
+  require('angular-messages')
+  require('angular-notification-icons')
+  require('angular-sanitize')
+  require('angular-touch')
+  require('moment')
+  require('v-accordion')
+  require('../node_modules/webcam/dist/webcam.min.js')
+  
+  var moduleName = 'md-form-builder'
+  var mod = angular.module(moduleName, [
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'ngMessages',
+    'ngSanitize',
+    'ngMaterial',
+    'cfp.hotkeys',
+    'angular-notification-icons',
+    'vAccordion',
+    'webcam',
+  ])
+
   require('./mdFormBuilder.css')
-  
+  require('../node_modules/mdPickers/dist/mdPickers.min.css')
+
   require('./mdFormBuilder.html')
   require('./controls/mdfbAccordian.html')
   require('./controls/mdfbCheckboxes.html')
@@ -29,10 +54,13 @@
   require('./controls/mdfbDisplay.html')
   require('./controls/mdfbEmail.html')
   require('./controls/mdfbInput.html')
+  require('./controls/mdfbInputID.html')
   require('./controls/mdfbInputNumber.html')
   require('./controls/mdfbMatrix.html')
+  require('./controls/mdfbMatrixCustom.html')
   require('./controls/mdfbPassword.html')
   require('./controls/mdfbRadio.html')
+  require('./controls/mdfbRadioCustom.html')
   require('./controls/mdfbSelect.html')
   require('./controls/mdfbSelectSearch.html')
   require('./controls/mdfbWebcam.html')
@@ -45,14 +73,23 @@
   mod.directive('mdfbDisplay', require('./controls/mdfbDisplay'))
   mod.directive('mdfbEmail', require('./controls/mdfbEmail'))
   mod.directive('mdfbInput', require('./controls/mdfbInput'))
+  mod.directive('mdfbInputId', require('./controls/mdfbInputID'))
   mod.directive('mdfbInputNumber', require('./controls/mdfbInputNumber'))
   mod.directive('mdfbMatrix', require('./controls/mdfbMatrix'))
+  mod.directive('mdfbMatrixCustom', require('./controls/mdfbMatrixCustom'))
   mod.directive('mdfbPassword', require('./controls/mdfbPassword'))
   mod.directive('mdfbRadio', require('./controls/mdfbRadio'))
+  mod.directive('mdfbRadioCustom', require('./controls/mdfbRadioCustom'))
   mod.directive('mdfbSelect', require('./controls/mdfbSelect'))
   mod.directive('mdfbSelectSearch', require('./controls/mdfbSelectSearch'))
   mod.directive('mdfbWebcam', require('./controls/mdfbWebcam'))
   mod.directive('mdFormBuilder', require('./mdFormBuilder'))
+
+
+  // validators
+  require('./validators/south-african-id-number-validator')
+  mod.directive('checkIdNumber', require('./validators/idNumber'))
+
 
   return moduleName
 }))

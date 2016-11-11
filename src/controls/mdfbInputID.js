@@ -1,26 +1,32 @@
-'use strict';
+'use strict'
 
-module.exports = function($compile) {
+module.exports = function ($compile) {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'mdfbDisplay.html',
+    templateUrl: 'mdfbInputID.html',
     scope: {
-        field: '=',
-        form: '=',
-        globals: '='
-      },
+      field: '=',
+      form: '=',
+      globals: '='
+    },
     link: function (scope, elem, attrs) {
       scope.field.show = true
 
+      // set value from FromNuilder field
+      scope.form[scope.field.name].$setViewValue(scope.field.value)
+      scope.form[scope.field.name].$setUntouched()
+      scope.form[scope.field.name].$setPristine()
+      scope.form[scope.field.name].$render()
+
       if (scope.field.skipLogic) {
-        initSkipLogicDisplay(scope, elem, attrs, scope.field)
+        initSkipLogicInputID(scope, elem, attrs, scope.field)
       }
     }
   }
 }
 
-var initSkipLogicDisplay = function (scope, elem, attrs, formField) {
+var initSkipLogicInputID = function (scope, elem, attrs, formField) {
   // add watchers for any logical functions which need to be executed based on a form variable
   if (formField.skipLogic.func) {
     angular.forEach(formField.skipLogic.func.watchingVars, function (watchingVar, key) {
@@ -44,7 +50,6 @@ var initSkipLogicDisplay = function (scope, elem, attrs, formField) {
   // add watchers for any logic checks (show/hide)
   if (formField.skipLogic.checks.length > 0) {
     for (var i = 0; i < formField.skipLogic.checks.length; i++) {
-      // console.log(formField.skipLogic.checks[i])
       var check = formField.skipLogic.checks[i]
       scope.$watch(check.variable, function (value, oldValue) {
         var operators = {
@@ -56,10 +61,35 @@ var initSkipLogicDisplay = function (scope, elem, attrs, formField) {
           '>=': function (a, b) { return a >= b }
         }
 
-        if (operators[check.operand](value, check.value)) {
-          scope.field.show = true
-        } else {
-          scope.field.show = false
+        switch (check.action) {
+          case 'checkIdNumber':
+            if (operators[check.operand](value, check.value)) {
+              scope.field.settings.checkIdNumber = true
+            } else {
+              scope.field.settings.checkIdNumber = false
+            }
+            break
+          case 'disabled':
+            if (operators[check.operand](value, check.value)) {
+              scope.field.settings.disabled = true
+            } else {
+              scope.field.settings.disabled = false
+            }
+            break
+          case 'required':
+            if (operators[check.operand](value, check.value)) {
+              scope.field.settings.required = true
+            } else {
+              scope.field.settings.required = false
+            }
+            break
+          case 'showhide':
+          default:
+            if (operators[check.operand](value, check.value)) {
+              scope.field.show = true
+            } else {
+              scope.field.show = false
+            }
         }
       }, true)
     }
