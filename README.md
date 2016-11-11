@@ -1,19 +1,363 @@
 # AngularJS - Material Design Form Builder
-==========================================
 
 This form builder works with AngularJS and Material Design to build dynamic forms and comes with various features.
 
-**Installing**
+## Installing
 ```
 npm install md-form-builder
 ```
 
-To include this module into your AngularJS application, include the reference to the bundled file
-```
-node_modules/md-form-builder/dist/bundle.js
+To include this module into your AngularJS application you have the following options
+
+### Include as a script tag in your html
+```html
+<script src="/node_modules/md-form-builder/dist/bundle.js"></script>
 ```
 
-and add the below provider to your app.js
+### Include using CommonJS (node.js) style require or browserify
+```js
+require('md-form-builder')
 ```
-md-form-builder
+
+The add the dependency to angular module
+```js
+angular.module('<your_module>', [ 'md-form-builder' ])
+```
+
+## Use as follows
+
+```html
+<md-form-builder form="state.FormBuilder"></md-form-builder>
+```
+
+Where the controller hash
+
+```js
+$scope.state = {};
+$scope.state.FormBuilder = {
+  name: 'FormBuilderForm',
+  displayType: 'tabs',
+  globals: {
+    viewModeOnly: false,
+    showDraftSubmitButton: true,
+    showReviewButton: false
+  },
+  sections: [], // add all of your sections here
+  FormBuilderForm: {},
+  submit: {
+    execute: submitFormBuilderForm, // the function that will be executed on submission
+    params: []
+  }
+}
+```
+
+Each section contains rows and each row has fields. See the example of a sections array below for some of the available options.
+
+```js
+[
+  {
+    "key": "tab1",
+    "name": "Tab 1",
+    "displayName": "Tab 1",
+    "flex": "100",
+    "rows": [{
+      "name": "Row 1",
+      "title": "Below are some of the types of inputs that are available in mdFormBuilder",
+      "layout": "row",
+      "fields": [{
+        "type": "input",
+        "flex": "25",
+        "name": "input",
+        "title": "Input - Text",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
+        "type": "inputNumber",
+        "flex": "25",
+        "name": "inputNumber",
+        "title": "Input - Integer",
+        "settings": {
+          "valueType": "valueDecimal",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
+        "type": "email",
+        "flex": "25",
+        "name": "email",
+        "title": "Input - Email",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
+        "type": "password",
+        "flex": "25",
+        "name": "password",
+        "title": "Input - Password",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
+        "type": "display",
+        "flex": "25",
+        "name": "display",
+        "title": "display",
+        "settings": {
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": "Some display text"
+      }, {
+        "type": "accordian",
+        "flex": "25",
+        "name": "accordian",
+        "title": "Display - accordian",
+        "settings": {
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "tabs": [{ "name": "Tab 1", "content": "content for tab 1" }, { "name": "Tab 2", "content": "content for tab 2" }]
+      }, {
+        "type": "date",
+        "flex": "25",
+        "name": "date",
+        "title": "Input - Datepicker",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
+        "type": "webcam",
+        "flex": "25",
+        "name": "password",
+        "title": "Input - Webcam",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
+        "type": "radio",
+        "flex": "25",
+        "name": "radio",
+        "title": "input - Radio",
+        "settings": {
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "options": [{ "key": "yes", "value": "Yes" }, { "key": "no", "value": "No" }, { "key": "maybe", "value": "Maybe" }],
+        "value": "Some display text"
+      }, {
+        "type": "checkboxes",
+        "flex": "25",
+        "name": "checkboxes",
+        "title": "Display - Checkboxes",
+        "settings": {
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "options": [{ "key": "yes", "value": "Yes" }, { "key": "no", "value": "No" }],
+        "value": null
+      }, {
+        "type": "select",
+        "flex": "25",
+        "name": "select",
+        "title": "Input - Select",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "options": [{ "key": "1", "value": "Option 1" }, { "key": "2", "value": "Option 2" }, { "key": "3", "value": "Option 3" }],
+        "value": null
+      }, {
+        "type": "selectSearch",
+        "flex": "25",
+        "name": "selectSearch",
+        "title": "Input - SelectSearch",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "options": [{ "key": "1", "value": "Option 1" }, { "key": "2", "value": "Option 2" }, { "key": "3", "value": "Option 3" }],
+        "value": null
+      }, {
+        "type": "chips",
+        "flex": "50",
+        "name": "chips",
+        "title": "Input - Chips",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
+        "type": "matrix",
+        "flex": "50",
+        "name": "matrix",
+        "title": "Input - matrix",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "config": {
+          "required": false,
+          "rows": [
+            {
+              "id": "matrixQuestion1",
+              "value": "Question 1"
+            },
+            {
+              "id": "matrixQuestion2",
+              "value": "Question 2"
+            },
+            {
+              "id": "matrixQuestion3",
+              "value": "Question 3"
+            }
+          ],
+          "columns": [
+            {
+              "value": "No"
+            },
+            {
+              "value": "Yes"
+            },
+            {
+              "value": "Maybe"
+            }
+          ]
+        },
+        "value": null
+      }]
+    }]
+  },
+  {
+    "key": "tab2",
+    "name": "Tab 2",
+    "displayName": "Tab 2",
+    "flex": "100",
+    "rows": [{
+      "name": "Row 2",
+      "title": "This section shows some skip logic and functional input",
+      "layout": "row",
+      "fields": [{
+        "type": "inputNumber",
+        "flex": "30",
+        "name": "weight",
+        "title": "What is your weight? (kg)",
+        "settings": {
+          "valueType": "valueDecimal",
+          "required": true
+        },
+        "value": null
+      }, {
+        "type": "inputNumber",
+        "flex": "30",
+        "name": "height",
+        "title": "What is your height? (cm)",
+        "settings": {
+          "valueType": "valueInteger",
+          "required": true
+        },
+        "value": null
+      }, {
+        "type": "inputNumber",
+        "flex": "30",
+        "name": "bmi",
+        "title": "BMI",
+        "settings": {
+          "valueType": "valueDecimal",
+          "disabled": true
+        },
+        "skipLogic": {
+          "func": {
+            "execute": "calculateBMI",
+            "params": ["weight", "height"],
+            "watchingVars": ["weight", "height"]
+          },
+          "checks": [{
+            "variable": "form.bmi.$modelValue",
+            "operand": ">",
+            "value": 0
+          }]
+        },
+        "value": null
+      }]
+    }]
+  }
+]
 ```
