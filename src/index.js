@@ -26,7 +26,7 @@
   require('angular-touch')
   require('moment')
   require('v-accordion')
-  require('../node_modules/webcam/dist/webcam.min.js')
+  require('webcam/dist/webcam.min.js')
   
   var moduleName = 'md-form-builder'
   var mod = angular.module(moduleName, [
@@ -44,7 +44,6 @@
   ])
 
   require('./mdFormBuilder.css')
-  require('../node_modules/mdPickers/dist/mdPickers.min.css')
 
   require('./mdFormBuilder.html')
   require('./controls/mdfbAccordian.html')
@@ -85,11 +84,9 @@
   mod.directive('mdfbWebcam', require('./controls/mdfbWebcam'))
   mod.directive('mdFormBuilder', require('./mdFormBuilder'))
 
-
   // validators
   require('./validators/south-african-id-number-validator')
   mod.directive('checkIdNumber', require('./validators/idNumber'))
-
 
   return moduleName
 }))
