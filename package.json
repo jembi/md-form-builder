@@ -29,7 +29,7 @@
     "forms"
   ],
   "author": "Martin Brocker <martin@jembi.org> (http://jembi.org)",
-  "license": "ISC",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/jembi/md-form-builder/issues"
   },
