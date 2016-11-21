@@ -19,7 +19,10 @@
 
 
   
-  <input style="display: none;" ng-model="$parent[field.name]" name="{{field.name}}" ng-value="photo" />
+  <input style="display: none;" 
+    name="{{field.name}}"
+    ng-model="field.value"
+    ng-value="photo" />
     
 
   <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">

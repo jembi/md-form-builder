@@ -1,8 +1,24 @@
-
 <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" ng-show="field.show">
   <label>{{field.title}}</label>
-  <md-chips ng-if="!field.transformFunc" ng-init="$parent[field.name] = []" ng-model="$parent[field.name]" placeholder="Type to add option" ng-disabled="field.settings.disabled || globals.viewModeOnly" ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" name="{{field.name}}"></md-chips>
-  <md-chips ng-if="field.transformFunc" ng-init="$parent[field.name] = []"  md-transform-chip="transformFunc($chip)" ng-model="$parent[field.name]" placeholder="Type to add option" ng-disabled="field.settings.disabled || globals.viewModeOnly" ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" name="{{field.name}}">
+
+  <md-chips 
+    name="{{field.name}}"
+    ng-model="field.value"
+    ng-if="!field.transformFunc" 
+    ng-init="$parent[field.name] = []" 
+    placeholder="Type to add option" 
+    ng-disabled="field.settings.disabled || globals.viewModeOnly" 
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"></md-chips>
+
+  <md-chips 
+    name="{{field.name}}"
+    ng-model="field.value"
+    ng-if="field.transformFunc" 
+    ng-init="$parent[field.name] = []" 
+    md-transform-chip="transformFunc($chip)" 
+    placeholder="Type to add option" 
+    ng-disabled="field.settings.disabled || globals.viewModeOnly" 
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show">
     <md-chip-template>
       <span ng-style="!$chip.valid && {'color':'red'}">
         <strong>{{$chip.code}}</strong>

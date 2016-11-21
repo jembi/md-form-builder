@@ -5,10 +5,11 @@
     <div class="matrix-cell" flex="75" layout="column" layout-align="top left">
 
       <md-input-container ng-show="!globals.normalDisplay" ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" style="margin-top: 0px;">
-        <md-radio-group name="{{field.name}}"
-                  ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
-                  ng-model="field.value"
-                  layout="{{field.layout}}">
+        <md-radio-group 
+          name="{{field.name}}"
+          ng-model="field.value"
+          ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+          layout="{{field.layout}}">
           <md-radio-button ng-repeat="option in field.options track by $index" ng-disabled="field.settings.disabled || globals.viewModeOnly" value="{{option.key}}" aria-label="...">
             <span ng-bind-html="option.value"></span>
           </md-radio-button>
