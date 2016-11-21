@@ -13,12 +13,6 @@ module.exports = function($compile) {
     link: function (scope, elem, attrs) {
       scope.field.show = true
 
-      // set value from FromNuilder field
-      scope.form[scope.field.name].$setViewValue(scope.field.value)
-      scope.form[scope.field.name].$setUntouched()
-      scope.form[scope.field.name].$setPristine()
-      scope.form[scope.field.name].$render()
-
       if (scope.field.skipLogic) {
         initSkipLogicInput(scope, elem, attrs, scope.field)
       }

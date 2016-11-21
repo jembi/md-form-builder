@@ -3,8 +3,8 @@
   ng-show="field.show">
   <label>{{field.title}}</label>
   <input 
-    ng-model="$parent[field.name]" 
-    name="{{field.name}}" 
+    name="{{field.name}}"
+    ng-model="field.value" 
     ng-disabled="field.settings.disabled" 
     ng-required="field.settings.required && field.show"
     check-id-number="field.settings.checkIdNumber" />

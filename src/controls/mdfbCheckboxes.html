@@ -5,25 +5,22 @@
     top: 8px;
   }
   </style>
+  
+  <md-checkbox 
+    name="{{field.name}}"
+    ng-model="field.value"
+    ng-disabled="field.settings.disabled || globals.viewModeOnly"
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+    ng-true-value="true"
+    ng-false-value="false"
+    layout="{{field.layout}}"
+    layout-align="start start"
+    class="md-align-top-left" flex>
+    <div>{{field.title}}</div>
 
-  <!--<div style="margin-bottom: 10px;">{{field.title}}</div>
-  <div layout="row">-->
-    <md-checkbox name="{{field.name}}"
-      ng-disabled="field.settings.disabled || globals.viewModeOnly"
-      ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
-      ng-model="field.value"
-      ng-true-value="true"
-      ng-false-value="false"
-      layout="{{field.layout}}"
-      layout-align="start start"
-      class="md-align-top-left" flex>
-      <div>{{field.title}}</div>
+    <div layout="column" ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+      <div ng-message="required">This field is required</div>
+    </div>
+  </md-checkbox>
 
-      <div layout="column" ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
-        <div ng-message="required">This field is required</div>
-      </div>
-    </md-checkbox>
-
-    
-  <!--</div>-->
 </md-input-container>

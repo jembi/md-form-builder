@@ -1,6 +1,11 @@
 <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" ng-show="field.show">
   <label>{{field.title}}</label>
-  <md-select ng-model="field.value" name="{{field.name}}" ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" ng-disabled="field.settings.disabled || globals.viewModeOnly" md-on-open="loadOptions()">
+  <md-select 
+    name="{{field.name}}"
+    ng-model="field.value"
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" 
+    ng-disabled="field.settings.disabled || globals.viewModeOnly" 
+    md-on-open="loadOptions()">
     <md-option ng-value="option.key" ng-repeat="option in field.options">{{option.value}}</md-option>
   </md-select>
 
