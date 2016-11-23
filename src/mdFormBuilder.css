@@ -92,6 +92,9 @@ md-input-container [disabled], .fieldDisabled{
   margin: 20px 0;
 }
 
-.remove-margin {
-	margin: 0;
+.remove-row-button {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
 }
