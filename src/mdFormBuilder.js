@@ -147,8 +147,6 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
 
     // override required validations for saving in draft
     if ($scope[$scope.FormBuilder.name].saveAsDraft) {
-      // delete $scope[$scope.FormBuilder.name].$error.required
-      // $scope[$scope.FormBuilder.name].$invalid = false
       for (var k in $scope[$scope.FormBuilder.name]) {
         if ($scope[$scope.FormBuilder.name].hasOwnProperty(k)) {
           if (typeof $scope[$scope.FormBuilder.name][k] === 'object' && $scope[$scope.FormBuilder.name][k].hasOwnProperty('$modelValue')) {
@@ -163,8 +161,6 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
         field.$setTouched()
       })
     }
-
-    console.log($scope[$scope.FormBuilder.name])
 
     // submitted - invalid - prevent form from being submitted
     if ($scope[$scope.FormBuilder.name].$submitted && $scope[$scope.FormBuilder.name].$invalid) {
@@ -199,5 +195,13 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
         $scope.setFormMessage(err)
       })
     }
+  }
+
+  $scope.removeRow = function (rowToRemove) {
+    $scope.FormBuilder.sections.forEach(function (section) {
+      section.rows = section.rows.filter(function (row) {
+        return row !== rowToRemove
+      })
+    })
   }
 }

@@ -20,9 +20,11 @@
 		<div ng-if="FormBuilder.displayType === null">
 	    <div ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}">
 	      <h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
-
 	    	<div ng-repeat="row in section.rows" layout-padding>
 					<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
+					<div ng-if="row.enableRowRemoval" layout="row" layout-align="end end">
+						<md-icon class="remove-margin" ng-click="removeRow(row)">close</md-icon>
+					</div>
 					<div layout="{{ row.layout }}" layout-wrap layout-align="start start" style="{{ row.styles }}">
 						<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-md="100" style="padding: 0px 10px; {{ field.styles }}">
 
