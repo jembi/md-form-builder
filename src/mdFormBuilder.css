@@ -35,16 +35,16 @@ md-select.md-default-theme .md-select-value.md-select-placeholder, md-select .md
   margin-top: -2px;
 }
 
-md-input-container:not(.md-input-has-value) input:not(:focus), 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, 
-md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field, 
+md-input-container:not(.md-input-has-value) input:not(:focus),
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field,
+md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field,
 md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text {
 	color: inherit;
 }
@@ -88,8 +88,13 @@ md-input-container [disabled], .fieldDisabled{
 	color: #bbb !important;
 }
 
-
-
 .matrix-row {
   margin: 20px 0;
+}
+
+.remove-row-button {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
 }
