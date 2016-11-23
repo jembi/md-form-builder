@@ -1,6 +1,6 @@
 {
   "name": "md-form-builder",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "description": "AngularJS - Material Design - Form Builder",
   "main": "src/index.js",
   "browserify": {
