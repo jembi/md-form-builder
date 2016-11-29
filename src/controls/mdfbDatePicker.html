@@ -4,7 +4,8 @@
     name="{{field.name}}"
     ng-model="field.value"
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
-    ng-disabled="field.settings.disabled || globals.viewModeOnly"></md-datepicker>
+    ng-disabled="field.settings.disabled || globals.viewModeOnly"
+    md-min-date="field.settings.minDate" md-max-date="field.settings.maxDate"></md-datepicker>
     
   <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
     <div ng-message="required">This field is required</div>
