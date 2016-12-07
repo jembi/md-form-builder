@@ -18,6 +18,30 @@ module.exports = function ($timeout, $mdDialog) {
       if (scope.field.skipLogic) {
         initSkipLogicRadioCustom(scope, elem, attrs, $timeout, scope.field)
       }
+      
+      scope.showList = {}      
+      scope.toggleList = function (key) {
+        scope.showList[key] = !scope.showList[key]
+      }
+      
+      scope.selectedDocuments = {}
+      angular.forEach(scope.field.data.lists, function (list, key) {
+        scope.selectedDocuments[key] = []
+        angular.forEach(list.items, function (item) {
+          if (item.selected) {
+            scope.selectedDocuments[key].push(item.code)
+          }
+        })
+      })
+      
+      scope.editSelectedDocuments = function(key, code) {
+        var index = scope.selectedDocuments[key].indexOf(code)
+        if (index > -1) {
+          scope.selectedDocuments[key].splice(index, 1)
+        } else {
+          scope.selectedDocuments[key].push(code)
+        }
+      }
 
       scope.showPrompt = function (rowIndex, type, value) {
         function DialogController ($scope, $mdDialog, data) {
