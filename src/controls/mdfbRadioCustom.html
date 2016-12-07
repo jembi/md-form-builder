@@ -1,4 +1,4 @@
-<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid }" ng-show="field.show" style="margin: 0px;">
+<md-input-container class="no-margin" ng-class="{ 'md-input-invalid' : form[field.name].$invalid }" ng-show="field.show">
 
   <div class="radio-custom-row" layout="row">
     <span class="matrix-cell" flex="25" layout="column" layout-align="top left" ng-bind-html="field.title" ng-class="{fieldDisabled: field.settings.disabled}" style="margin-right: 20px;"></span>
@@ -32,14 +32,68 @@
           margin-left: 16px;
         }
         
-        .accordion-div {
+        .accordion-div-parent {
           cursor: pointer;
           outline: none;
+        }
+        
+        .accordion-div-child {
+          padding: 10px;
+          background: #F6F6F6;
+          border-bottom: 1px solid #ccc;
+        }
+        
+        .data-div {
+          padding: 10px;
+          background: #eee;
+          border-bottom: 1px solid #ccc;
+          outline: none;
+        }
+        
+        .radio-custom-row {
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 20px;
+        }
+        md-radio-button .md-container {
+          top: 8px;
+        }
+        
+        .data-padding {
+          padding: 5px 10px 0px 10px;
+        }
+        
+        .read-only-button {
+          min-width: 30px;
+          min-height: 10px;
+          line-height: 20px;
+          margin: 0px;
+        }
+        
+        .read-only-icon {
+           font-size: 20px;
+           float: left;
+        }
+        
+        .accordion-icon {
+          float: right;
+        }
+        
+        .md-list-custom {
+          padding: 0px;
+          margin-top: -8px;
+        }
+        
+        .no-margin {
+          margin: 0px;
+        }
+        
+        .parent-fit-content {
+          width: fit-content;
         }
       </style>
 
       <md-input-container class="normalDisplay" ng-show="globals.normalDisplay">
-        <md-list style="padding: 0px; margin-top: -8px;">
+        <md-list class="md-list-custom">
           <md-list-item ng-repeat="option in field.options">
             <span ng-class="{'selected-option': field.value == $index}" ng-bind-html="option.value"></span>
           </md-list-item>
@@ -50,23 +104,23 @@
       <div>
         
         <div ng-if="field.data.lists">
-          <div layout="column" ng-click="toggleShowLists()" style="padding: 10px; background: #eee; border-bottom: 1px solid #ccc; outline: none;">
+          <div layout="column" class="data-div">
             <div layout="row">
-              <span style="font-weight: bold;">Checklists:</span>
+              <span><strong>Checklists:</strong></span>
               <span flex></span>
             </div>
             <div layout="column">
               <div flex ng-repeat="(key, list) in field.data.lists">
-                <div class="accordion-div" ng-click="toggleList(key)" ng-disabled="globals.viewModeOnly">
-                  <div layout="column" style="padding: 10px; background: #F6F6F6; border-bottom: 1px solid #ccc;">
+                <div class="accordion-div-parent" ng-click="toggleList(key)" ng-disabled="globals.viewModeOnly">
+                  <div layout="column" class="accordion-div-child">
                     <div layout="row">
-                      <span style="font-weight: bold;">{{ list.title }}</span>
+                      <span><strong>{{ list.title }}</strong></span>
                       <span flex></span>
-                      <div ng-if="!showList[key]"><i class="material-icons" style="float:right">keyboard_arrow_down</i></div>
-                      <div ng-if="showList[key]"><i class="material-icons" style="float:right">keyboard_arrow_up</i></div>
+                      <div ng-if="!showList[key]"><i class="material-icons accordion-icon">keyboard_arrow_down</i></div>
+                      <div ng-if="showList[key]"><i class="material-icons accordion-icon">keyboard_arrow_up</i></div>
                     </div>
                     <div ng-if="!showList[key]">
-                      <ul style="margin:0">
+                      <ul class="no-margin">
                         <div ng-repeat="item in list.items">
                           <li ng-if="item.selected">{{ item.label }}</li>
                         </div>
@@ -83,8 +137,7 @@
                         ng-false-value="false"
                         layout="{{field.layout}}"
                         layout-align="start start"
-                        class="md-align-top-left" 
-                        style="width:fit-content" flex>
+                        class="md-align-top-left parent-fit-content" flex>
                         <div>{{ item.label }}</div>
                       </md-checkbox>
                     </md-input-container>
@@ -96,39 +149,31 @@
           </div>
         </div>
         
-        <div layout="column" style="padding: 10px; background: #eee; border-bottom: 1px solid #ccc;">
+        <div layout="column" class="data-div">
           <div layout="row">
-            <span style="font-weight: bold;">Findings:</span>
+            <span><strong>Findings:</strong></span>
             <span flex></span>
             <div ng-if="!globals.normalDisplay">
-              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="!field.data.findings" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 20px; float: left;">add</i></span> Add</md-button>
-              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="field.data.findings" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 16px; float: left;">edit</i></span> Edit</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="!field.data.findings"><span><i class="material-icons ng-binding read-only-icon">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="field.data.findings"><span><i class="material-icons ng-binding read-only-icon">edit</i></span> Edit</md-button>
             </div>
           </div>
           <input type="hidden" name="{{field.name}}_findings" ng-model="field.data.findings" />
-          <div layout="row" ng-if="field.data.findings" ng-bind-html="field.data.findings" style="padding: 5px 10px 0px 10px;"></div>
+          <div layout="row" ng-if="field.data.findings" ng-bind-html="field.data.findings" class="data-padding"></div>
         </div>
-        <div layout="column" style="padding: 10px; background: #eee;">
+        <div layout="column" class="data-div">
           <div layout="row">
-            <span style="font-weight: bold;">Recommendations:</span>
+            <span><strong>Recommendations:</strong></span>
             <span flex></span>
             <div ng-if="!globals.normalDisplay">
-              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="!field.data.recommendations" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 20px; float: left;">add</i></span> Add</md-button>
-              <md-button class="md-raised md-accent" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="field.data.recommendations" style="min-width: 30px; min-height: 10px; line-height: 20px; margin: 0px;"><span><i class="material-icons ng-binding" style="font-size: 16px; float: left;">edit</i></span> Edit</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="!field.data.recommendations"><span><i class="material-icons ng-binding read-only-icon">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="field.data.recommendations"><span><i class="material-icons ng-binding read-only-icon">edit</i></span> Edit</md-button>
             </div>
           </div>
           <input type="hidden" name="{{field.name}}_recommendations" ng-model="field.data.recommendations" />
-          <div layout="row" ng-if="field.data.recommendations" ng-bind-html="field.data.recommendations" style="padding: 5px 10px 0px 10px;"></div>
+          <div layout="row" ng-if="field.data.recommendations" ng-bind-html="field.data.recommendations" class="data-padding"></div>
         </div>
       </div>
     </div>
   </div>
-
-  <style>
-    .radio-custom-row {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 20px;
-    }
-    md-radio-button .md-container { top: 8px; }
-  </style>
 </md-input-container>
