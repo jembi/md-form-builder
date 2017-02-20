@@ -8,7 +8,7 @@
     data-md-container-class="selectdemoSelectHeader"
     ng-disabled="field.settings.disabled || globals.viewModeOnly"
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
-    multiple>
+    ng-multiple="!field.settings.disableMultiple">
     <md-select-header class="demo-select-header">
       <input ng-model="searchTerm"
         type="search"
