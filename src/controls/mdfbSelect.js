@@ -17,6 +17,16 @@ module.exports = function($compile) {
         initSkipLogicSelect(scope, elem, attrs, scope.field)
       }
 
+      scope.searchTerm
+      scope.clearSearchTerm = function () {
+        scope.searchTerm = ''
+      }
+      // The md-select directive eats keydown events for some quick select
+      // logic. Since we have a search input here, we don't need that logic.
+      elem.find('input').on('keydown', function (ev) {
+        ev.stopPropagation()
+      })
+
       if (scope.field.loadOptionsFunc) {
         scope.loadOptions = function () {
           // material design expects a promise
