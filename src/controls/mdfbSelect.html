@@ -6,7 +6,8 @@
     md-on-close="clearSearchTerm()"
     data-md-container-class="selectdemoSelectHeader"
     ng-disabled="field.settings.disabled || globals.viewModeOnly"
-    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show">
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+    md-on-open="loadOptions()">
     <md-select-header class="demo-select-header" ng-show="field.settings.searchOptions">
       <input ng-model="searchTerm"
         type="search"
