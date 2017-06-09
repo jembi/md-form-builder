@@ -123,6 +123,14 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
       } else {
         $scope.formMsg.status = 'error'
       }
+
+      // timeout for removing messages - success/error only
+      if ($scope.FormBuilder.globals.messageTimeout) {
+        $timeout(function () {
+          $scope.formMsg.msg = null
+          $scope.formMsg.display = false
+        }, $scope.FormBuilder.globals.messageTimeout)
+      }
     }
 
     $timeout(function () {
