@@ -22,8 +22,7 @@ module.exports = function ($compile) {
         }else{
           // add validator for Phone number
           ngModel.$validators.checkPhoneNumber = function(modelValue) {
-            var numberRegex = new RegExp(/^\+?\d{10}$/);
-
+            var numberRegex = new RegExp(/^(\+\d{1})?\d{10}$/);
             var isValid = numberRegex.test(modelValue)
 
             return isValid
