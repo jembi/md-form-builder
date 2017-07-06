@@ -54,6 +54,7 @@
   require('./controls/mdfbEmail.html')
   require('./controls/mdfbInput.html')
   require('./controls/mdfbInputID.html')
+  require('./controls/mdfbInputPhoneNumber.html')
   require('./controls/mdfbInputNumber.html')
   require('./controls/mdfbMatrix.html')
   require('./controls/mdfbPassword.html')
@@ -72,6 +73,7 @@
   mod.directive('mdfbEmail', require('./controls/mdfbEmail'))
   mod.directive('mdfbInput', require('./controls/mdfbInput'))
   mod.directive('mdfbInputId', require('./controls/mdfbInputID'))
+  mod.directive('mdfbInputPhoneNumber', require('./controls/mdfbInputPhoneNumber'))
   mod.directive('mdfbInputNumber', require('./controls/mdfbInputNumber'))
   mod.directive('mdfbMatrix', require('./controls/mdfbMatrix'))
   mod.directive('mdfbPassword', require('./controls/mdfbPassword'))
@@ -85,6 +87,7 @@
   // validators
   require('./validators/south-african-id-number-validator')
   mod.directive('checkIdNumber', require('./validators/idNumber'))
+  mod.directive('checkPhoneNumber', require('./validators/phoneNumber'))
 
   return moduleName
 }))

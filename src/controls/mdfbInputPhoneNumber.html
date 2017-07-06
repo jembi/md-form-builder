@@ -1,0 +1,15 @@
+<md-input-container 
+  ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" 
+  ng-show="field.show">
+  <label>{{field.title}}</label>
+  <input 
+    name="{{field.name}}"
+    ng-model="field.value" 
+    ng-disabled="field.settings.disabled" 
+    ng-required="field.settings.required && field.show"
+    check-phone-number="field.settings.checkPhoneNumber" />
+  <div ng-messages="form[field.name].$error">
+    <div ng-message="required">This field is required</div>
+    <div ng-message="checkPhoneNumber">Invalid Phone Number (+27812345678) or (0812345678)</div>
+  </div>
+</md-input-container>
