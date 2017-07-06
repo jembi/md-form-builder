@@ -12,7 +12,7 @@ module.exports = function ($compile) {
 
       scope.$watch('checkPhoneNumber', function(newValue, oldValue) {
 
-        // do not validate the ID number
+        // do not validate the Phone number
         if (!newValue){
           // always return true as we are not validating anymore
           ngModel.$validators.checkPhoneNumber = function(){
@@ -22,13 +22,9 @@ module.exports = function ($compile) {
         }else{
           // add validator for Phone number
           ngModel.$validators.checkPhoneNumber = function(modelValue) {
-
-            console.log(modelValue)
-
             var numberRegex = new RegExp(/^\+?\d{10}$/);
 
             var isValid = numberRegex.test(modelValue)
-            console.log(isValid)
 
             return isValid
           }
