@@ -20,7 +20,7 @@ module.exports = function($rootScope, $timeout, $compile, $mdMedia, $mdDialog) {
       scope.showAdvanced = function (ev) {
         $mdDialog.show({
           controller: DialogController,
-          templateUrl: 'scripts/directives/mdFormBuilder/controls/mdfbWebcamDialogPopup.html',
+          templateUrl: 'mdfbWebcamDialogPopup.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,

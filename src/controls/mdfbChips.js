@@ -13,6 +13,10 @@ module.exports = function($timeout) {
     link: function (scope, elem, attrs) {
       scope.field.show = true
 
+      if (!scope.field.value) {
+        scope.field.value = []
+      }
+
       if (scope.field.skipLogic) {
         initSkipLogicChips(scope, elem, attrs, $timeout, scope.field)
       }
