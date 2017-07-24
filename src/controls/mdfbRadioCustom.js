@@ -65,7 +65,7 @@ module.exports = function ($timeout, $mdDialog) {
           clickOutsideToClose: false,
           fullscreen: true,
           controllerAs: 'ctrl',
-          templateUrl: 'views/findingsRecommendationModal.html',
+          templateUrl: 'app/views/findingsRecommendationModal.html',
           controller: DialogController,
           locals: { data: { type: type, value: value } }
         })
