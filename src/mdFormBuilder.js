@@ -140,6 +140,19 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
     $scope.scrollToFormBuilder()
   }
 
+  function getFormFieldValues (form) {
+    var formFieldsValues = {}
+    for (var k in form) {
+      if (form.hasOwnProperty(k)) {
+        if (typeof form[k] === 'object' && form[k].hasOwnProperty('$modelValue')) {
+          formFieldsValues[k] = form[k].$modelValue
+        }
+      }
+    }
+
+    return formFieldsValues
+  }
+
   $scope.submitForm = function () {
     if ($scope.FormBuilder.globals.showReviewButton) {
       console.log('setPristine to remove errors - Need to find better way')
@@ -196,7 +209,14 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
 
       $scope.setFormMessage(result)
     } else {
-      $scope.FormBuilder.submit.execute($scope[$scope.FormBuilder.name]).then(function (result) {
+      var promise
+      if ($scope.FormBuilder.submit.submissionType && $scope.FormBuilder.submit.submissionType === 'valuesOnly') {
+        var values = getFormFieldValues($scope[$scope.FormBuilder.name])
+        promise = $scope.FormBuilder.submit.execute(values)
+      } else {
+        promise = $scope.FormBuilder.submit.execute($scope[$scope.FormBuilder.name])
+      }
+      promise.then(function (result) {
         $scope.setFormMessage(result)
       }).catch(function (err) {
         console.log(err)
