@@ -30,24 +30,49 @@ angular.module('<your_module>', [ 'md-form-builder' ])
 <md-form-builder form="state.FormBuilder"></md-form-builder>
 ```
 
-Where the controller hash
+In a controller or directive we then setup the state for the form.
 
 ```js
+$scope.formName = 'FormBuilderTestForm'
 $scope.state = {};
 $scope.state.FormBuilder = {
   name: 'FormBuilderForm',
-  displayType: 'tabs',
+  displayType: 'tabs', // options are 'tabs' or 'null'
   globals: {
-    viewModeOnly: false,
-    showDraftSubmitButton: true,
+    viewModeOnly: false, // disable editing
+    showDraftSubmitButton: true, // show a checkbox for the user to submit a draft
     showReviewButton: false
   },
-  sections: [], // add all of your sections here
-  FormBuilderForm: {},
+  buttons: {
+    submit: 'Search' // The text on the submit button
+  },
+  sections: [], // add all of your sections here, see below
   submit: {
+    submissionType: 'valuesOnly' // options are 'raw', the default or 'valuesOnly'
+    // 'raw' mean that the raw form will be passed to the submission function. To get
+    // the form values you can iterate over it as follows:
+    //
+    // var formFieldsValues = {}
+    // for (var k in form) {
+    //   if (form.hasOwnProperty(k)) {
+    //     if (typeof form[k] === 'object' && form[k].hasOwnProperty('$modelValue')) {
+    //       formFieldsValues[k] = form[k].$modelValue
+    //     }
+    //   }
+    // }
+    //
+    // 'valuesOnly' does this processing for you so you get back an object with field
+    // values: e.g. { field1: 'value1', field2: 'value2' }
     execute: submitFormBuilderForm, // the function that will be executed on submission
-    params: []
-  }
+    // the first parameter to this function will be the form values in the format
+    // determined above.
+    //
+    // This function MUST return a promise which resovles or reject with an object
+    // in the following format { isValid: true | false, msg: '<a message to the user>' }
+    // isValid determines if the form submission was successful or not
+    params: [] // any extra parameters to pass to your submit function
+  },
+  [$scope.formName]: {} // form values will be stored here,
 }
 ```
 
