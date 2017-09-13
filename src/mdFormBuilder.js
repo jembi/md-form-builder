@@ -145,7 +145,7 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
     for (var k in form) {
       if (form.hasOwnProperty(k)) {
         if (typeof form[k] === 'object' && form[k].hasOwnProperty('$modelValue')) {
-          if (form[k].$modelValue !== '' && form[k].$modelValue !== undefined) {
+          if (form[k].$modelValue !== '' && form[k].$modelValue !== undefined && form[k].$modelValue !== null) {
             formFieldsValues[k] = form[k].$modelValue
           }
         }
