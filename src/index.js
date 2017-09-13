@@ -62,6 +62,7 @@
   require('./controls/mdfbRadioCustom.html')
   require('./controls/mdfbSelect.html')
   require('./controls/mdfbSelectSearch.html')
+  require('./controls/mdfbText.html')
   require('./controls/mdfbWebcam.html')
   require('./controls/mdfbWebcamDialogPopup.html')
 
@@ -81,6 +82,7 @@
   mod.directive('mdfbRadioCustom', require('./controls/mdfbRadioCustom'))
   mod.directive('mdfbSelect', require('./controls/mdfbSelect'))
   mod.directive('mdfbSelectSearch', require('./controls/mdfbSelectSearch'))
+  mod.directive('mdfbText', require('./controls/mdfbText'))
   mod.directive('mdfbWebcam', require('./controls/mdfbWebcam'))
   mod.directive('mdFormBuilder', require('./mdFormBuilder'))
 
@@ -88,6 +90,7 @@
   require('./validators/south-african-id-number-validator')
   mod.directive('checkIdNumber', require('./validators/idNumber'))
   mod.directive('checkPhoneNumber', require('./validators/phoneNumber'))
+  mod.directive('regexValidation', require('./validators/regex'))
 
   return moduleName
 }))
