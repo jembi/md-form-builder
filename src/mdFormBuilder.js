@@ -107,7 +107,7 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
 
   $scope.setFormMessage = function (result) {
     // if no msg set - dont show form message
-    if (!result.msg) {
+    if ($scope.FormBuilder.globals.hideNotifications) {
       return
     }
 

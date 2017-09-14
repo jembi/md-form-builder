@@ -38,8 +38,11 @@ $scope.state = {};
 $scope.state.FormBuilder = {
   name: 'FormBuilderForm',
   displayType: 'tabs', // options are 'tabs' or 'null'
+  class: "customFormClass",
+  styles: "display: block;",
   globals: {
     viewModeOnly: false, // disable editing
+    hideNotifications: // hide the notification message from displaying at the top of the form
     showDraftSubmitButton: true, // show a checkbox for the user to submit a draft
     showReviewButton: false
   },
@@ -85,15 +88,21 @@ Each section contains rows and each row has fields. See the example of a section
     "name": "Tab 1",
     "displayName": "Tab 1",
     "flex": "100",
+    "class": "customSectionClass",
+    "styles": "dsiplay: block;",
     "rows": [{
       "name": "Row 1",
       "title": "Below are some of the types of inputs that are available in mdFormBuilder",
       "layout": "row",
+      "class": "customRowClass",
+      "styles": "display: block;",
       "fields": [{
         "type": "input",
         "flex": "25",
         "name": "input",
         "title": "Input - Text",
+        "class": "customFieldClass",
+        "styles": "display: block;",
         "settings": {
           "valueType": "valueString",
           "disabled": false,
