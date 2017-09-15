@@ -1,15 +1,13 @@
 	<md-content>
-	<form ng-submit="submitForm()" id="FormBuilder" name="{{FormBuilder.name}}" novalidate>
+	<form ng-submit="submitForm()" id="FormBuilder" name="{{FormBuilder.name}}" class="{{FormBuilder.class}}" style="{{FormBuilder.styles}}" novalidate>
 		<link rel="stylesheet" type="text/css" data-href="mdFormBuilder.css" />
 		<link rel="stylesheet" type="text/css" data-href="node_modules/mdPickers/dist/mdPickers.min.css" />
 
-		<div ng-if="FormBuilder.sections.length === 0">
+		<div ng-if="FormBuilder.sections.length === 0" class="loadingContainer">
 			<div class="loadingDiv" style="padding: 22px;">
 	      <md-progress-linear md-mode="indeterminate"></md-progress-linear>
 		  </div>
 		</div>
-
-		<!--<pre>{{ $eval(FormBuilder.name) | json }}</pre>-->
 
 		<div ng-if="FormBuilder.sections.length > 0">
 
@@ -19,13 +17,13 @@
 			</div>
 
 			<div ng-if="FormBuilder.displayType === null">
-		    <div ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}">
+		    <div ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" class="{{section.class}}" style="{{section.styles}}">
 		      <h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
-		    	<div ng-repeat="row in section.rows" layout-padding style="position: relative;">
+		    	<div ng-repeat="row in section.rows" layout-padding class="{{row.class}}" style="position: relative;">
 						<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
 						<md-icon class="remove-row-button" ng-if="row.enableRowRemoval" ng-click="removeRow(row)">close</md-icon>
-						<div layout="{{ row.layout }}" layout-wrap layout-align="start start" style="{{ row.styles }}">
-							<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-md="100" style="padding: 0px 10px; {{ field.styles }}">
+						<div layout="{{ row.layout }}" layout-wrap layout-align="start start" style="{{row.styles}}">
+							<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" class="{{field.class}}" flex="{{ field.flex }}" flex-xs="100" flex-md="100" style="{{field.styles}} padding: 0px 10px;">
 
 								<mdfb-accordian form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
 								<mdfb-display form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
@@ -54,7 +52,7 @@
 		  </div>
 
 			<md-tabs md-dynamic-height md-border-bottom md-selected="tabs.selectedIndex" ng-if="FormBuilder.displayType === 'tabs'">
-		    <md-tab ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" label="">
+		    <md-tab ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" label="" class="{{section.class}}" style="{{section.styles}}">
 			    <md-tab-label>
 					  <notification-icon animation='shake' count='tabErrors[section.key]'>
 					  	{{ section.name }}
@@ -64,11 +62,11 @@
 					<md-tab-body>
 						<h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
 
-			    	<div ng-repeat="row in section.rows" style="{{ row.styles }}" layout-padding>
+			    	<div ng-repeat="row in section.rows" style="{{ row.styles }}" layout-padding class="{{row.class}}" style="{{row.styles}}">
 							<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
 							<div layout="{{ row.layout }}" layout-wrap layout-align="start start">
 
-								<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-md="100" style="padding: 0px 10px; {{ field.styles }}">
+								<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{ field.flex }}" flex-xs="100" flex-md="100" class="{{field.class}}" style="{{field.styles}} padding: 0px 10px;">
 									<mdfb-accordian form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
 									<mdfb-display form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
 									<mdfb-input form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
