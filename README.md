@@ -89,7 +89,7 @@ Each section contains rows and each row has fields. See the example of a section
     "displayName": "Tab 1",
     "flex": "100",
     "class": "customSectionClass",
-    "styles": "dsiplay: block;",
+    "styles": "display: block;",
     "rows": [{
       "name": "Row 1",
       "title": "Below are some of the types of inputs that are available in mdFormBuilder",
