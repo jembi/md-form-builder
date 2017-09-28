@@ -1,3 +1,5 @@
+/* global angular */
+
 'use strict'
 
 module.exports = function ($compile) {
@@ -17,7 +19,6 @@ module.exports = function ($compile) {
         initSkipLogicSelectSearch(scope, elem, attrs, scope.field)
       }
 
-      scope.searchTerm
       scope.clearSearchTerm = function () {
         scope.searchTerm = ''
       }

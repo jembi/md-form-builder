@@ -1,3 +1,5 @@
+/* global angular */
+
 'use strict'
 
 module.exports = function ($compile, $parse) {

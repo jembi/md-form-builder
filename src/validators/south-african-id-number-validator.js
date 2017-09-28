@@ -6,7 +6,7 @@ var validate = function (idNumber) {
     errorMessage: ''
   }
 
-  if (idNumber === null || idNumber === 'undefined' || idNumber.length != 13 || isNaN(idNumber)) {
+  if (idNumber === null || idNumber === 'undefined' || idNumber.length !== 13 || isNaN(idNumber)) {
     identityNumberValidatorResult.errorMessage = 'Identity number supplied is not a valid length or is not a number'
     identityNumberValidatorResult.isValid = false
     return identityNumberValidatorResult
@@ -15,8 +15,8 @@ var validate = function (idNumber) {
   // Extract the date of birth
   var derivedDob = new Date(idNumber.substring(0, 2), idNumber.substring(2, 4) - 1, idNumber.substring(4, 6))
 
-  if (!((derivedDob.getYear() == idNumber.substring(0, 2)) && (derivedDob.getMonth() == idNumber.substring(2, 4) - 1) &&
-    (derivedDob.getDate() == idNumber.substring(4, 6)))) {
+  if (!((derivedDob.getYear() === idNumber.substring(0, 2)) && (derivedDob.getMonth() === idNumber.substring(2, 4) - 1) &&
+    (derivedDob.getDate() === idNumber.substring(4, 6)))) {
     identityNumberValidatorResult.errorMessage = 'Identity number supplied has an invalid date of birth'
     identityNumberValidatorResult.isValid = false
   }
@@ -31,10 +31,10 @@ var validate = function (idNumber) {
       tempTotal = parseInt(tempTotal.toString().charAt(0)) + parseInt(tempTotal.toString().charAt(1))
     }
     checkSum = checkSum + tempTotal
-    multiplier = (multiplier % 2 == 0) ? 1 : 2
+    multiplier = (multiplier % 2 === 0) ? 1 : 2
   }
 
-  if ((checkSum % 10) != 0) {
+  if ((checkSum % 10) !== 0) {
     identityNumberValidatorResult.errorMessage = 'Identity Number supplied check digit validation failed'
     identityNumberValidatorResult.isValid = false
     return identityNumberValidatorResult

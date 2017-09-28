@@ -41,10 +41,11 @@
   },
   "homepage": "https://github.com/jembi/md-form-builder#readme",
   "devDependencies": {
+    "browserify": "^13.1.1",
+    "htmlhint": "^0.9.13",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2",
     "tap": "^10.3.2",
-    "browserify": "^13.1.1",
     "uglify-js": "^2.7.4"
   },
   "dependencies": {

@@ -1,3 +1,5 @@
+/* global angular */
+
 'use strict'
 
 module.exports = function ($rootScope, $timeout, $compile, $mdMedia, $mdDialog) {
