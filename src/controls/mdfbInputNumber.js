@@ -1,15 +1,15 @@
-'use strict';
+'use strict'
 
-module.exports = function($compile, $parse) {
+module.exports = function ($compile, $parse) {
   return {
     restrict: 'E',
     replace: true,
     templateUrl: 'mdfbInputNumber.html',
     scope: {
-        field: '=',
-        form: '=',
-        globals: '='
-      },
+      field: '=',
+      form: '=',
+      globals: '='
+    },
     link: function (scope, elem, attrs) {
       scope.field.show = true
 

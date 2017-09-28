@@ -1,20 +1,20 @@
-'use strict';
+'use strict'
 
-module.exports = function($compile) {
+module.exports = function ($compile) {
   return {
     restrict: 'E',
     replace: true,
     templateUrl: 'mdfbDatePicker.html',
     scope: {
-        field: '=',
-        form: '=',
-        globals: '='
-      },
+      field: '=',
+      form: '=',
+      globals: '='
+    },
     link: function (scope, elem, attrs) {
       scope.field.show = true
-      
-      if ( scope.field.skipLogic ){
-        initSkipLogicDatePicker( scope, elem, attrs, scope.field );
+
+      if (scope.field.skipLogic) {
+        initSkipLogicDatePicker(scope, elem, attrs, scope.field)
       }
     }
   }

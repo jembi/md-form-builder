@@ -17,31 +17,31 @@
   'use strict'
 
   require('angular-animate')
-  require('angular-aria')
-  require('angular-hotkeys')
-  require('angular-material')
-  require('angular-messages')
-  require('angular-notification-icons')
-  require('angular-sanitize')
-  require('angular-touch')
-  require('moment')
-  require('v-accordion')
-  require('webcam/dist/webcam.min.js')
-  
-  var moduleName = 'md-form-builder'
-  var mod = angular.module(moduleName, [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngMessages',
-    'ngSanitize',
-    'ngMaterial',
-    'cfp.hotkeys',
-    'angular-notification-icons',
-    'vAccordion',
-    'webcam',
-  ])
+    require('angular-aria')
+    require('angular-hotkeys')
+    require('angular-material')
+    require('angular-messages')
+    require('angular-notification-icons')
+    require('angular-sanitize')
+    require('angular-touch')
+    require('moment')
+    require('v-accordion')
+    require('webcam/dist/webcam.min.js')
+
+    var moduleName = 'md-form-builder'
+    var mod = angular.module(moduleName, [
+        'ngAnimate',
+        'ngCookies',
+        'ngResource',
+        'ngRoute',
+        'ngMessages',
+        'ngSanitize',
+        'ngMaterial',
+        'cfp.hotkeys',
+        'angular-notification-icons',
+        'vAccordion',
+        'webcam'
+    ])
 
   require('./mdFormBuilder.css')
 

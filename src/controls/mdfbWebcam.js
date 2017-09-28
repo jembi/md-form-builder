@@ -1,15 +1,15 @@
-'use strict';
+'use strict'
 
-module.exports = function($rootScope, $timeout, $compile, $mdMedia, $mdDialog) {
+module.exports = function ($rootScope, $timeout, $compile, $mdMedia, $mdDialog) {
   return {
     restrict: 'E',
     replace: true,
     templateUrl: 'mdfbWebcam.html',
     scope: {
-        field: '=',
-        form: '=',
-        globals: '='
-      },
+      field: '=',
+      form: '=',
+      globals: '='
+    },
     link: function (scope, elem, attrs) {
       scope.field.show = true
 

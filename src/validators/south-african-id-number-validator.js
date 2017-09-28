@@ -1,7 +1,6 @@
 'use strict'
 
-var validate = function(idNumber) {
-
+var validate = function (idNumber) {
   var identityNumberValidatorResult = {
     isValid: true,
     errorMessage: ''
@@ -14,7 +13,7 @@ var validate = function(idNumber) {
   }
 
   // Extract the date of birth
-  var derivedDob = new Date(idNumber.substring(0, 2), idNumber.substring(2, 4) - 1, idNumber.substring(4, 6));
+  var derivedDob = new Date(idNumber.substring(0, 2), idNumber.substring(2, 4) - 1, idNumber.substring(4, 6))
 
   if (!((derivedDob.getYear() == idNumber.substring(0, 2)) && (derivedDob.getMonth() == idNumber.substring(2, 4) - 1) &&
     (derivedDob.getDate() == idNumber.substring(4, 6)))) {

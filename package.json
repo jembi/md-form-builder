@@ -21,6 +21,7 @@
     "test:style": "standard --verbose | snazzy && htmlhint app index.html",
     "test:debug": "tap --debug -t 0 test/**/*.js",
     "test:these": "tap -R nyan",
+    "lint-fix": "standard --fix",
     "build": "browserify --entry src/index.js | uglifyjs --output dist/bundle.js",
     "prepublish": "npm run build"
   },
