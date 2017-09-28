@@ -15,7 +15,12 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run -s test:code && npm run -s test:style",
+    "test:code": "tap -R nyan --cov test/**/*.js",
+    "test:these-files": "tap --reporter=spec",
+    "test:style": "standard --verbose | snazzy && htmlhint app index.html",
+    "test:debug": "tap --debug -t 0 test/**/*.js",
+    "test:these": "tap -R nyan",
     "build": "browserify --entry src/index.js | uglifyjs --output dist/bundle.js",
     "prepublish": "npm run build"
   },
@@ -35,6 +40,9 @@
   },
   "homepage": "https://github.com/jembi/md-form-builder#readme",
   "devDependencies": {
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2",
+    "tap": "^10.3.2",
     "browserify": "^13.1.1",
     "uglify-js": "^2.7.4"
   },
