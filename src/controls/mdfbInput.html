@@ -4,7 +4,8 @@
     name="{{field.name}}"
     ng-model="field.value"
     ng-disabled="field.settings.disabled || globals.viewModeOnly" 
-    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" />
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+    regex-validation="field.settings.regexValidation" />
   <div ng-messages="form[field.name].$error">
     <div ng-message="required">This field is required</div>
     <div ng-message="regexValidation">{{ field.settings.regexValidation.message }}</div>
