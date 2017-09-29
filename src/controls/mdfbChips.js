@@ -73,12 +73,9 @@ var initSkipLogicChips = function (scope, elem, attrs, $timeout, formField) {
     })
   }
 
-  console.log('Checks Chips')
-
   // add watchers for any logic checks (show/hide)
   if (formField.skipLogic.checks.length > 0) {
     for (var i = 0; i < formField.skipLogic.checks.length; i++) {
-      console.log(formField.skipLogic.checks[i])
       var check = formField.skipLogic.checks[i]
       scope.$watch(check.variable, function (value, oldValue) {
         var operators = {
@@ -89,9 +86,6 @@ var initSkipLogicChips = function (scope, elem, attrs, $timeout, formField) {
           '>': function (a, b) { return a > b },
           '>=': function (a, b) { return a >= b }
         }
-
-        console.log('Watching: ' + check.variable + ' - ' + value + ' to match --- ' + check.value)
-        console.log(operators[check.operand](value, check.value))
 
         if (operators[check.operand](value, check.value)) {
           scope.field.show = true
