@@ -7,6 +7,7 @@
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" />
   <div ng-messages="form[field.name].$error">
     <div ng-message="required">This field is required</div>
+    <div ng-message="regexValidation">{{ field.settings.regexValidation.message }}</div>
   </div>
 </md-input-container>
 
