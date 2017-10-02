@@ -416,7 +416,7 @@ Below is a skip logic fucntion checks that will execute a function called "calcu
 ```
 "skipLogic": {
   "func": {
-    "execute": "placeholderForCalculateBMI", // function to execute. !NB this must be a function attached to this property to execute successfully. The function will receive 1 params (params)
+    "execute": "placeholderForCalculateBMI", // function to execute. !NB this must be a function attached to this property to execute successfully. The function gets executed within FormBuilder and supplies one argument to your function which will hold all the parameters and their values supplied in the "params" property. E.g ["weight", "height"]
     "params": ["weight", "height"], // params to send to the function
     "watchingVars": ["weight", "height"] // watch these variables and execute function with supplied params fields
   }
