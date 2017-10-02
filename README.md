@@ -397,3 +397,28 @@ Each section contains rows and each row has fields. See the example of a section
   }
 ]
 ```
+
+###Skip Logic
+
+FormBuilder allows you to add skip logic and functional support to field to enhance its capabilities. Below is a skip logic setting that checks for a field called "bmi" and shows the field if the value is bigger than 0
+```
+"skipLogic": {
+  "checks": [{
+    "variable": "form.bmi.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.global.gender)
+    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=" )
+    "value": 0 // value that needs to checked for. 
+    "action": "showhide" // action to perform on the field ("disabled", "required", "showhide")
+  }]
+}
+```
+
+Below is a skip logic fucntion checks that will execute a function called "calculateBMI" when both the "weight" and "height" fields have values. for a field called "bmi" and shows the field if the value is bigger than 0
+```
+"skipLogic": {
+  "func": {
+    "execute": "calculateBMI", // function to execute. !NB this must be a function attached to this property to execute successfully. The function will receive 1 params (params)
+    "params": ["weight", "height"], // params to send to the function
+    "watchingVars": ["weight", "height"] // watch these variables and execute function with supplied params fields
+  }
+}
+```
