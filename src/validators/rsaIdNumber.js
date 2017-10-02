@@ -7,10 +7,11 @@ module.exports = function ($compile) {
     restrict: 'A',
     require: 'ngModel',
     scope: {
-      checkIdNumber: '=checkIdNumber'
+      checkRsaIdNumber: '=checkRsaIdNumber'
     },
     link: function (scope, element, attributes, ngModel) {
-      scope.$watch('checkIdNumber', function (newValue, oldValue) {
+      console.log('--------------------')
+      scope.$watch('checkRsaIdNumber', function (newValue, oldValue) {
         setValidity(newValue)
       }, true)
 
@@ -18,20 +19,20 @@ module.exports = function ($compile) {
         // do not validate the ID number
         if (!value) {
           // always return true as we are not validating anymore
-          ngModel.$validators.checkIdNumber = function () {
+          ngModel.$validators.checkRsaIdNumber = function () {
             return true
           }
           ngModel.$validate()
         } else {
           // add validator for ID number
-          ngModel.$validators.checkIdNumber = function (modelValue) {
-            return idValidate(modelValue).isValid
+          ngModel.$validators.checkRsaIdNumber = function (modelValue) {
+            return rsaIdValidate(modelValue).isValid
           }
           ngModel.$validate()
         }
       }
 
-      var idValidate = function (idNumber) {
+      var rsaIdValidate = function (idNumber) {
         var identityNumberValidatorResult = {
           isValid: true,
           errorMessage: ''
@@ -75,7 +76,7 @@ module.exports = function ($compile) {
 
       return {
         setValidity: setValidity,
-        idValidate: idValidate
+        rsaIdValidate: rsaIdValidate
       }
     }
   }

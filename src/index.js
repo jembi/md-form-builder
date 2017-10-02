@@ -87,8 +87,7 @@
   mod.directive('mdFormBuilder', require('./mdFormBuilder'))
 
   // validators
-  require('./validators/south-african-id-number-validator')
-  mod.directive('checkIdNumber', require('./validators/idNumber'))
+  mod.directive('checkRsaIdNumber', require('./validators/rsaIdNumber'))
   mod.directive('checkPhoneNumber', require('./validators/phoneNumber'))
   mod.directive('regexValidation', require('./validators/regex'))
 

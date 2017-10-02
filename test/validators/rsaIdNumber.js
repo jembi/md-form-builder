@@ -3,7 +3,7 @@
 const tap = require('tap')
 const sinon = require('sinon')
 
-const idNumber = require('../../src/validators/idNumber')()
+const idNumber = require('../../src/validators/rsaIdNumber')()
 
 const sandbox = sinon.sandbox.create()
 sandbox.stub(console, 'error').callsFake((msg) => {})
@@ -17,13 +17,13 @@ const invalidId = '1901014800086'
 const validId = '2001014800086'
 
 tap.test('.link()', { autoend: true }, (t) => {
-  t.test('idValidate(): should return false for a invalid ID length', (t) => {
+  t.test('rsaIdValidate(): should return false for a invalid ID length', (t) => {
     const scope = {
       $watch: () => {}
     }
     const directive = idNumber.link(scope)
 
-    const result = directive.idValidate(shortId)
+    const result = directive.rsaIdValidate(shortId)
 
     t.notOk(result.isValid)
     t.equals(result.errorMessage, 'Identity number supplied is not a valid length or is not a number', 'should equal \'Identity number supplied is not a valid length or is not a number\'')
@@ -33,13 +33,13 @@ tap.test('.link()', { autoend: true }, (t) => {
 })
 
 tap.test('.link()', { autoend: true }, (t) => {
-  t.test('idValidate(): should return false for a invalid ID', (t) => {
+  t.test('rsaIdValidate(): should return false for a invalid ID', (t) => {
     const scope = {
       $watch: () => {}
     }
     const directive = idNumber.link(scope)
 
-    const result = directive.idValidate(invalidId)
+    const result = directive.rsaIdValidate(invalidId)
 
     t.notOk(result.isValid)
     t.equals(result.errorMessage, 'Identity Number supplied check digit validation failed', 'should equal \'Identity Number supplied check digit validation failed\'')
@@ -49,13 +49,13 @@ tap.test('.link()', { autoend: true }, (t) => {
 })
 
 tap.test('.link()', { autoend: true }, (t) => {
-  t.test('idValidate(): should return true for a valid ID', (t) => {
+  t.test('rsaIdValidate(): should return true for a valid ID', (t) => {
     const scope = {
       $watch: () => {}
     }
     const directive = idNumber.link(scope)
 
-    const result = directive.idValidate(validId)
+    const result = directive.rsaIdValidate(validId)
 
     t.ok(result.isValid)
 
@@ -78,7 +78,7 @@ tap.test('.link()', { autoend: true }, (t) => {
     // dont check validity, so field is valid
     directive.setValidity(false)
 
-    t.ok(ngModelMock.$validators.checkIdNumber())
+    t.ok(ngModelMock.$validators.checkRsaIdNumber())
 
     t.end()
   })
@@ -98,7 +98,7 @@ tap.test('.link()', { autoend: true }, (t) => {
 
     directive.setValidity(true)
 
-    t.notOk(ngModelMock.$validators.checkIdNumber(invalidId))
+    t.notOk(ngModelMock.$validators.checkRsaIdNumber(invalidId))
 
     t.end()
   })
@@ -119,7 +119,7 @@ tap.test('.link()', { autoend: true }, (t) => {
     // no value, so field is valid
     directive.setValidity(true)
 
-    t.ok(ngModelMock.$validators.checkIdNumber(validId))
+    t.ok(ngModelMock.$validators.checkRsaIdNumber(validId))
 
     t.end()
   })
