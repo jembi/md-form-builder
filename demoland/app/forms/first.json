@@ -1,0 +1,275 @@
+{
+  "key": "tab1",
+  "name": "Tab 1",
+  "displayName": "Tab 1",
+  "flex": "100",
+  "class": "customSectionClass",
+  "styles": "display: block;",
+  "rows": [{
+    "name": "Row 1",
+    "title": "Below are some of the types of inputs that are available in mdFormBuilder",
+    "layout": "row",
+    "class": "customRowClass",
+    "styles": "display: block;",
+    "fields": [{ 
+      "type": "inputID",
+      "flex": "80",
+      "name": "IDNumber",
+      "title": "ID Number",
+      "settings": {
+        "required": true,
+        "checkIdNumber": true
+      },
+      "skipLogic": {
+        "func": null,
+        "checks": [{
+          "variable": "form.input.$modelValue",
+          "operand": "=",
+          "value": "skip",
+          "action": "showhide"
+        }]
+      },
+      "value": null
+    }, {
+      "type": "input",
+      "flex": "25",
+      "name": "input",
+      "title": "Input - Text",
+      "class": "customFieldClass",
+      "styles": "display: block;",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": null
+    }, {
+      "type": "inputNumber",
+      "flex": "25",
+      "name": "inputNumber",
+      "title": "Input - Integer",
+      "settings": {
+        "valueType": "valueDecimal",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": null
+    }, {
+      "type": "email",
+      "flex": "25",
+      "name": "email",
+      "title": "Input - Email",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": null
+    }, {
+      "type": "password",
+      "flex": "25",
+      "name": "password",
+      "title": "Input - Password",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": null
+    }, {
+      "type": "display",
+      "flex": "25",
+      "name": "display",
+      "title": "display",
+      "settings": {
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": "Some display text"
+    }, {
+      "type": "accordian",
+      "flex": "25",
+      "name": "accordian",
+      "title": "Display - accordian",
+      "settings": {
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "tabs": [{ "name": "Tab 1", "content": "content for tab 1" }, { "name": "Tab 2", "content": "content for tab 2" }]
+    }, {
+      "type": "date",
+      "flex": "25",
+      "name": "date",
+      "title": "Input - Datepicker",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": null
+    }, {
+      "type": "webcam",
+      "flex": "25",
+      "name": "password",
+      "title": "Input - Webcam",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": null
+    }, {
+      "type": "radio",
+      "flex": "25",
+      "name": "radio",
+      "title": "input - Radio",
+      "settings": {
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "options": [{ "key": "yes", "value": "Yes" }, { "key": "no", "value": "No" }, { "key": "maybe", "value": "Maybe" }],
+      "value": "Some display text"
+    }, {
+      "type": "checkboxes",
+      "flex": "25",
+      "name": "checkboxes",
+      "title": "Display - Checkboxes",
+      "settings": {
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "options": [{ "key": "yes", "value": "Yes" }, { "key": "no", "value": "No" }],
+      "value": null
+    }, {
+      "type": "select",
+      "flex": "25",
+      "name": "select",
+      "title": "Input - Select",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "options": [{ "key": "1", "value": "Option 1" }, { "key": "2", "value": "Option 2" }, { "key": "3", "value": "Option 3" }],
+      "value": null
+    }, {
+      "type": "selectSearch",
+      "flex": "25",
+      "name": "selectSearch",
+      "title": "Input - SelectSearch",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "options": [{ "key": "1", "value": "Option 1" }, { "key": "2", "value": "Option 2" }, { "key": "3", "value": "Option 3" }],
+      "value": null
+    }, {
+      "type": "chips",
+      "flex": "50",
+      "name": "chips",
+      "title": "Input - Chips",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "value": null
+    }, {
+      "type": "matrix",
+      "flex": "50",
+      "name": "matrix",
+      "title": "Input - matrix",
+      "settings": {
+        "valueType": "valueString",
+        "disabled": false,
+        "required": true
+      },
+      "skipLogic": {
+        "func": {},
+        "checks": []
+      },
+      "config": {
+        "required": false,
+        "rows": [
+          {
+            "id": "matrixQuestion1",
+            "value": "Question 1"
+          },
+          {
+            "id": "matrixQuestion2",
+            "value": "Question 2"
+          },
+          {
+            "id": "matrixQuestion3",
+            "value": "Question 3"
+          }
+        ],
+        "columns": [
+          {
+            "value": "No"
+          },
+          {
+            "value": "Yes"
+          },
+          {
+            "value": "Maybe"
+          }
+        ]
+      },
+      "value": null
+    }]
+  }]
+}

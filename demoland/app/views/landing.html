@@ -1,0 +1,27 @@
+<!doctype html>
+<h1>Demo Land</h1>
+
+<style>
+  .ace_editor { 
+    height: calc(100% - 200px); 
+  }
+</style>
+
+<div layout="row">
+  <div flex="30">
+      
+    <div style="margin: 0px 20px;" ng-model="aceEditor" ui-ace="{
+      useWrapMode : false,
+      showGutter: true,
+      mode: 'json',
+      onLoad: aceLoaded,
+      onChange: aceChanged
+    }"></div>
+
+  </div>
+  <div flex>
+    <md-whiteframe class="md-whiteframe-5dp" layout layout-align="center center">
+      <md-form-builder form="state.FormBuilder"></md-form-builder>
+    </md-whiteframe>
+  </div>
+</div>
