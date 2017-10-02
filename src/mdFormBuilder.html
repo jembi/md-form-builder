@@ -1,4 +1,4 @@
-	<md-content>
+	<md-content style="width: 100%">
 	<form ng-submit="submitForm()" id="FormBuilder" name="{{FormBuilder.name}}" ng-class="FormBuilder.class" style="{{FormBuilder.styles}}" novalidate>
 		<link rel="stylesheet" type="text/css" data-href="mdFormBuilder.css" />
 		<link rel="stylesheet" type="text/css" data-href="node_modules/mdPickers/dist/mdPickers.min.css" />
@@ -25,24 +25,24 @@
 						<div layout="{{ row.layout }}" layout-wrap layout-align="start start" style="{{row.styles}}">
 							<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" ng-class="field.class" flex="{{ field.flex }}" flex-xs="100" flex-md="100" style="{{field.styles}} padding: 0px 10px;">
 
-								<mdfb-accordian form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
-								<mdfb-display form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
-								<mdfb-input form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
-								<mdfb-input-id form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
-								<mdfb-input-phone-number form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
-								<mdfb-input-number form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
-								<mdfb-email form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
-								<mdfb-password form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
-								<mdfb-datepicker form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
-								<mdfb-checkboxes form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
-								<mdfb-radio form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
-	              <mdfb-radio-custom form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
-								<mdfb-select form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
-								<mdfb-select-search form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
-	              <mdfb-matrix form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
-								<mdfb-matrix-custom form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
-								<mdfb-chips form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
-								<mdfb-webcam form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
+								<mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
+								<mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
+								<mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
+								<mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
+								<mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
+								<mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
+								<mdfb-email ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
+								<mdfb-password ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
+								<mdfb-datepicker ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
+								<mdfb-checkboxes ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
+								<mdfb-radio ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
+	              <mdfb-radio-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
+								<mdfb-select ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
+								<mdfb-select-search ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
+	              <mdfb-matrix ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
+								<mdfb-matrix-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
+								<mdfb-chips ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
+								<mdfb-webcam ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
 
 							</div>
 						</div>
@@ -67,24 +67,24 @@
 							<div layout="{{ row.layout }}" layout-wrap layout-align="start start">
 
 								<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{field.flex}}" flex-xs="100" flex-md="100" ng-class="field.class" style="{{field.styles}} padding: 0px 10px;">
-									<mdfb-accordian form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
-									<mdfb-display form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
-									<mdfb-input form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
-									<mdfb-input-id form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
-									<mdfb-input-phone-number form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
-									<mdfb-input-number form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
-									<mdfb-email form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
-									<mdfb-password form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
-									<mdfb-datepicker form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
-									<mdfb-checkboxes form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
-	                <mdfb-radio form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
-									<mdfb-radio-custom form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
-									<mdfb-select form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
-									<mdfb-select-search form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
-									<mdfb-matrix form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
-	                <mdfb-matrix-custom form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
-									<mdfb-chips form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
-									<mdfb-webcam form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
+									<mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
+									<mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
+									<mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
+									<mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
+									<mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
+									<mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
+									<mdfb-email ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
+									<mdfb-password ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
+									<mdfb-datepicker ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
+									<mdfb-checkboxes ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
+	                <mdfb-radio ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
+									<mdfb-radio-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
+									<mdfb-select ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
+									<mdfb-select-search ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
+									<mdfb-matrix ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
+	                <mdfb-matrix-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
+									<mdfb-chips ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
+									<mdfb-webcam ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
 								</div>
 							</div>
 						</div>

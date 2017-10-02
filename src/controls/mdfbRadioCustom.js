@@ -18,12 +18,12 @@ module.exports = function ($timeout, $mdDialog) {
       if (scope.field.skipLogic) {
         initSkipLogicRadioCustom(scope, elem, attrs, $timeout, scope.field)
       }
-      
-      scope.showList = {}      
+
+      scope.showList = {}
       scope.toggleList = function (key) {
         scope.showList[key] = !scope.showList[key]
       }
-      
+
       scope.selectedDocuments = {}
       angular.forEach(scope.field.data.lists, function (list, key) {
         scope.selectedDocuments[key] = []
@@ -33,8 +33,8 @@ module.exports = function ($timeout, $mdDialog) {
           }
         })
       })
-      
-      scope.editSelectedDocuments = function(key, code) {
+
+      scope.editSelectedDocuments = function (key, code) {
         var index = scope.selectedDocuments[key].indexOf(code)
         if (index > -1) {
           scope.selectedDocuments[key].splice(index, 1)
@@ -69,11 +69,11 @@ module.exports = function ($timeout, $mdDialog) {
           controller: DialogController,
           locals: { data: { type: type, value: value } }
         })
-          .then(function (text) {
-            scope.field.data[type] = text
-          }, function () {
-            console.log('Did not consent')
-          })
+        .then(function (text) {
+          scope.field.data[type] = text
+        }, function () {
+          // closed, do nothing
+        })
       }
     }
   }

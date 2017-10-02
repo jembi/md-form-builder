@@ -1,7 +1,3 @@
-bower_components/
 node_modules/
-dist/*
-!dist/.gitignore
-.npm/
-.npmrc
-npm-debug.log
+dist/
+.nyc*

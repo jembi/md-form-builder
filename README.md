@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jembi/md-form-builder.svg?branch=master)](https://travis-ci.org/jembi/md-form-builder)
+
 # AngularJS - Material Design Form Builder
 
 This form builder works with AngularJS and Material Design to build dynamic forms and comes with various features.
@@ -394,4 +396,39 @@ Each section contains rows and each row has fields. See the example of a section
     }]
   }
 ]
+```
+
+### Skip Logic
+
+FormBuilder allows you to add skip logic and functional support to field to enhance its capabilities. Below is a skip logic setting that checks for a field called "bmi" and shows the field if the value is bigger than 0
+```
+"skipLogic": {
+  "checks": [{
+    "variable": "form.bmi.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.global.gender)
+    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=" )
+    "value": 0 // value that needs to checked for. 
+    "action": "showhide" // action to perform on the field ("disabled", "required", "showhide")
+  }]
+}
+```
+
+Below is a skip logic fucntion checks that will execute a function called "calculateBMI" when both the "weight" and "height" fields have values. for a field called "bmi" and shows the field if the value is bigger than 0
+```
+"skipLogic": {
+  "func": {
+    "execute": "placeholderForCalculateBMI", // function to execute. !NB this must be a function attached to this property to execute successfully. The function gets executed within FormBuilder and supplies one argument to your function which will hold all the parameters and their values supplied in the "params" property. E.g ["weight", "height"]
+    "params": ["weight", "height"], // params to send to the function
+    "watchingVars": ["weight", "height"] // watch these variables and execute function with supplied params fields
+  }
+}
+```
+
+The calculateBMI function looks like the below function. This function needs to be assigned to the 'execute' property to run successfully
+```
+var calculateBMI = function (params) {
+  if (params.weight && params.height) {
+    var bmi = params.weight / (params.height / 100 * params.height / 100)
+    return bmi.toFixed(2)
+  }
+}
 ```
