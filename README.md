@@ -416,9 +416,19 @@ Below is a skip logic fucntion checks that will execute a function called "calcu
 ```
 "skipLogic": {
   "func": {
-    "execute": "calculateBMI", // function to execute. !NB this must be a function attached to this property to execute successfully. The function will receive 1 params (params)
+    "execute": "placeholderForCalculateBMI", // function to execute. !NB this must be a function attached to this property to execute successfully. The function will receive 1 params (params)
     "params": ["weight", "height"], // params to send to the function
     "watchingVars": ["weight", "height"] // watch these variables and execute function with supplied params fields
+  }
+}
+```
+
+The calcuateBMI function looks like the below function. This function needs to be assigned to the 'execute' property to run successfully
+```
+var calculateBMI = function (params) {
+  if (params.weight && params.height) {
+    var bmi = params.weight / (params.height / 100 * params.height / 100)
+    return bmi.toFixed(2)
   }
 }
 ```
