@@ -398,7 +398,7 @@ Each section contains rows and each row has fields. See the example of a section
 ]
 ```
 
-###Skip Logic
+### Skip Logic
 
 FormBuilder allows you to add skip logic and functional support to field to enhance its capabilities. Below is a skip logic setting that checks for a field called "bmi" and shows the field if the value is bigger than 0
 ```
