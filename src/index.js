@@ -90,6 +90,7 @@
   require('./validators/south-african-id-number-validator')
   mod.directive('checkIdNumber', require('./validators/idNumber'))
   mod.directive('checkPhoneNumber', require('./validators/phoneNumber'))
+  mod.directive('regexValidation', require('./validators/regex'))
 
   return moduleName
 }))
