@@ -69,11 +69,11 @@ module.exports = function ($timeout, $mdDialog) {
           controller: DialogController,
           locals: { data: { type: type, value: value } }
         })
-          .then(function (text) {
-            scope.field.data[type] = text
-          }, function () {
-            console.log('Did not consent')
-          })
+        .then(function (text) {
+          scope.field.data[type] = text
+        }, function () {
+          // closed, do nothing
+        })
       }
     }
   }
