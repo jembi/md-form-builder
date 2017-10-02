@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jembi/md-form-builder.svg?branch=master)](https://travis-ci.org/jembi/md-form-builder)
+
 # AngularJS - Material Design Form Builder
 
 This form builder works with AngularJS and Material Design to build dynamic forms and comes with various features.
