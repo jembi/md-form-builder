@@ -423,7 +423,7 @@ Below is a skip logic fucntion checks that will execute a function called "calcu
 }
 ```
 
-The calcuateBMI function looks like the below function. This function needs to be assigned to the 'execute' property to run successfully
+The calculateBMI function looks like the below function. This function needs to be assigned to the 'execute' property to run successfully
 ```
 var calculateBMI = function (params) {
   if (params.weight && params.height) {
