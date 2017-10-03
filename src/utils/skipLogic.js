@@ -55,13 +55,13 @@ module.exports = function () {
     '>': function (a, b) { return a > b },
     '>=': function (a, b) { return a >= b },
 
-    '[in]': function (a, b) {
+    'in': function (a, b) {
       if (b.indexOf(a) >= 0) {
         return true
       }
       return false
     },
-    '[!in]': function (a, b) {
+    '!in': function (a, b) {
       if (b.indexOf(a) === -1) {
         return true
       }

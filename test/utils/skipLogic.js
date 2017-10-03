@@ -129,17 +129,17 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 })
 
 tap.test('.skipLogic()', { autoend: true }, (t) => {
-  t.test('operators[[in]]: should run "[in]" operations', (t) => {
-    const stringInArrayTrue = operators['[in]']('inArray', ['test', 'testing', 'inArray', 'Another Test'])
-    const stringInArrayFalse = operators['[in]']('notInArray', ['test', 'testing', 'inArray', 'Another Test'])
-    const stringInArrayFalse2 = operators['[in]']('Another', ['test', 'testing', 'inArray', 'Another Test'])
+  t.test('operators[in]: should run "in" operations', (t) => {
+    const stringInArrayTrue = operators['in']('inArray', ['test', 'testing', 'inArray', 'Another Test'])
+    const stringInArrayFalse = operators['in']('notInArray', ['test', 'testing', 'inArray', 'Another Test'])
+    const stringInArrayFalse2 = operators['in']('Another', ['test', 'testing', 'inArray', 'Another Test'])
     t.ok(stringInArrayTrue)
     t.notOk(stringInArrayFalse)
     t.notOk(stringInArrayFalse2)
 
-    const intInArrayTrue = operators['[in]'](78, [12, 34, 56, 78, 90])
-    const intInArrayFalse = operators['[in]'](87, [12, 34, 56, 78, 90])
-    const intInArrayFalse2 = operators['[in]'](1, [12, 34, 56, 78, 90])
+    const intInArrayTrue = operators['in'](78, [12, 34, 56, 78, 90])
+    const intInArrayFalse = operators['in'](87, [12, 34, 56, 78, 90])
+    const intInArrayFalse2 = operators['in'](1, [12, 34, 56, 78, 90])
     t.ok(intInArrayTrue)
     t.notOk(intInArrayFalse)
     t.notOk(intInArrayFalse2)
@@ -149,14 +149,14 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 })
 
 tap.test('.skipLogic()', { autoend: true }, (t) => {
-  t.test('operators[[!in]]: should run "[!in]" operations', (t) => {
-    const stringInArrayTrue = operators['[!in]']('notInArray', ['test', 'testing', 'inArray', 'Another Test'])
-    const stringInArrayFalse = operators['[!in]']('inArray', ['test', 'testing', 'inArray', 'Another Test'])
+  t.test('operators[!in]: should run "!in" operations', (t) => {
+    const stringInArrayTrue = operators['!in']('notInArray', ['test', 'testing', 'inArray', 'Another Test'])
+    const stringInArrayFalse = operators['!in']('inArray', ['test', 'testing', 'inArray', 'Another Test'])
     t.ok(stringInArrayTrue)
     t.notOk(stringInArrayFalse)
 
-    const intInArrayTrue = operators['[!in]'](87, [12, 34, 56, 78, 90])
-    const intInArrayFalse = operators['[!in]'](78, [12, 34, 56, 78, 90])
+    const intInArrayTrue = operators['!in'](87, [12, 34, 56, 78, 90])
+    const intInArrayFalse = operators['!in'](78, [12, 34, 56, 78, 90])
     t.ok(intInArrayTrue)
     t.notOk(intInArrayFalse)
 
