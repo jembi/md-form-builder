@@ -405,7 +405,7 @@ FormBuilder allows you to add skip logic and functional support to field to enha
 "skipLogic": {
   "checks": [{
     "variable": "form.bmi.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
-    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=" )
+    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "[in]", "[!in]" )
     "value": 0 // value that needs to checked for. 
     "action": "showhide" // action to perform on the field ("disabled", "required", "showhide")
   }]
