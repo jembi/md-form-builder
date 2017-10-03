@@ -137,6 +137,11 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
     t.notOk(stringInArrayFalse)
     t.notOk(stringInArrayFalse2)
 
+    const stringInValueTrue = operators['in']('inArray', 'Some string inArray test')
+    const stringInValueFalse = operators['in']('notInArray', 'Some string inArray test')
+    t.ok(stringInValueTrue)
+    t.notOk(stringInValueFalse)
+
     const intInArrayTrue = operators['in'](78, [12, 34, 56, 78, 90])
     const intInArrayFalse = operators['in'](87, [12, 34, 56, 78, 90])
     const intInArrayFalse2 = operators['in'](1, [12, 34, 56, 78, 90])
