@@ -404,7 +404,7 @@ FormBuilder allows you to add skip logic and functional support to field to enha
 ```
 "skipLogic": {
   "checks": [{
-    "variable": "form.bmi.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.global.gender)
+    "variable": "form.bmi.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
     "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=" )
     "value": 0 // value that needs to checked for. 
     "action": "showhide" // action to perform on the field ("disabled", "required", "showhide")
@@ -412,7 +412,7 @@ FormBuilder allows you to add skip logic and functional support to field to enha
 }
 ```
 
-Below is a skip logic fucntion checks that will execute a function called "calculateBMI" when both the "weight" and "height" fields have values. for a field called "bmi" and shows the field if the value is bigger than 0
+Below is a skip logic function checks that will execute a function called "calculateBMI" when both the "weight" and "height" fields have values. for a field called "bmi" and shows the field if the value is bigger than 0
 ```
 "skipLogic": {
   "func": {
