@@ -1,15 +1,13 @@
-<md-input-container 
-  ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }" 
-  ng-show="field.show">
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
   <label>{{field.title}}</label>
   <input 
     name="{{field.name}}"
     ng-model="field.value" 
     ng-disabled="field.settings.disabled" 
     ng-required="field.settings.required && field.show"
-    check-id-number="field.settings.checkIdNumber" />
+    check-rsa-id-number="field.settings.checkRsaIdNumber" />
   <div ng-messages="form[field.name].$error">
     <div ng-message="required">This field is required</div>
-    <div ng-message="checkIdNumber">Invalid ID Number</div>
+    <div ng-message="checkRsaIdNumber">Invalid RSA ID Number</div>
   </div>
 </md-input-container>

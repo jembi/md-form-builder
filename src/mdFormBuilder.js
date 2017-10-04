@@ -1,13 +1,15 @@
-'use strict';
+/* global angular */
 
-module.exports = function($window, $timeout, $anchorScroll, $location, hotkeys) {
+'use strict'
+
+module.exports = function ($window, $timeout, $anchorScroll, $location, hotkeys) {
   return {
     restrict: 'E',
     replace: true,
     templateUrl: 'mdFormBuilder.html',
     scope: {
-        form: '='
-      },
+      form: '='
+    },
     link: function (scope, elem, attrs) {
       scope.$watch('form', function (formConfig) {
         if (formConfig) {
@@ -88,7 +90,6 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
       $scope.tabs.selectedIndex--
     }
   }
-
 
   $scope.moveTabForward = function (selectedIndex) {
     if ($scope.tabs.selectedIndex < ($scope.FormBuilder.sections.length - 1)) {
