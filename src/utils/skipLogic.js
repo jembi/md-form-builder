@@ -41,59 +41,79 @@ module.exports = function () {
       for (var i = 0; i < formField.skipLogic.checks.length; i++) {
         var check = formField.skipLogic.checks[i]
         scope.$watch(check.variable, function (value, oldValue) {
-          var operators = {
-            '=': function (a, b) { return a === b },
-            '!=': function (a, b) { return a !== b },
-            '<': function (a, b) { return a < b },
-            '<=': function (a, b) { return a <= b },
-            '>': function (a, b) { return a > b },
-            '>=': function (a, b) { return a >= b }
-          }
-
-          switch (check.action) {
-            case 'checkPhoneNumber':
-              if (operators[check.operand](value, check.value)) {
-                scope.field.settings.checkPhoneNumber = true
-              } else {
-                scope.field.settings.checkPhoneNumber = false
-              }
-              break
-            case 'checkIdNumber':
-              if (operators[check.operand](value, check.value)) {
-                scope.field.settings.checkIdNumber = true
-              } else {
-                scope.field.settings.checkIdNumber = false
-              }
-              break
-
-            case 'disabled':
-              if (operators[check.operand](value, check.value)) {
-                scope.field.settings.disabled = true
-              } else {
-                scope.field.settings.disabled = false
-              }
-              break
-            case 'required':
-              if (operators[check.operand](value, check.value)) {
-                scope.field.settings.required = true
-              } else {
-                scope.field.settings.required = false
-              }
-              break
-            case 'showhide':
-            default:
-              if (operators[check.operand](value, check.value)) {
-                scope.field.show = true
-              } else {
-                scope.field.show = false
-              }
-          }
+          skipLogicOperandCheck(scope, value, check)
         }, true)
       }
     }
   }
 
+  var operators = {
+    '=': function (a, b) { return a === b },
+    '!=': function (a, b) { return a !== b },
+    '<': function (a, b) { return a < b },
+    '<=': function (a, b) { return a <= b },
+    '>': function (a, b) { return a > b },
+    '>=': function (a, b) { return a >= b },
+
+    'in': function (a, b) {
+      if (b.indexOf(a) >= 0) {
+        return true
+      }
+      return false
+    },
+    '!in': function (a, b) {
+      if (b.indexOf(a) === -1) {
+        return true
+      }
+      return false
+    }
+  }
+
+  var skipLogicOperandCheck = function (scope, value, check) {
+    switch (check.action) {
+      case 'checkPhoneNumber':
+        if (operators[check.operand](value, check.value)) {
+          scope.field.settings.checkPhoneNumber = true
+        } else {
+          scope.field.settings.checkPhoneNumber = false
+        }
+        break
+      case 'checkIdNumber':
+        if (operators[check.operand](value, check.value)) {
+          scope.field.settings.checkIdNumber = true
+        } else {
+          scope.field.settings.checkIdNumber = false
+        }
+        break
+
+      case 'disabled':
+        if (operators[check.operand](value, check.value)) {
+          scope.field.settings.disabled = true
+        } else {
+          scope.field.settings.disabled = false
+        }
+        break
+      case 'required':
+        if (operators[check.operand](value, check.value)) {
+          scope.field.settings.required = true
+        } else {
+          scope.field.settings.required = false
+        }
+        break
+      case 'showhide':
+      default:
+        if (operators[check.operand](value, check.value)) {
+          scope.field.show = true
+        } else {
+          scope.field.show = false
+        }
+    }
+  }
+
   return {
-    init: init
+    init: init,
+
+    operators: operators,
+    skipLogicOperandCheck: skipLogicOperandCheck
   }
 }
