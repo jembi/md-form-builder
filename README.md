@@ -448,7 +448,7 @@ var calculateBMI = function (params) {
     "required": true // (optional) whether this field is required or not
     "min": "1", // (optional) The minimum number this control accepts
     "max": "250", // (optional) The maximum number this control accepts
-    "step": "0.01", // (optional) The step size in whcih the value be increased by the spinner, this also determines the alowable decimal points
+    "step": "0.01", // (optional) The step size in whcih the value be increased by the spinner, this also determines the allowable decimal points
     "disableSpinner": true // (optional) If the number spinner button should be hidden or not
   },
   "value": null // the initial value of this field
