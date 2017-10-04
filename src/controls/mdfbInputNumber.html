@@ -1,4 +1,4 @@
-<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
+<md-input-container ng-class="{ 'md-input-invalid': form[field.name].$invalid && form[field.name].$touched, 'no-spinner': field.settings.disableSpinner }">
   <label>{{field.title}}</label>
   <input
     name="{{field.name}}"
@@ -11,5 +11,7 @@
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show" />
   <div ng-messages="form[field.name].$error">
     <div ng-message="required">This field is required</div>
+    <div ng-message="min">This field is below the minimum allowed</div>
+    <div ng-message="max">This field is above the maximum allowed</div>
   </div>
 </md-input-container>
