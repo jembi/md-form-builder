@@ -342,6 +342,10 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
     skipLogicGroupCheck(scope, 'yes', check)
     t.notOk(scope.field.show)
 
+    check.logicGate = 'or'
+    skipLogicGroupCheck(scope, 'yes', check)
+    t.notOk(scope.field.show)
+
     t.end()
   })
 })
