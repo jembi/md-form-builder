@@ -6,6 +6,7 @@ const sinon = require('sinon')
 const skipLogic = require('../../src/utils/skipLogic')()
 const operators = skipLogic.operators
 const skipLogicOperandCheck = skipLogic.skipLogicOperandCheck
+const skipLogicGroupCheck = skipLogic.skipLogicGroupCheck
 
 const sandbox = sinon.sandbox.create()
 sandbox.stub(console, 'error').callsFake((msg) => {})
@@ -287,6 +288,50 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     skipLogicOperandCheck(scope, 'ShouldNotMatch', check)
     t.notOk(scope.field.settings.checkIdNumber)
+
+    t.end()
+  })
+})
+
+tap.test('.skipLogic()', { autoend: true }, (t) => {
+  t.test('skipLogicGroupCheck(): should match one depth group appropriately', (t) => {
+    const scope = {
+      field: {
+        settings: {
+          showhide: null
+        }
+      }
+    }
+    const check = {
+      logicGate: 'and',
+      action: 'showhide',
+      group: [{
+        operand: '=',
+        value: 'yes'
+      }, {
+        operand: '=',
+        value: 'no'
+      }, {
+        operand: '=',
+        value: 'yes'
+      }]
+    }
+
+    skipLogicGroupCheck(scope, 'yes', check)
+    t.notOk(scope.field.show)
+
+    check.logicGate = 'or'
+    skipLogicGroupCheck(scope, 'yes', check)
+    t.ok(scope.field.show)
+    skipLogicGroupCheck(scope, 'no', check)
+    t.ok(scope.field.show)
+
+    check.logicGate = 'and'
+    check.group[1].value = 'yes'
+    skipLogicGroupCheck(scope, 'yes', check)
+    t.ok(scope.field.show)
+    skipLogicGroupCheck(scope, 'no', check)
+    t.notOk(scope.field.show)
 
     t.end()
   })
