@@ -40,17 +40,17 @@ module.exports = function () {
     if (formField.skipLogic.checks.length > 0) {
       for (var i = 0; i < formField.skipLogic.checks.length; i++) {
         var check = formField.skipLogic.checks[i]
-        scope.$watch(check.variable.startsWith('form.') ? check.variable : 'form.' + check.variable + '.$modelValue', function (value, oldValue) {
-          if (check && check.group) {
-            for (var j = 0; j < check.group.length; j++) {
-              scope.$watch(check.group[j].variable.startsWith('form.') ? check.group[j].variable : 'form.' + check.group[j].variable + '.$modelValue', function (value, oldValue) {
-                skipLogicGroupCheck(scope, value, check)
-              })
-            }
-          } else {
-            skipLogicOperandCheck(scope, value, check)
+        if (check && check.group) {
+          for (var j = 0; j < check.group.length; j++) {
+            scope.$watch(check.group[j].variable.startsWith('form.') ? check.group[j].variable : 'form.' + check.group[j].variable + '.$modelValue', function (value, oldValue) {
+              skipLogicGroupCheck(scope, value, check)
+            })
           }
-        }, true)
+        } else {
+          scope.$watch(check.variable.startsWith('form.') ? check.variable : 'form.' + check.variable + '.$modelValue', function (value, oldValue) {
+            skipLogicOperandCheck(scope, value, check)
+          }, true)
+        }
       }
     }
   }
