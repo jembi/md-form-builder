@@ -42,7 +42,11 @@ module.exports = function () {
         var check = formField.skipLogic.checks[i]
         scope.$watch(check.variable.startsWith('form.') ? check.variable : 'form.' + check.variable + '.$modelValue', function (value, oldValue) {
           if (check && check.group) {
-            skipLogicGroupCheck(scope, value, check)
+            for (var j = 0; j < check.group.length; j++) {
+              scope.$watch(check.group[j].variable.startsWith('form.') ? check.group[j].variable : 'form.' + check.group[j].variable + '.$modelValue', function (value, oldValue) {
+                skipLogicGroupCheck(scope, value, check)
+              })
+            }
           } else {
             skipLogicOperandCheck(scope, value, check)
           }
@@ -118,7 +122,7 @@ module.exports = function () {
     }
   }
 
-  // TODO do a complex (more than one depth) groups
+  // TODO do a complex (more than one depth) groups, probably xor xnor would handle this
   var skipLogicGroupCheck = function (scope, value, check) {
     var logicGate = check.logicGate
     var checkEval = null

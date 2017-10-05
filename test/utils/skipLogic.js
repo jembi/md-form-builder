@@ -307,13 +307,16 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
       action: 'showhide',
       group: [{
         operand: '=',
-        value: 'yes'
+        value: 'yes',
+        variable: 'var1'
       }, {
         operand: '=',
-        value: 'no'
+        value: 'no',
+        variable: 'var2'
       }, {
         operand: '=',
-        value: 'yes'
+        value: 'yes',
+        variable: 'var3'
       }]
     }
 
