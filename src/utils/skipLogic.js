@@ -44,7 +44,7 @@ module.exports = function () {
           for (var j = 0; j < check.group.length; j++) {
             scope.$watch(check.group[j].variable.startsWith('form.') ? check.group[j].variable : 'form.' + check.group[j].variable + '.$modelValue', function (value, oldValue) {
               skipLogicGroupCheck(scope, value, check)
-            })
+            }, true)
           }
         } else {
           scope.$watch(check.variable.startsWith('form.') ? check.variable : 'form.' + check.variable + '.$modelValue', function (value, oldValue) {
