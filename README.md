@@ -412,6 +412,25 @@ FormBuilder allows you to add skip logic and functional support to field to enha
 }
 ```
 
+To evaluate grouped checks such as to deal with logic gates ("or", "and"), use something like;
+```
+"skipLogic": {
+  "checks": [{
+    "logicGate": "and", // logic evaluation creterial to check group items against ("or", "and")
+    "action": "showhide", // action to perform on the field ("disabled", "required", "showhide")
+    "group": [{
+      "variable": "form.age.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
+      "operand": ">=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in" )
+      "value": 15 // value that needs to checked for.
+    },{
+      "variable": "form.gender.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
+      "operand": "=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in" )
+      "value": "M" // value that needs to checked for.
+    }]
+  }]
+}
+```
+
 Below is a skip logic function checks that will execute a function called "calculateBMI" when both the "weight" and "height" fields have values. for a field called "bmi" and shows the field if the value is bigger than 0
 ```
 "skipLogic": {

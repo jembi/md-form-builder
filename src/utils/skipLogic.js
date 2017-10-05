@@ -40,9 +40,17 @@ module.exports = function () {
     if (formField.skipLogic.checks.length > 0) {
       for (var i = 0; i < formField.skipLogic.checks.length; i++) {
         var check = formField.skipLogic.checks[i]
-        scope.$watch(check.variable, function (value, oldValue) {
-          skipLogicOperandCheck(scope, value, check)
-        }, true)
+        if (check && check.group) {
+          for (var j = 0; j < check.group.length; j++) {
+            scope.$watch(check.group[j].variable.startsWith('form.') ? check.group[j].variable : 'form.' + check.group[j].variable + '.$modelValue', function (value, oldValue) {
+              skipLogicGroupCheck(scope, value, check)
+            }, true)
+          }
+        } else {
+          scope.$watch(check.variable.startsWith('form.') ? check.variable : 'form.' + check.variable + '.$modelValue', function (value, oldValue) {
+            skipLogicOperandCheck(scope, value, check)
+          }, true)
+        }
       }
     }
   }
@@ -70,16 +78,20 @@ module.exports = function () {
   }
 
   var skipLogicOperandCheck = function (scope, value, check) {
-    switch (check.action) {
+    skipLogicCheck(check.action, operators[check.operand](value, check.value), scope)
+  }
+
+  var skipLogicCheck = function (action, check, scope) {
+    switch (action) {
       case 'checkPhoneNumber':
-        if (operators[check.operand](value, check.value)) {
+        if (check) {
           scope.field.settings.checkPhoneNumber = true
         } else {
           scope.field.settings.checkPhoneNumber = false
         }
         break
       case 'checkIdNumber':
-        if (operators[check.operand](value, check.value)) {
+        if (check) {
           scope.field.settings.checkIdNumber = true
         } else {
           scope.field.settings.checkIdNumber = false
@@ -87,14 +99,14 @@ module.exports = function () {
         break
 
       case 'disabled':
-        if (operators[check.operand](value, check.value)) {
+        if (check) {
           scope.field.settings.disabled = true
         } else {
           scope.field.settings.disabled = false
         }
         break
       case 'required':
-        if (operators[check.operand](value, check.value)) {
+        if (check) {
           scope.field.settings.required = true
         } else {
           scope.field.settings.required = false
@@ -102,7 +114,7 @@ module.exports = function () {
         break
       case 'showhide':
       default:
-        if (operators[check.operand](value, check.value)) {
+        if (check) {
           scope.field.show = true
         } else {
           scope.field.show = false
@@ -110,10 +122,30 @@ module.exports = function () {
     }
   }
 
+  // TODO do a complex (more than one depth) groups, probably xor xnor would handle this
+  var skipLogicGroupCheck = function (scope, value, check) {
+    var logicGate = check.logicGate
+    var checkEval = null
+    for (var i = 0; i < check.group.length; i++) {
+      var c = check.group[i]
+      if (checkEval !== null) {
+        if (logicGate === 'and') {
+          checkEval = checkEval && operators[c.operand](value, c.value)
+        } else if (logicGate === 'or') {
+          checkEval = checkEval || operators[c.operand](value, c.value)
+        }
+      } else {
+        checkEval = operators[c.operand](value, c.value)
+      }
+    }
+    skipLogicCheck(check.action, checkEval, scope)
+  }
+
   return {
     init: init,
 
     operators: operators,
-    skipLogicOperandCheck: skipLogicOperandCheck
+    skipLogicOperandCheck: skipLogicOperandCheck,
+    skipLogicGroupCheck: skipLogicGroupCheck
   }
 }
