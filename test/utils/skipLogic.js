@@ -294,7 +294,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 })
 
 tap.test('.skipLogic()', { autoend: true }, (t) => {
-  t.test('skipLogicGroupCheck(): should match one depth group appropriately', (t) => {
+  t.test('skipLogicGroupCheck(): should match one depth group appropriately with "and" logicGate', (t) => {
     const scope = {
       field: {
         settings: {
@@ -329,19 +329,51 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
     skipLogicGroupCheck(scope, check)
     t.notOk(scope.field.show)
 
-    check.logicGate = 'or'
+    scope.form.var2.$modelValue = 'yes'
     skipLogicGroupCheck(scope, check)
     t.ok(scope.field.show)
 
-    scope.form.var2.$modelValue = 'yes'
-    check.logicGate = 'and'
+    t.end()
+  })
+
+  t.test('skipLogicGroupCheck(): should match one depth group appropriately with "or" logicGate', (t) => {
+    const scope = {
+      field: {
+        settings: {
+          showhide: null
+        }
+      },
+      form: []
+    }
+
+    scope.form['var1'] = { $modelValue: 'yes' }
+    scope.form['var2'] = { $modelValue: 'no' }
+    scope.form['var3'] = { $modelValue: 'yes' }
+
+    const check = {
+      logicGate: 'or',
+      action: 'showhide',
+      group: [{
+        operand: '=',
+        value: 'yes',
+        variable: 'var1'
+      }, {
+        operand: '=',
+        value: 'yes',
+        variable: 'var2'
+      }, {
+        operand: '=',
+        value: 'yes',
+        variable: 'var3'
+      }]
+    }
+
     skipLogicGroupCheck(scope, check)
     t.ok(scope.field.show)
 
     scope.form.var1.$modelValue = 'no'
-    scope.form.var2.$modelValue = 'no'
     scope.form.var3.$modelValue = 'no'
-    check.logicGate = 'or'
+
     skipLogicGroupCheck(scope, check)
     t.notOk(scope.field.show)
 
