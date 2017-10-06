@@ -1,0 +1,357 @@
+
+{
+  "key": "user",
+  "name": "User Info",
+  "displayName": "User Information",
+  "flex": "100",
+  "rows": [
+    {
+      "name": "Row 1",
+      "title": null,
+      "layout": "row",
+      "fields": [
+        {
+          "type": "select",
+          "flex": "50",
+          "name": "usernameType",
+          "title": "Username Type",
+          "options": [
+            {
+              "key": "mpNumber",
+              "value": "MP Number"
+            },
+            {
+              "key": "email",
+              "value": "Email"
+            },
+            {
+              "key": "mobileNumber",
+              "value": "Mobile Number"
+            }
+          ],
+          "settings": {
+            "required": true
+          },
+          "value": null
+        },
+        {
+          "type": "input",
+          "flex": "50",
+          "name": "username",
+          "title": "MP number",
+          "skipLogic": {
+            "func": null,
+            "checks": [
+              {
+                "variable": "form.usernameType.$modelValue",
+                "operand": "=",
+                "value": "MP Number"
+              }
+            ]
+          },
+          "settings": {
+            "regexValidation": {
+              "regex": "^[a-zA-Z0-9_]{0,16}$",
+              "message": "Please enter a valid MP Number"
+            },
+            "required": true
+          }
+        },
+        {
+          "type": "radio",
+          "flex": "100",
+          "name": "title",
+          "title": "Title",
+          "class": "layout-align-center-center",
+          "styles": "text-align: center;",
+          "settings": {
+            "required": false
+          },
+          "options": [
+            {
+              "key": "Dr",
+              "value": "Dr"
+            },
+            {
+              "key": "Mr",
+              "value": "Mr"
+            },
+            {
+              "key": "Mrs",
+              "value": "Mrs"
+            },
+            {
+              "key": "Ms",
+              "value": "Ms"
+            },
+            {
+              "key": "Miss",
+              "value": "Miss"
+            }
+          ],
+          "value": null
+        },
+        {
+          "type": "input",
+          "flex": "50",
+          "name": "firstname",
+          "title": "First Name",
+          "settings": {
+            "required": true
+          },
+          "value": null
+        },
+        {
+          "type": "input",
+          "flex": "50",
+          "name": "surname",
+          "title": "Surname",
+          "settings": {
+            "required": true
+          },
+          "value": null
+        },
+        {
+          "type": "inputPhoneNumber",
+          "flex": "100",
+          "name": "username",
+          "title": "Mobile Number",
+          "settings": {
+            "checkPhoneNumber": true,
+            "required": true
+          }
+        },
+        {
+          "type": "email",
+          "flex": "100",
+          "name": "username",
+          "title": "Email",
+          "settings": {
+            "required": true
+          }
+        },
+        {
+          "type": "select",
+          "flex": "100",
+          "name": "role",
+          "title": "Role",
+          "settings": {
+            "required": true
+          },
+          "options": [
+            {
+              "key": "patient",
+              "value": "Patient"
+            },
+            {
+              "key": "guardian",
+              "value": "Legal Guardian"
+            },
+            {
+              "key": "surgeon",
+              "value": "Surgeon"
+            },
+            {
+              "key": "anaesthetist",
+              "value": "Anaesthetist"
+            },
+            {
+              "key": "practice-reception-staff",
+              "value": "Practice Reception Staff"
+            },
+            {
+              "key": "practice-manager",
+              "value": "Practice Manager"
+            },
+            {
+              "key": "super-user",
+              "value": "Super User"
+            },
+            {
+              "key": "investor-board",
+              "value": "Investor / Board"
+            },
+            {
+              "key": "hod",
+              "value": "HOD"
+            },
+            {
+              "key": "admin",
+              "value": "System Administrator"
+            }
+          ],
+          "value": null
+        },
+        {
+          "type": "radio",
+          "flex": "100",
+          "name": "providerType",
+          "title": "Provider Type",
+          "class": "layout-align-center-center",
+          "styles": "text-align: center;",
+          "settings": {
+            "required": false
+          },
+          "value": null,
+          "options": [
+            {
+              "key": "anaesthetist",
+              "value": "Anaesthetist"
+            },
+            {
+              "key": "surgeon",
+              "value": "Surgeon"
+            },
+            {
+              "key": "practiceStaff",
+              "value": "Practice staff"
+            }
+          ]
+        },
+
+
+
+
+
+
+
+
+
+
+        {
+          "type": "input",
+          "flex": "100",
+          "name": "hpcsaMpNumber",
+          "title": "HPCSA MP Number",
+          "settings": {
+            "required": true
+          },
+          "skipLogic": {
+            "func": null,
+            "checks": [
+              {
+                "variable": "form.providerType.$modelValue",
+                "operand": "[in]",
+                "value": ["anaesthetist", "surgeon"],
+                "action": "showhide"
+              }
+            ]
+          },
+          "value": null
+        },
+        {
+          "type": "input",
+          "flex": "100",
+          "name": "practiceNumber",
+          "title": "Practice Number (BHF Number) !!!LOOKUP",
+          "settings": {
+            "required": true
+          },
+          "skipLogic": {
+            "func": null,
+            "checks": [
+              {
+                "variable": "form.providerType.$modelValue",
+                "operand": "[in]",
+                "value": ["anaesthetist", "surgeon"],
+                "action": "showhide"
+              }
+            ]
+          },
+          "value": null
+        },
+
+
+
+
+
+
+
+        {
+          "type": "input",
+          "flex": "100",
+          "name": "linkedAnaesthetistPractice",
+          "title": "Linked Anaesthetist Practice",
+          "settings": {
+            "required": true
+          },
+          "skipLogic": {
+            "func": null,
+            "checks": [{
+              "variable": "form.providerType.$modelValue",
+              "operand": "=",
+              "value": "surgeon",
+              "action": "showhide"
+            }]
+          },
+          "value": null
+        },
+        {
+          "type": "input",
+          "flex": "100",
+          "name": "linkedFacilities",
+          "title": "Linked Facilities",
+          "settings": {
+            "required": true
+          },
+          "skipLogic": {
+            "func": null,
+            "checks": [{
+              "variable": "form.providerType.$modelValue",
+              "operand": "=",
+              "value": "surgeon",
+              "action": "showhide"
+            }]
+          },
+          "value": null
+        },
+
+
+
+
+
+
+        {
+          "type": "checkboxes",
+          "flex": "100",
+          "name": "consentToSharing",
+          "title": "Share benchmarking data with my practice?",
+          "settings": {
+            "required": true
+          },
+          "value": null
+        },
+        {
+          "type": "input",
+          "flex": "100",
+          "name": "linkedProviderInformation",
+          "title": "Linked Provider Information !!! UPLOAD PDF",
+          "settings": {
+            "required": true
+          },
+          "value": null
+        },
+        {
+          "type": "radio",
+          "flex": "100",
+          "name": "status",
+          "title": "Status",
+          "settings": {
+            "required": true
+          },
+          "options": [
+            {
+              "key": "active",
+              "value": "Active"
+            },
+            {
+              "key": "inactive",
+              "value": "Inactive"
+            }
+          ],
+          "value": null
+        }
+      ]
+    }
+  ]
+}
