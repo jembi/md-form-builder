@@ -128,6 +128,7 @@ module.exports = function () {
     var checkEval = null
     for (var i = 0; i < check.group.length; i++) {
       var c = check.group[i]
+      value = scope.form && c.variable ? scope.form[c.variable].$modelValue : value
       if (checkEval !== null) {
         if (logicGate === 'and') {
           checkEval = checkEval && operators[c.operand](value, c.value)
