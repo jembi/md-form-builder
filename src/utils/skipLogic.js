@@ -43,7 +43,7 @@ module.exports = function () {
         if (check && check.group) {
           for (var j = 0; j < check.group.length; j++) {
             scope.$watch(check.group[j].variable.startsWith('form.') ? check.group[j].variable : 'form.' + check.group[j].variable + '.$modelValue', function (value, oldValue) {
-              skipLogicGroupCheck(scope, value, check)
+              skipLogicGroupCheck(scope, check)
             }, true)
           }
         } else {
@@ -136,12 +136,12 @@ module.exports = function () {
   }
 
   // TODO do a complex (more than one depth) groups, probably xor xnor would handle this
-  var skipLogicGroupCheck = function (scope, value, check) {
+  var skipLogicGroupCheck = function (scope, check) {
     var logicGate = check.logicGate
     var checkEval = null
     for (var i = 0; i < check.group.length; i++) {
       var c = check.group[i]
-      value = scope.form && c.variable ? scope.form[c.variable].$modelValue : value
+      var value = scope.form[c.variable].$modelValue
       if (checkEval !== null) {
         if (logicGate === 'and') {
           checkEval = checkEval && operators[c.operand](value, c.value)
