@@ -74,6 +74,19 @@ module.exports = function () {
         return true
       }
       return false
+    },
+
+    'contains': function (a, b) {
+      if (!a) {
+        return false
+      }
+      return (a.indexOf(b) >= 0)
+    },
+    '!contains': function (a, b) {
+      if (!a) {
+        return true
+      }
+      return (a.indexOf(b) === -1)
     }
   }
 

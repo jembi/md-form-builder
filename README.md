@@ -405,7 +405,8 @@ FormBuilder allows you to add skip logic and functional support to field to enha
 "skipLogic": {
   "checks": [{
     "variable": "form.bmi.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
-    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in" )
+    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in", "contains", "!contains" )
+    // 'in' check if the variable is in the value whereas 'contains' checks the inverse. I.e. if the value is in the variable.
     "value": 0 // value that needs to checked for.
     "action": "showhide" // action to perform on the field ("disabled", "required", "showhide")
   }]
@@ -420,11 +421,11 @@ To evaluate grouped checks such as to deal with logic gates ("or", "and"), use s
     "action": "showhide", // action to perform on the field ("disabled", "required", "showhide")
     "group": [{
       "variable": "form.age.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
-      "operand": ">=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in" )
+      "operand": ">=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in", "contains", "!contains" )
       "value": 15 // value that needs to checked for.
     },{
       "variable": "form.gender.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
-      "operand": "=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in" )
+      "operand": "=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in", "contains", "!contains" )
       "value": "M" // value that needs to checked for.
     }]
   }]
