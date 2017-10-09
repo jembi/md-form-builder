@@ -278,10 +278,6 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
       form: []
     }
 
-    scope.form['var1'] = { $modelValue: 'yes' }
-    scope.form['var2'] = { $modelValue: 'no' }
-    scope.form['var3'] = { $modelValue: 'yes' }
-
     const check = {
       logicGate: 'and',
       action: 'showhide',
@@ -299,6 +295,10 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
         variable: 'var3'
       }]
     }
+
+    scope.form['var1'] = { $modelValue: 'yes' }
+    scope.form['var2'] = { $modelValue: 'no' }
+    scope.form['var3'] = { $modelValue: 'yes' }
 
     skipLogicGroupCheck(scope, check)
     t.notOk(scope.field.show)
@@ -320,10 +320,6 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
       form: []
     }
 
-    scope.form['var1'] = { $modelValue: 'yes' }
-    scope.form['var2'] = { $modelValue: 'no' }
-    scope.form['var3'] = { $modelValue: 'yes' }
-
     const check = {
       logicGate: 'or',
       action: 'showhide',
@@ -341,6 +337,10 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
         variable: 'var3'
       }]
     }
+
+    scope.form['var1'] = { $modelValue: 'yes' }
+    scope.form['var2'] = { $modelValue: 'no' }
+    scope.form['var3'] = { $modelValue: 'yes' }
 
     skipLogicGroupCheck(scope, check)
     t.ok(scope.field.show)
