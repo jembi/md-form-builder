@@ -29,6 +29,7 @@
   require('moment')
   require('v-accordion')
   require('webcam/dist/webcam.min.js')
+  require('angular-material-autocomplete-list')
 
   var moduleName = 'md-form-builder'
   var mod = angular.module(moduleName, [
@@ -41,6 +42,7 @@
     'ngMaterial',
     'cfp.hotkeys',
     'angular-notification-icons',
+    'autocompleteList',
     'vAccordion',
     'webcam'
   ])
