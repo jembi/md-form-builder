@@ -110,7 +110,6 @@
 
 
 		    	<div ng-if="FormBuilder.globals.showDraftSubmitButton">
-	          <!--<div ng-show="tabs.selectedIndex === ( FormBuilder.sections.length - 1)">-->
 		    		<div>
 		    			<md-checkbox ng-init="saveAsDraft = false" name="saveAsDraft" ng-model="saveAsDraft" aria-label="Save as draft?">
 		            Save as draft?
@@ -118,14 +117,17 @@
 				          Save as draft allows for changes later on
 				        </md-tooltip>
 		          </md-checkbox>
-				    	<md-button class="md-raised md-primary" type="submit" ><strong><u>{{ submitButtonText[0] }}</u></strong>{{ submitButtonText.substring(1) }}</md-button>
+				    	<md-button class="md-raised md-primary" type="submit">{{ submitButtonText }}</md-button>
 		    		</div>
 		    	</div>
 
 		    	<div ng-if="!FormBuilder.globals.showDraftSubmitButton && !FormBuilder.globals.normalDisplay && !FormBuilder.globals.viewModeOnly">
-		    		<md-button class="md-raised md-accent" type="submit"><strong><u>{{ submitButtonText[0] }}</u></strong>{{ submitButtonText.substring(1) }}</md-button>
+		    		<md-button class="md-raised md-accent" type="submit">{{ submitButtonText }}</md-button>
 		    	</div>
 
+		    	<div ng-if="FormBuilder.globals.showReviewButton && tabs.selectedIndex === ( FormBuilder.sections.length - 1)">
+		    		<md-button class="md-raised md-accent" type="submit">{{ submitButtonText }}</md-button>
+		    	</div>
 		    </div>
 		  </md-input-container>
 		</div>

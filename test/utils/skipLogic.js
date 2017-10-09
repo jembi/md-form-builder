@@ -34,9 +34,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('operators[!=]: should run "!=" operations', (t) => {
     const stringNotEqualTrue = operators['!=']('String 12345', '12345 String')
     const stringNotEqualFalse = operators['!=']('String 12345', 'String 12345')
@@ -55,9 +53,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('operators[<]: should run "<" operations', (t) => {
     const stringLessThanTrue = operators['<']('12345', '123456789')
     const stringLessThanFalse = operators['<']('123456789', '12345')
@@ -71,9 +67,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('operators[<=]: should run "<=" operations', (t) => {
     const stringLessThanEqualTrue = operators['<=']('12345', '123456789')
     const stringLessThanEqualTrue2 = operators['<=']('12345', '12345')
@@ -91,9 +85,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('operators[>]: should run ">" operations', (t) => {
     const stringMoreThanTrue = operators['>']('123456789', '12345')
     const stringMoreThanFalse = operators['>']('12345', '123456789')
@@ -107,9 +99,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('operators[>=]: should run ">=" operations', (t) => {
     const stringMoreThanEqualTrue = operators['>=']('123456789', '12345')
     const stringMoreThanEqualTrue2 = operators['>=']('12345', '12345')
@@ -127,9 +117,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('operators[in]: should run "in" operations', (t) => {
     const stringInArrayTrue = operators['in']('inArray', ['test', 'testing', 'inArray', 'Another Test'])
     const stringInArrayFalse = operators['in']('notInArray', ['test', 'testing', 'inArray', 'Another Test'])
@@ -152,9 +140,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('operators[!in]: should run "!in" operations', (t) => {
     const stringInArrayTrue = operators['!in']('notInArray', ['test', 'testing', 'inArray', 'Another Test'])
     const stringInArrayFalse = operators['!in']('inArray', ['test', 'testing', 'inArray', 'Another Test'])
@@ -168,9 +154,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('skipLogicOperandCheck(): should set the field setting for required', (t) => {
     const scope = {
       field: {
@@ -193,9 +177,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('skipLogicOperandCheck(): should set the field setting for disabled', (t) => {
     const scope = {
       field: {
@@ -218,9 +200,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('skipLogicOperandCheck(): should set the field setting for disabled', (t) => {
     const scope = {
       field: {
@@ -241,9 +221,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('skipLogicOperandCheck(): should set the field setting for disabled', (t) => {
     const scope = {
       field: {
@@ -266,9 +244,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
   t.test('skipLogicOperandCheck(): should set the field setting for disabled', (t) => {
     const scope = {
       field: {
@@ -291,17 +267,17 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
 
     t.end()
   })
-})
 
-tap.test('.skipLogic()', { autoend: true }, (t) => {
-  t.test('skipLogicGroupCheck(): should match one depth group appropriately', (t) => {
+  t.test('skipLogicGroupCheck(): should match one depth group appropriately with "and" logicGate', (t) => {
     const scope = {
       field: {
         settings: {
           showhide: null
         }
-      }
+      },
+      form: []
     }
+
     const check = {
       logicGate: 'and',
       action: 'showhide',
@@ -311,7 +287,7 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
         variable: 'var1'
       }, {
         operand: '=',
-        value: 'no',
+        value: 'yes',
         variable: 'var2'
       }, {
         operand: '=',
@@ -320,32 +296,81 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
       }]
     }
 
-    skipLogicGroupCheck(scope, 'yes', check)
+    scope.form['var1'] = { $modelValue: 'yes' }
+    scope.form['var2'] = { $modelValue: 'no' }
+    scope.form['var3'] = { $modelValue: 'yes' }
+
+    skipLogicGroupCheck(scope, check)
     t.notOk(scope.field.show)
 
-    check.logicGate = 'or'
-    skipLogicGroupCheck(scope, 'yes', check)
+    scope.form.var2.$modelValue = 'yes'
+    skipLogicGroupCheck(scope, check)
     t.ok(scope.field.show)
-    skipLogicGroupCheck(scope, 'no', check)
+
+    t.end()
+  })
+
+  t.test('skipLogicGroupCheck(): should match one depth group appropriately with "or" logicGate', (t) => {
+    const scope = {
+      field: {
+        settings: {
+          showhide: null
+        }
+      },
+      form: []
+    }
+
+    const check = {
+      logicGate: 'or',
+      action: 'showhide',
+      group: [{
+        operand: '=',
+        value: 'yes',
+        variable: 'var1'
+      }, {
+        operand: '=',
+        value: 'yes',
+        variable: 'var2'
+      }, {
+        operand: '=',
+        value: 'yes',
+        variable: 'var3'
+      }]
+    }
+
+    scope.form['var1'] = { $modelValue: 'yes' }
+    scope.form['var2'] = { $modelValue: 'no' }
+    scope.form['var3'] = { $modelValue: 'yes' }
+
+    skipLogicGroupCheck(scope, check)
     t.ok(scope.field.show)
 
-    check.logicGate = 'and'
-    check.group[1].value = 'yes'
-    skipLogicGroupCheck(scope, 'yes', check)
-    t.ok(scope.field.show)
-    skipLogicGroupCheck(scope, 'no', check)
+    scope.form.var1.$modelValue = 'no'
+    scope.form.var3.$modelValue = 'no'
+
+    skipLogicGroupCheck(scope, check)
     t.notOk(scope.field.show)
 
-    check.group[0].value = 'no'
-    check.group[1].value = 'no'
-    check.group[2].value = 'no'
-    skipLogicGroupCheck(scope, 'yes', check)
-    t.notOk(scope.field.show)
+    t.end()
+  })
 
-    check.logicGate = 'or'
-    skipLogicGroupCheck(scope, 'yes', check)
-    t.notOk(scope.field.show)
+  t.test('operators[contains]: should return true when value is in arrays', (t) => {
+    t.true(operators['contains'](['match1', 'match2'], 'match1'))
+    t.end()
+  })
 
+  t.test('operators[contains]: should return false when value is NOT in arrays', (t) => {
+    t.false(operators['contains'](['match1', 'match2'], 'invalid'))
+    t.end()
+  })
+
+  t.test('operators[!contains]: should return false when value is in arrays', (t) => {
+    t.false(operators['!contains'](['match1', 'match2'], 'match1'))
+    t.end()
+  })
+
+  t.test('operators[!contains]: should return true when value is NOT in arrays', (t) => {
+    t.true(operators['!contains'](['match1', 'match2'], 'invalid'))
     t.end()
   })
 })
