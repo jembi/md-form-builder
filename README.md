@@ -405,9 +405,29 @@ FormBuilder allows you to add skip logic and functional support to field to enha
 "skipLogic": {
   "checks": [{
     "variable": "form.bmi.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
-    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in" )
-    "value": 0 // value that needs to checked for. 
+    "operand": ">", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in", "contains", "!contains" )
+    // 'in' check if the variable is in the value whereas 'contains' checks the inverse. I.e. if the value is in the variable.
+    "value": 0 // value that needs to checked for.
     "action": "showhide" // action to perform on the field ("disabled", "required", "showhide")
+  }]
+}
+```
+
+To evaluate grouped checks such as to deal with logic gates ("or", "and"), use something like;
+```
+"skipLogic": {
+  "checks": [{
+    "logicGate": "and", // logic evaluation creterial to check group items against ("or", "and")
+    "action": "showhide", // action to perform on the field ("disabled", "required", "showhide")
+    "group": [{
+      "variable": "form.age.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
+      "operand": ">=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in", "contains", "!contains" )
+      "value": 15 // value that needs to checked for.
+    },{
+      "variable": "form.gender.$modelValue", // variable to check, can be a FormBuilder global variable as well (e.g. global.gender)
+      "operand": "=", // operand to perform ( "=", "!=", "<", "<=", ">", ">=", "in", "!in", "contains", "!contains" )
+      "value": "M" // value that needs to checked for.
+    }]
   }]
 }
 ```
@@ -430,5 +450,27 @@ var calculateBMI = function (params) {
     var bmi = params.weight / (params.height / 100 * params.height / 100)
     return bmi.toFixed(2)
   }
+}
+```
+
+## Input field reference (work in progress)
+
+### inputNumber
+
+```js
+{
+  "type": "inputNumber",
+  "flex": "30", // the flex width of the input
+  "name": "height", // A name which will be used to reference the value of this field in the form
+  "title": "What is your height? (cm)", // A label that will be displayed above the field
+  "settings": {
+    "valueType": "valueInteger",
+    "required": true // (optional) whether this field is required or not
+    "min": "1", // (optional) The minimum number this control accepts
+    "max": "250", // (optional) The maximum number this control accepts
+    "step": "0.01", // (optional) The step size in whcih the value be increased by the spinner, this also determines the allowable decimal points
+    "disableSpinner": true // (optional) If the number spinner button should be hidden or not
+  },
+  "value": null // the initial value of this field
 }
 ```

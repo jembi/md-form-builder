@@ -10,7 +10,6 @@ md-select.md-default-theme .md-select-value.md-select-placeholder, md-select .md
 	color: #666;
 }
 
-
 #FormBuilder .angular-notifications-icon {
   right: -22px;
   top: 2px;
@@ -97,4 +96,18 @@ md-input-container [disabled], .fieldDisabled{
 	top: 0px;
 	right: 0px;
 	cursor: pointer;
+}
+
+.no-spinner input[type=number]::-webkit-outer-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.no-spinner input[type=number]::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
