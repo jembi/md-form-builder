@@ -44,7 +44,7 @@ module.exports = function ($compile) {
         }
 
         if (scope.field.value) {
-          scope.loadOptions().then(function (result) {
+          scope.loadOptions().then(function () {
             scope.$digest()
           })
         }
