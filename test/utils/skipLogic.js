@@ -284,15 +284,15 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
       group: [{
         operand: '=',
         value: 'yes',
-        variable: 'var1'
+        variable: 'form.var1.$modelValue'
       }, {
         operand: '=',
         value: 'yes',
-        variable: 'var2'
+        variable: 'form.var2.$modelValue'
       }, {
         operand: '=',
         value: 'yes',
-        variable: 'var3'
+        variable: 'form.var3.$modelValue'
       }]
     }
 
@@ -326,15 +326,15 @@ tap.test('.skipLogic()', { autoend: true }, (t) => {
       group: [{
         operand: '=',
         value: 'yes',
-        variable: 'var1'
+        variable: 'form.var1.$modelValue'
       }, {
         operand: '=',
         value: 'yes',
-        variable: 'var2'
+        variable: 'form.var2.$modelValue'
       }, {
         operand: '=',
         value: 'yes',
-        variable: 'var3'
+        variable: 'form.var3.$modelValue'
       }]
     }
 

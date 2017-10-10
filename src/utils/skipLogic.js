@@ -141,7 +141,19 @@ module.exports = function () {
     var checkEval = null
     for (var i = 0; i < check.group.length; i++) {
       var c = check.group[i]
-      var value = scope.form[c.variable].$modelValue
+      var fieldVariableSplit = c.variable.split('.')
+      var value
+      switch (fieldVariableSplit[0]) {
+        case 'form':
+          value = scope.form[fieldVariableSplit[1]][fieldVariableSplit[2]]
+          break
+        case 'globals':
+          value = walkPath(c.variable, scope.globals)
+          break
+        default:
+          break
+      }
+
       if (checkEval !== null) {
         if (logicGate === 'and') {
           checkEval = checkEval && operators[c.operand](value, c.value)
@@ -153,6 +165,17 @@ module.exports = function () {
       }
     }
     skipLogicCheck(check.action, checkEval, scope)
+  }
+
+  var walkPath = function (variable, globals) {
+    var property = variable.replace('globals.', '')
+    var propertyArray = property.split('.')
+    var newValObj = JSON.parse(JSON.stringify(globals))
+    propertyArray.forEach(function (prop) {
+      newValObj = newValObj[prop]
+    })
+
+    return newValObj
   }
 
   return {
