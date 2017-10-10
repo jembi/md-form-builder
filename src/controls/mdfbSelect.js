@@ -29,30 +29,24 @@ module.exports = function ($compile) {
       })
 
       if (scope.field.loadOptionsFunc) {
-        var fetchData = function (cb) {
-          scope.field.loadOptionsFunc().then(function (result) {
-            scope.field.options = result
-            cb(result)
-          }).catch(function (err) {
-            cb(err)
-            console.log(err) // should be handled properly, not just printed out
+        scope.loadOptions = function () {
+          // material design expects a promise
+          return new Promise(function (resolve, reject) {
+            // our function should be a promise
+            scope.field.loadOptionsFunc().then(function (result) {
+              scope.field.options = result
+              resolve()
+            }).catch(function (err) {
+              console.log(err) // should be handled properly, not just printed out
+              reject(err)
+            })
           })
         }
 
         if (scope.field.value) {
-          fetchData(function () {
-            scope.$apply()
+          scope.loadOptions().then(function (result) {
+            scope.$digest()
           })
-        } else {
-          scope.loadOptions = function () {
-            // material design expects a promise
-            return new Promise(function (resolve, reject) {
-              // our function should be a promise
-              fetchData(function () {
-
-              })
-            })
-          }
         }
       }
     }
