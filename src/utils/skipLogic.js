@@ -160,7 +160,6 @@ module.exports = function () {
           break
       }
 
-      // console.log(value)
       if (checkEval !== null) {
         if (logicGate === 'and') {
           checkEval = checkEval && operators[c.operand](value, c.value)
