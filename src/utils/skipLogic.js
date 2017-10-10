@@ -42,12 +42,12 @@ module.exports = function () {
         var check = formField.skipLogic.checks[i]
         if (check && check.group) {
           for (var j = 0; j < check.group.length; j++) {
-            scope.$watch(check.group[j].variable.startsWith('form.') ? check.group[j].variable : 'form.' + check.group[j].variable + '.$modelValue', function (value, oldValue) {
+            scope.$watch(check.group[j].variable, function (value, oldValue) {
               skipLogicGroupCheck(scope, check)
             }, true)
           }
         } else {
-          scope.$watch(check.variable.startsWith('form.') ? check.variable : 'form.' + check.variable + '.$modelValue', function (value, oldValue) {
+          scope.$watch(check.variable, function (value, oldValue) {
             skipLogicOperandCheck(scope, value, check)
           }, true)
         }
