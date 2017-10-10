@@ -148,13 +148,7 @@ module.exports = function () {
           value = scope.form[fieldVariableSplit[1]][fieldVariableSplit[2]]
           break
         case 'globals':
-          var property = c.variable.replace('globals.', '')
-          var propertyArry = property.split('.')
-          var newValObj = JSON.parse(JSON.stringify(scope.globals))
-          propertyArry.forEach(function (prop) {
-            newValObj = newValObj[prop]
-          })
-          value = newValObj
+          value = walkPath(c.variable, scope.globals)
           break
         default:
           break
@@ -171,6 +165,17 @@ module.exports = function () {
       }
     }
     skipLogicCheck(check.action, checkEval, scope)
+  }
+
+  var walkPath = function (variable, globals) {
+    var property = variable.replace('globals.', '')
+    var propertyArray = property.split('.')
+    var newValObj = JSON.parse(JSON.stringify(globals))
+    propertyArray.forEach(function (prop) {
+      newValObj = newValObj[prop]
+    })
+
+    return newValObj
   }
 
   return {
