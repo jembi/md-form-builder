@@ -146,6 +146,21 @@ Each section contains rows and each row has fields. See the example of a section
         },
         "value": null
       }, {
+        "type": "time",
+        "flex": "25",
+        "name": "time",
+        "title": "Input - Time",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
         "type": "password",
         "flex": "25",
         "name": "password",
