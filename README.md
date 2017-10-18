@@ -489,3 +489,19 @@ var calculateBMI = function (params) {
   "value": null // the initial value of this field
 }
 ```
+
+### time
+
+```js
+{
+  "type": "time",
+  "flex": "30", // the flex width of the input
+  "name": "startTime", // A name which will be used to reference the value of this field in the form
+  "title": "When did the procedure start? (HH:MM)", // A label that will be displayed above the field
+  "settings": {
+    "valueType": "valueString",
+    "required": true // (optional) whether this field is required or not
+  },
+  "value": null // the initial value of this field
+}
+```
