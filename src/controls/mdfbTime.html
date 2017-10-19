@@ -1,0 +1,13 @@
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
+  <label>{{field.title}}</label>
+  <input
+    name="{{field.name}}"
+    ng-model="field.value"
+    ng-disabled="field.settings.disabled || globals.viewModeOnly"
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+    ng-pattern="'^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$'" />
+  <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
+     <div ng-message-exp="['required']">This field is required</div> 
+    <div ng-message-exp="['pattern']">Please enter a valid time (format HH:MM)</div>
+  </div>
+</md-input-container>

@@ -146,6 +146,21 @@ Each section contains rows and each row has fields. See the example of a section
         },
         "value": null
       }, {
+        "type": "time",
+        "flex": "25",
+        "name": "time",
+        "title": "Input - Time",
+        "settings": {
+          "valueType": "valueString",
+          "disabled": false,
+          "required": true
+        },
+        "skipLogic": {
+          "func": {},
+          "checks": []
+        },
+        "value": null
+      }, {
         "type": "password",
         "flex": "25",
         "name": "password",
@@ -470,6 +485,22 @@ var calculateBMI = function (params) {
     "max": "250", // (optional) The maximum number this control accepts
     "step": "0.01", // (optional) The step size in whcih the value be increased by the spinner, this also determines the allowable decimal points
     "disableSpinner": true // (optional) If the number spinner button should be hidden or not
+  },
+  "value": null // the initial value of this field
+}
+```
+
+### time
+
+```js
+{
+  "type": "time",
+  "flex": "30", // the flex width of the input
+  "name": "startTime", // A name which will be used to reference the value of this field in the form
+  "title": "When did the procedure start? (HH:MM)", // A label that will be displayed above the field
+  "settings": {
+    "valueType": "valueString",
+    "required": true // (optional) whether this field is required or not
   },
   "value": null // the initial value of this field
 }
