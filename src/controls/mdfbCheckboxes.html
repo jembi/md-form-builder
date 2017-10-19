@@ -16,7 +16,7 @@
     layout="{{field.layout}}"
     layout-align="start start"
     class="md-align-top-left" flex>
-    <div>{{field.title}}</div>
+    <div ng-bind-html="field.title"></div>
 
     <div layout="column" ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
       <div ng-message="required">This field is required</div>
