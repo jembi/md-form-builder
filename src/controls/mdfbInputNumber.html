@@ -1,5 +1,5 @@
 <md-input-container ng-class="{ 'md-input-invalid': form[field.name].$invalid && form[field.name].$touched, 'no-spinner': field.settings.disableSpinner }">
-  <label>{{field.title}}</label>
+  <label ng-bind-html="field.title"></label>
   <input
     name="{{field.name}}"
     ng-model="field.value"

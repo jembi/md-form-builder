@@ -1,5 +1,5 @@
 <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
-  <div style="margin-bottom: 10px;">{{field.title}}</div>
+  <div style="margin-bottom: 10px;" ng-bind-html="field.title"></div>
   <md-radio-group
     name="{{field.name}}"
     ng-model="field.value"
