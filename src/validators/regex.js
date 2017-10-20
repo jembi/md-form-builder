@@ -17,7 +17,7 @@ module.exports = function ($compile) {
         }
 
         ngModel.$validators.regexValidation = function (modelValue) {
-          return new RegExp(scope.regexValidation.regex).test(modelValue)
+          return new RegExp(scope.regexValidation.regexValidation.regex).test(modelValue)
         }
         ngModel.$validate()
       }, true)
