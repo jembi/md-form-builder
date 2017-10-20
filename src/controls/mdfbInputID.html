@@ -5,7 +5,7 @@
     ng-model="field.value" 
     ng-disabled="field.settings.disabled" 
     ng-required="field.settings.required && field.show"
-    check-rsa-id-number="field.settings.checkRsaIdNumber" />
+    check-rsa-id-number="field.settings.checkRsaIdNumber && !form.saveAsDraft.$modelValue && field.show" />
   <div ng-messages="form[field.name].$error">
     <div ng-message="required">This field is required</div>
     <div ng-message="checkRsaIdNumber">Invalid RSA ID Number</div>
