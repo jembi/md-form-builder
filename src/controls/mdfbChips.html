@@ -7,7 +7,7 @@
     ng-if="!field.transformFunc" 
     ng-init="$parent[field.name] = []" 
     placeholder="Type to add option" 
-    ng-disabled="field.settings.disabled || globals.viewModeOnly" 
+    readonly="field.settings.disabled || globals.viewModeOnly" 
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"></md-chips>
 
   <md-chips 
@@ -17,7 +17,7 @@
     ng-init="$parent[field.name] = []" 
     md-transform-chip="transformFunc($chip)" 
     placeholder="Type to add option" 
-    ng-disabled="field.settings.disabled || globals.viewModeOnly" 
+    readonly="field.settings.disabled || globals.viewModeOnly" 
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show">
     <md-chip-template>
       <span ng-style="!$chip.valid && {'color':'red'}">
