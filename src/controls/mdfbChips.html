@@ -30,5 +30,6 @@
 
   <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
     <div ng-message="required">This field is required</div>
+    <div ng-message="code">All codes must be valid</div>
   </div>
 </md-input-container>

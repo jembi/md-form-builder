@@ -28,16 +28,32 @@ module.exports = function ($timeout) {
       if (scope.field.transformFunc) {
         var varToWatch = 'form.' + scope.field.name + '.$viewValue'
         scope.$watch(varToWatch, function (value, oldValue) {
+          var promises = []
           for (var i = 0; i < value.length; i++) {
             if (!value[i].text) {
               var code = angular.copy(value[i].code)
-              value[i].text = getSetOptionResult(scope.field.name, i, code)
+              value[i].text = getSetOptionResult(scope.field.name, i, code, promises)
             }
           }
+          Promise.all(promises).then(function () {
+            var fieldIsValid = true
+            for (var i = 0; i < value.length; i++) {
+              if (!value[i].valid) {
+                fieldIsValid = false
+                break
+              }
+            }
+            scope.form[scope.field.name].$setValidity('code', fieldIsValid)
+          }).catch(function () {
+            scope.form[scope.field.name].$setValidity('code', false)
+            scope.form[scope.field.name].$touched = true
+          })
         }, true)
 
-        var getSetOptionResult = function (field, index, code) {
-          scope.field.transformFunc(code).then(function (result) {
+        var getSetOptionResult = function (field, index, code, promises) {
+          var promise = scope.field.transformFunc(code)
+          promises.push(promise)
+          promise.then(function (result) {
             var fieldValue = scope.form[field].$viewValue
             fieldValue[index] = result
             scope.form[field].$setViewValue(fieldValue)
