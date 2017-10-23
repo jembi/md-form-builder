@@ -53,7 +53,7 @@ module.exports = function ($timeout) {
             scope.form[field].$setUntouched()
             scope.form[field].$setPristine()
           }).catch(function (err) {
-            return err
+            console.log(err)
           })
 
           return promise
