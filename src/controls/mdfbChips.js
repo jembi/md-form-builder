@@ -32,7 +32,7 @@ module.exports = function ($timeout) {
           for (var i = 0; i < value.length; i++) {
             if (!value[i].text) {
               var code = angular.copy(value[i].code)
-              value[i].text = getSetOptionResult(scope.field.name, i, code, promises)
+              promises.push(getSetOptionResult(scope.field.name, i, code))
             }
           }
           Promise.all(promises).then(function () {
@@ -50,9 +50,8 @@ module.exports = function ($timeout) {
           })
         }, true)
 
-        var getSetOptionResult = function (field, index, code, promises) {
+        var getSetOptionResult = function (field, index, code) {
           var promise = scope.field.transformFunc(code)
-          promises.push(promise)
           promise.then(function (result) {
             var fieldValue = scope.form[field].$viewValue
             fieldValue[index] = result
@@ -62,6 +61,8 @@ module.exports = function ($timeout) {
           }).catch(function (err) {
             return err
           })
+
+          return promise
         }
 
         scope.transformFunc = function (chip) {
