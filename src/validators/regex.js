@@ -8,18 +8,20 @@ module.exports = function ($compile) {
       regexValidation: '=regexValidation'
     },
     link: function (scope, element, attributes, ngModel) {
-      scope.$watch('regexValidation', function (newVal, oldVal) {
-        if (!newVal) {
+      scope.$watch('regexValidation', function (regexValidation, oldVal) {
+        if (!regexValidation.regexValidation || !regexValidation.apply) {
           ngModel.$validators.regexValidation = function () {
             return true
           }
           return ngModel.$validate()
         }
 
-        ngModel.$validators.regexValidation = function (modelValue) {
-          return new RegExp(scope.regexValidation.regex).test(modelValue)
+        if (regexValidation.apply) {
+          ngModel.$validators.regexValidation = function (modelValue) {
+            return new RegExp(regexValidation.regexValidation.regex).test(modelValue)
+          }
+          ngModel.$validate()
         }
-        ngModel.$validate()
       }, true)
     }
   }
