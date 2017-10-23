@@ -36,13 +36,7 @@ module.exports = function ($timeout) {
             }
           }
           Promise.all(promises).then(function () {
-            var fieldIsValid = true
-            for (var i = 0; i < value.length; i++) {
-              if (!value[i].valid) {
-                fieldIsValid = false
-                break
-              }
-            }
+            var fieldIsValid = (value.length > 0) ? value.some(function (item) { return item.valid }) : true
             scope.form[scope.field.name].$setValidity('code', fieldIsValid)
           }).catch(function () {
             scope.form[scope.field.name].$setValidity('code', false)
