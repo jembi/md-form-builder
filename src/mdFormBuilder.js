@@ -181,25 +181,31 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
       }
     } else {
       // touch all elements to force validations
-      angular.forEach($scope[$scope.FormBuilder.name].$error.required, function (field) {
-        field.$setTouched()
+      Object.keys($scope[$scope.FormBuilder.name].$error).forEach(function (prop) {
+        angular.forEach($scope[$scope.FormBuilder.name].$error[prop], function (field) {
+          field.$setTouched()
+        })
       })
     }
 
     // submitted - invalid - prevent form from being submitted
     if ($scope[$scope.FormBuilder.name].$submitted && $scope[$scope.FormBuilder.name].$invalid) {
+      var errorFields = []
       // trigger tab notifications
-      angular.forEach($scope[$scope.FormBuilder.name].$error.required, function (field) {
-        var errorFieldName = field.$name
+      Object.keys($scope[$scope.FormBuilder.name].$error).forEach(function (prop) {
+        angular.forEach($scope[$scope.FormBuilder.name].$error[prop], function (field) {
+          var errorFieldName = field.$name
 
-        angular.forEach($scope.FormBuilder.sections, function (section) {
-          var sectionKey = section.key
+          angular.forEach($scope.FormBuilder.sections, function (section) {
+            var sectionKey = section.key
 
-          angular.forEach(section.rows, function (row) {
-            angular.forEach(row.fields, function (rowField) {
-              if (rowField.name === errorFieldName) {
-                $scope.tabErrors[sectionKey]++
-              }
+            angular.forEach(section.rows, function (row) {
+              angular.forEach(row.fields, function (rowField) {
+                if (rowField.name === errorFieldName && errorFields.indexOf(rowField.name) === -1) {
+                  errorFields.push(rowField.name)
+                  $scope.tabErrors[sectionKey]++
+                }
+              })
             })
           })
         })
