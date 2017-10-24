@@ -25,32 +25,63 @@ module.exports = function ($timeout) {
         skipLogic.init(scope, elem, attrs, scope.field)
       }
 
-      if (scope.field.transformFunc) {
-        var varToWatch = 'form.' + scope.field.name + '.$viewValue'
-        scope.$watch(varToWatch, function (value, oldValue) {
-          for (var i = 0; i < value.length; i++) {
-            if (!value[i].text) {
-              var code = angular.copy(value[i].code)
-              value[i].text = getSetOptionResult(scope.field.name, i, code)
+      scope.$watchGroup(['field.settings.required', 'field.show', 'form.saveAsDraft'], function (value, oldValue) {
+        scope.field.settings.required = value[0]
+        scope.field.show = value[1]
+        scope.form.saveAsDraft = value[2]
+      })
+
+      var varToWatch = 'form.' + scope.field.name + '.$viewValue'
+      scope.$watch(varToWatch, function (fieldValue, oldValue) {
+        if (fieldValue) {
+          // default to valid field
+          scope.form[scope.field.name].$setValidity('chipsRequired', true)
+
+          // set required validity
+          if (scope.field.settings.required) {
+            if (scope.field.show && !scope.form.saveAsDraft) {
+              if (fieldValue && fieldValue.length === 0) {
+                scope.form[scope.field.name].$setValidity('chipsRequired', false)
+              }
             }
           }
-        }, true)
 
-        var getSetOptionResult = function (field, index, code) {
-          scope.field.transformFunc(code).then(function (result) {
-            var fieldValue = scope.form[field].$viewValue
-            fieldValue[index] = result
-            scope.form[field].$setViewValue(fieldValue)
-            scope.form[field].$setUntouched()
-            scope.form[field].$setPristine()
-          }).catch(function (err) {
-            return err
-          })
+          if (scope.field.transformFunc) {
+            var promises = []
+            for (var i = 0; i < fieldValue.length; i++) {
+              if (!fieldValue[i].text) {
+                var code = angular.copy(fieldValue[i].code)
+                promises.push(getSetOptionResult(scope.field.name, i, code))
+              }
+            }
+            Promise.all(promises).then(function () {
+              var fieldIsValid = (fieldValue.length > 0) ? fieldValue.some(function (item) { return item.valid }) : true
+              scope.form[scope.field.name].$setValidity('chipsInvalid', fieldIsValid)
+            }).catch(function () {
+              scope.form[scope.field.name].$setValidity('chipsInvalid', false)
+              scope.form[scope.field.name].$touched = true
+            })
+          }
         }
+      }, true)
 
-        scope.transformFunc = function (chip) {
-          return { code: chip }
-        }
+      var getSetOptionResult = function (field, index, code) {
+        var promise = scope.field.transformFunc(code)
+        promise.then(function (result) {
+          var fieldValue = scope.form[field].$viewValue
+          fieldValue[index] = result
+          scope.form[field].$setViewValue(fieldValue)
+          scope.form[field].$setUntouched()
+          scope.form[field].$setPristine()
+        }).catch(function (err) {
+          return err
+        })
+
+        return promise
+      }
+
+      scope.transformFunc = function (chip) {
+        return { code: chip }
       }
     }
   }

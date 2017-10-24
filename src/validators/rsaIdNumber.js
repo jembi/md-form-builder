@@ -10,7 +10,6 @@ module.exports = function ($compile) {
       checkRsaIdNumber: '=checkRsaIdNumber'
     },
     link: function (scope, element, attributes, ngModel) {
-      console.log('--------------------')
       scope.$watch('checkRsaIdNumber', function (newValue, oldValue) {
         setValidity(newValue)
       }, true)
