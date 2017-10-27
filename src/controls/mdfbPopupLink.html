@@ -1,0 +1,26 @@
+ <md-content style="margin: 13px 0px;">
+  <div>
+    <a href="" ng-click="showDialog($event)"><i class="material-icons">open_in_browser</i></a>
+  </div>
+
+   <div style="visibility: hidden">
+    <div class="md-dialog-container" id="popup_{{ field.name }}">
+      <md-dialog>
+        <form ng-cloak>
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>{{field.title}}</h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="material-icons">close</i>
+              </md-button>
+            </div>
+          </md-toolbar>
+          <md-dialog-content layout-padding>
+            <div ng-bind-html="field.value"></div>
+          </md-dialog-content>
+        </form>
+      </md-dialog>
+    </div>
+  </div> 
+</md-content>
