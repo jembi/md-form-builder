@@ -353,6 +353,12 @@ Each section contains rows and each row has fields. See the example of a section
           ]
         },
         "value": null
+      }, {
+        "type": "popupLink",
+        "flex": "30",
+        "name": "popupLink",
+        "title": "Terms and Conditions",
+        "value": "<b>Terms and Conditions</b><p>Text ...</p>"
       }]
     }]
   },
@@ -503,5 +509,17 @@ var calculateBMI = function (params) {
     "required": true // (optional) whether this field is required or not
   },
   "value": null // the initial value of this field
+}
+```
+
+### popupLink
+
+```js
+{
+  "type": "popupLink",
+  "flex": "30", // the flex width of the input
+  "name": "popupLink", // A name which will be used to reference the value of this field in the form
+  "title": "Terms and Conditions", // The title of the popup dialog
+  "value": "<b>Terms and Conditions</b><p>Text ...</p>" // the content of the popup dialog
 }
 ```
