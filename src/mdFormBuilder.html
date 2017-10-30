@@ -27,6 +27,7 @@
 
 								<mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
 								<mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
+								<mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
 								<mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input> 
 								<mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
 								<mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
@@ -70,6 +71,7 @@
 								<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{field.flex}}" flex-xs="100" flex-md="100" ng-class="field.class" style="{{field.styles}} padding: 0px 10px;">
 									<mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
 									<mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
+									<mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
 									<mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
 									<mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
 									<mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
