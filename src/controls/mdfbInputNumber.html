@@ -13,5 +13,6 @@
     <div ng-message="required">This field is required</div>
     <div ng-message="min">This field is below the minimum allowed</div>
     <div ng-message="max">This field is above the maximum allowed</div>
+    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
   </div>
 </md-input-container>

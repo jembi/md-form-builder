@@ -29,5 +29,6 @@
   <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
     <div ng-message="chipsRequired">Atleast one value is required</div>
     <div ng-message="chipsInvalid">All codes must be valid</div>
+    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
   </div>
 </md-input-container>
