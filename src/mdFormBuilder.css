@@ -111,3 +111,12 @@ md-input-container [disabled], .fieldDisabled{
     -moz-appearance:textfield;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+
+/* popupLink control */
+
+.popupLinkContainer a:hover {
+  cursor: pointer;
+}
+
+/* popupLink control */
