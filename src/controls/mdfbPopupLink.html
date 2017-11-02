@@ -1,6 +1,6 @@
  <md-content style="margin: 13px 0px;">
-  <div>
-    <a href="" ng-click="showDialog($event)"><i class="material-icons">open_in_browser</i></a>
+  <div class="popupLinkContainer">
+    <a ng-click="showDialog($event)" ng-bind-html="field.displayText"></a>
   </div>
 
    <div style="visibility: hidden">
@@ -22,5 +22,5 @@
         </form>
       </md-dialog>
     </div>
-  </div> 
+  </div>
 </md-content>
