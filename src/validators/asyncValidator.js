@@ -29,6 +29,7 @@ module.exports = function () {
         formField.validation.forEach(function (validation) {
           if (typeof validation.execute === 'function' && fieldIsValid(scope.form[scope.field.name].$error, formField.validation)) {
             scope.form[scope.field.name].$setValidity(validation.key, true)
+            scope.form[scope.field.name].$setTouched()
             var promise = validation.execute(value)
             promises.push(promise)
             promise.then(function () {

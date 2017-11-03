@@ -16,7 +16,8 @@ const initScope = () => {
   return {
     form: {
       IDNumber: {
-        $viewValue: ''
+        $viewValue: '',
+        $setTouched: () => {}
       }
     },
     field: {
