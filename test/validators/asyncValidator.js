@@ -29,6 +29,19 @@ const initScope = () => {
   }
 }
 
+const initFormField = (asyncFunction) => {
+  return {
+    name: 'IDNumber',
+    validation: [
+      {
+        key: 'unique_id',
+        message: 'ID must be unique',
+        execute: asyncFunction
+      }
+    ]
+  }
+}
+
 tap.test('.asyncValidator()', { autoend: true }, (t) => {
   t.test('should set the field`s $error[error_key] to "false" when all validations are successful', (t) => {
     let scope = initScope()
@@ -40,16 +53,7 @@ tap.test('.asyncValidator()', { autoend: true }, (t) => {
 
     const verifyIDUniqueness = (value) => Promise.resolve()
 
-    let formField = {
-      name: 'IDNumber',
-      validation: [
-        {
-          key: 'unique_id',
-          message: 'ID must be unique',
-          execute: verifyIDUniqueness
-        }
-      ]
-    }
+    let formField = initFormField(verifyIDUniqueness)
 
     let globals = {}
 
@@ -71,16 +75,7 @@ tap.test('.asyncValidator()', { autoend: true }, (t) => {
 
     const verifyIDUniqueness = (value) => Promise.reject(new Error('boom'))
 
-    let formField = {
-      name: 'IDNumber',
-      validation: [
-        {
-          key: 'unique_id',
-          message: 'ID must be unique',
-          execute: verifyIDUniqueness
-        }
-      ]
-    }
+    let formField = initFormField(verifyIDUniqueness)
 
     let globals = {}
 
@@ -102,16 +97,7 @@ tap.test('.asyncValidator()', { autoend: true }, (t) => {
 
     const verifyIDUniqueness = (value) => Promise.resolve()
 
-    let formField = {
-      name: 'IDNumber',
-      validation: [
-        {
-          key: 'unique_id',
-          message: 'ID must be unique',
-          execute: verifyIDUniqueness
-        }
-      ]
-    }
+    let formField = initFormField(verifyIDUniqueness)
 
     let globals = {}
 
@@ -136,16 +122,7 @@ tap.test('.asyncValidator()', { autoend: true }, (t) => {
 
     const verifyIDUniqueness = (value) => Promise.resolve()
 
-    let formField = {
-      name: 'IDNumber',
-      validation: [
-        {
-          key: 'unique_id',
-          message: 'ID must be unique',
-          execute: verifyIDUniqueness
-        }
-      ]
-    }
+    let formField = initFormField(verifyIDUniqueness)
 
     let globals = {}
 
