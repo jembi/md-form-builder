@@ -129,7 +129,7 @@ tap.test('.asyncValidator()', { autoend: true }, (t) => {
     asyncValidator.init(scope, formField, globals)
 
     setTimeout(() => {
-      t.assert(scope.form.IDNumber.$error['unique_id'] === undefined)
+      t.false(scope.form.IDNumber.$error['unique_id'])
       t.end()
     }, 0)
   })

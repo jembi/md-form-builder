@@ -38,6 +38,8 @@ module.exports = function () {
               scope.form[scope.field.name].$setValidity(validation.key, false)
               scope.$apply()
             })
+          } else {
+            scope.form[scope.field.name].$setValidity(validation.key, true)
           }
         })
 
