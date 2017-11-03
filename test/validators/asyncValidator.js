@@ -3,7 +3,7 @@
 const tap = require('tap')
 const sinon = require('sinon')
 
-const asynchValidator = require('../../src/validators/asynchValidator')()
+const asyncValidator = require('../../src/validators/asyncValidator')()
 
 const sandbox = sinon.sandbox.create()
 sandbox.stub(console, 'error').callsFake((msg) => {})
@@ -29,7 +29,7 @@ const initScope = () => {
   }
 }
 
-tap.test('.asynchValidator()', { autoend: true }, (t) => {
+tap.test('.asyncValidator()', { autoend: true }, (t) => {
   t.test('should set the field`s $error[error_key] to "false" when all validations are successful', (t) => {
     let scope = initScope()
 
@@ -53,7 +53,7 @@ tap.test('.asynchValidator()', { autoend: true }, (t) => {
 
     let globals = {}
 
-    asynchValidator.init(scope, formField, globals)
+    asyncValidator.init(scope, formField, globals)
 
     setTimeout(() => {
       t.false(scope.form.IDNumber.$error['unique_id'])
@@ -84,7 +84,7 @@ tap.test('.asynchValidator()', { autoend: true }, (t) => {
 
     let globals = {}
 
-    asynchValidator.init(scope, formField, globals)
+    asyncValidator.init(scope, formField, globals)
 
     setTimeout(() => {
       t.true(scope.form.IDNumber.$error['unique_id'])
@@ -115,7 +115,7 @@ tap.test('.asynchValidator()', { autoend: true }, (t) => {
 
     let globals = {}
 
-    asynchValidator.init(scope, formField, globals)
+    asyncValidator.init(scope, formField, globals)
 
     t.true(globals.validating)
 
@@ -149,7 +149,7 @@ tap.test('.asynchValidator()', { autoend: true }, (t) => {
 
     let globals = {}
 
-    asynchValidator.init(scope, formField, globals)
+    asyncValidator.init(scope, formField, globals)
 
     setTimeout(() => {
       t.assert(scope.form.IDNumber.$error['unique_id'] === undefined)
