@@ -1,6 +1,24 @@
 'use strict'
 
 module.exports = function () {
+  var errorInAsyncValidations = function (errorName, asyncValidations) {
+    var asyncValidationsWithTheError = asyncValidations.filter(function (validation) {
+      return validation.key === errorName
+    })
+    return asyncValidationsWithTheError.length !== 0
+  }
+
+  var fieldIsValid = function (errors, asyncValidations) {
+    for (var errorName in errors) {
+      if (errors.hasOwnProperty(errorName)) {
+        if (!errorInAsyncValidations(errorName, asyncValidations)) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
   var init = function (scope, formField, globals) {
     if (formField.validation && formField.validation.length > 0) {
       var varToWatch = 'form.' + formField.name + '.$viewValue'
@@ -9,7 +27,7 @@ module.exports = function () {
         var promises = []
         globals.validating = true
         formField.validation.forEach(function (validation) {
-          if (typeof validation.execute === 'function') {
+          if (typeof validation.execute === 'function' && fieldIsValid(scope.form[scope.field.name].$error, formField.validation)) {
             scope.form[scope.field.name].$setValidity(validation.key, true)
             var promise = validation.execute(value)
             promises.push(promise)

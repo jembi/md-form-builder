@@ -124,4 +124,36 @@ tap.test('.asynchValidator()', { autoend: true }, (t) => {
       t.end()
     }, 0)
   })
+
+  t.test('should not call async validation function(s) when the field is not valid', (t) => {
+    let scope = initScope()
+
+    scope.form.IDNumber.$error = { required: true }
+
+    scope.form.IDNumber.$setValidity = (key, value) => {
+      scope.form.IDNumber.$error[key] = !value
+    }
+
+    const verifyIDUniqueness = (value) => Promise.resolve()
+
+    let formField = {
+      name: 'IDNumber',
+      validation: [
+        {
+          key: 'unique_id',
+          message: 'ID must be unique',
+          execute: verifyIDUniqueness
+        }
+      ]
+    }
+
+    let globals = {}
+
+    asynchValidator.init(scope, formField, globals)
+
+    setTimeout(() => {
+      t.assert(scope.form.IDNumber.$error['unique_id'] === undefined)
+      t.end()
+    }, 0)
+  })
 })
