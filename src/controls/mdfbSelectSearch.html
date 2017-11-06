@@ -1,14 +1,14 @@
 <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
-
-	<label ng-bind-html="field.title"></label>
-  <md-select 
+  <label ng-bind-html="field.title"></label>
+  <md-select
     name="{{field.name}}"
     ng-model="field.value"
     md-on-close="clearSearchTerm()"
     data-md-container-class="selectdemoSelectHeader"
     ng-disabled="field.settings.disabled || globals.viewModeOnly"
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
-		multiple>
+    md-on-open="loadOptions()"
+    multiple>
     <md-select-header class="demo-select-header">
       <input ng-model="searchTerm"
         type="search"
@@ -16,7 +16,7 @@
         class="demo-header-searchbox _md-text">
     </md-select-header>
     <md-option ng-value="option.key" ng-repeat="option in field.options | filter:searchTerm">{{option.value}}</md-option>
-  </md-select> 
+  </md-select>
 
   <div ng-messages="form[field.name].$error" ng-show="form[field.name].$invalid && form[field.name].$touched">
     <div ng-message="required">This field is required</div>
