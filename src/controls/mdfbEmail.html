@@ -13,5 +13,6 @@
     <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
       Your email must be between 10 and 100 characters long and look like an e-mail address.
     </div>
+    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
   </div>
 </md-input-container>

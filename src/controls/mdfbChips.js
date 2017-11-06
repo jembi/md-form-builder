@@ -3,6 +3,7 @@
 'use strict'
 
 var skipLogic = require('../utils/skipLogic')()
+var asyncValidator = require('../validators/asyncValidator')()
 
 module.exports = function ($timeout) {
   return {
@@ -23,6 +24,10 @@ module.exports = function ($timeout) {
 
       if (scope.field.skipLogic) {
         skipLogic.init(scope, elem, attrs, scope.field)
+      }
+
+      if (scope.field.validation) {
+        asyncValidator.init(scope, scope.field, scope.globals)
       }
 
       scope.$watchGroup(['field.settings.required', 'field.show', 'form.saveAsDraft'], function (value, oldValue) {

@@ -9,5 +9,6 @@
   <div ng-messages="form[field.name].$error">
     <div ng-message="required">This field is required</div>
     <div ng-message="checkRsaIdNumber">Invalid RSA ID Number</div>
+    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
   </div>
 </md-input-container>

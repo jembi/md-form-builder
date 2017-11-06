@@ -9,5 +9,6 @@
   <div ng-messages="form[field.name].$error">
     <div ng-message="required">This field is required</div>
     <div ng-message="checkPhoneNumber">Invalid Phone Number (+27812345678) or (0812345678)</div>
+    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
   </div>
 </md-input-container>

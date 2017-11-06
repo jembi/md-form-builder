@@ -474,6 +474,31 @@ var calculateBMI = function (params) {
 }
 ```
 
+### Asynchronous validation
+
+FormBuilder allows you to add asynchronous validation to fields. It is possible to have more than one custom asynchronous validation for each field. The validation is configured by adding a "validation" property to a field as illustrated in the example below. The validation field contains an array of objects containing the following properties:
+ - key: a validation error code
+ - message: an error message to display below the field
+ - execute: a custom function to perform asynchronous validation. The function should have a single argument representing the value entered in the field and return a Promise which should resolve when there is no error, or reject in case of error.
+
+The submit button is disabled and its label changes to 'validating ...' while the validation is in progress.
+
+```js
+{ 
+  "type": "inputID",
+  "flex": "80", // the flex width of the input
+  "name": "IDNumber", // A name which will be used to reference the value of this field in the form
+  "title": "ID Number", // A label that will be displayed above the field
+  "validation": [
+    {
+      "key": "unique_id", // a custom validation error code
+      "message" : "The id must be unique", // an error message to display below the field
+      "execute" : "placeHolderForVerifyIDUniqueness" // a custom function to perform asynchronous validation
+    }
+  ]
+}
+```
+
 ## Input field reference (work in progress)
 
 ### inputNumber

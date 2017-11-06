@@ -12,5 +12,6 @@
     <div ng-message="format">Invalid format</div>
     <div ng-message="mindate">Before allowed Date</div>
     <div ng-message="maxdate">After allowed Date</div>
+    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
   </div>
 </md-input-container>
