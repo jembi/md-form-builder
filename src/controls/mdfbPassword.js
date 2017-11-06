@@ -1,6 +1,7 @@
 'use strict'
 
 var skipLogic = require('../utils/skipLogic')()
+var asyncValidator = require('../validators/asyncValidator')()
 
 module.exports = function ($compile) {
   return {
@@ -17,6 +18,10 @@ module.exports = function ($compile) {
 
       if (scope.field.skipLogic) {
         skipLogic.init(scope, elem, attrs, scope.field)
+      }
+
+      if (scope.field.validation) {
+        asyncValidator.init(scope, scope.field, scope.globals)
       }
     }
   }

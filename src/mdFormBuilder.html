@@ -121,16 +121,16 @@
 				          Save as draft allows for changes later on
 				        </md-tooltip>
 		          </md-checkbox>
-				    	<md-button class="md-raised md-primary" type="submit">{{ submitButtonText }}</md-button>
+				    	<md-button ng-disabled="form.globals.validating" class="md-raised md-primary" type="submit">{{ (form.globals.validating) ? 'validating ...' : submitButtonText }}</md-button>
 		    		</div>
 		    	</div>
 
 		    	<div ng-if="!FormBuilder.globals.showDraftSubmitButton && !FormBuilder.globals.normalDisplay && !FormBuilder.globals.viewModeOnly">
-		    		<md-button class="md-raised md-accent" type="submit">{{ submitButtonText }}</md-button>
+		    		<md-button ng-disabled="form.globals.validating" class="md-raised md-accent" type="submit">{{  (form.globals.validating) ? 'validating ...' : submitButtonText }}</md-button>
 		    	</div>
 
 		    	<div ng-if="FormBuilder.globals.showReviewButton && tabs.selectedIndex === ( FormBuilder.sections.length - 1)">
-		    		<md-button class="md-raised md-accent" type="submit">{{ submitButtonText }}</md-button>
+		    		<md-button ng-disabled="form.globals.validating" class="md-raised md-accent" type="submit">{{ (form.globals.validating) ? 'validating ...' :submitButtonText }}</md-button>
 		    	</div>
 		    </div>
 		  </md-input-container>
