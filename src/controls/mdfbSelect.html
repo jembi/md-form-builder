@@ -1,6 +1,6 @@
 <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
   <label ng-bind-html="field.title"></label>
-  <md-select 
+  <md-select
     name="{{field.name}}"
     ng-model="field.value"
     md-on-close="clearSearchTerm()"
@@ -21,5 +21,3 @@
     <div ng-message="required">This field is required</div>
   </div>
 </md-input-container>
-
-
