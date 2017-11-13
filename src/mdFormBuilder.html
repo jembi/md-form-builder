@@ -56,7 +56,7 @@
 			<md-tabs md-dynamic-height md-border-bottom md-selected="tabs.selectedIndex" ng-if="FormBuilder.displayType === 'tabs'">
 		    <md-tab ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" label="" ng-class="section.class" style="{{section.styles}}">
 			    <md-tab-label>
-					  <notification-icon animation='shake' count='tabErrors[section.key]'>
+					  <notification-icon animation='shake' count='tabErrors[section.key]' ng-class="{'errorTab': tabErrors[section.key] > 0}">
 					  	{{ section.name }}
 					  </notification-icon>
 					</md-tab-label>
