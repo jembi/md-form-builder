@@ -26,7 +26,7 @@ module.exports = function () {
           }
 
           if (typeof formField.skipLogic.func.execute === 'function') {
-            const funcVal = formField.skipLogic.func.execute(paramsObj)
+            var funcVal = formField.skipLogic.func.execute(paramsObj)
             if (funcVal !== undefined) {
               scope.form[scope.field.name].$setViewValue(funcVal)
               scope.form[scope.field.name].$setUntouched()
