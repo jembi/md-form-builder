@@ -27,10 +27,12 @@ module.exports = function () {
 
           if (typeof formField.skipLogic.func.execute === 'function') {
             var funcVal = formField.skipLogic.func.execute(paramsObj)
-            scope.form[scope.field.name].$setViewValue(funcVal)
-            scope.form[scope.field.name].$setUntouched()
-            scope.form[scope.field.name].$setPristine()
-            scope.form[scope.field.name].$render()
+            if (funcVal !== undefined) {
+              scope.form[scope.field.name].$setViewValue(funcVal)
+              scope.form[scope.field.name].$setUntouched()
+              scope.form[scope.field.name].$setPristine()
+              scope.form[scope.field.name].$render()
+            }
           }
         })
       })
