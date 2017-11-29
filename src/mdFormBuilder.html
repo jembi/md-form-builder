@@ -1,140 +1,140 @@
-	<md-content style="width: 100%">
-	<form ng-submit="submitForm()" id="FormBuilder" name="{{FormBuilder.name}}" ng-class="FormBuilder.class" style="{{FormBuilder.styles}}" novalidate>
-		<link rel="stylesheet" type="text/css" data-href="mdFormBuilder.css" />
-		<link rel="stylesheet" type="text/css" data-href="node_modules/mdPickers/dist/mdPickers.min.css" />
+<!doctype html>
+<md-content style="width: 100%">
+  <form ng-submit="submitForm()" id="FormBuilder" name="{{FormBuilder.name}}" ng-class="FormBuilder.class" style="{{FormBuilder.styles}}" novalidate>
+    <link rel="stylesheet" type="text/css" data-href="mdFormBuilder.css" />
+    <link rel="stylesheet" type="text/css" data-href="node_modules/mdPickers/dist/mdPickers.min.css" />
 
-		<div ng-if="FormBuilder.sections.length === 0" class="loadingContainer">
-			<div class="loadingDiv" style="padding: 22px;">
-	      <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-		  </div>
-		</div>
+    <div ng-if="FormBuilder.sections.length === 0" class="loadingContainer">
+      <div class="loadingDiv" style="padding: 22px;">
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+      </div>
+    </div>
 
-		<div ng-if="FormBuilder.sections.length > 0">
+    <div ng-if="FormBuilder.sections.length > 0">
 
-			<div md-whiteframe="4" class="FormBuilderMsg" ng-show="formMsg.display" ng-class="{'error': formMsg.status == 'error', 'success': formMsg.status == 'success', 'processing': formMsg.status == 'processing'}">
-				{{ formMsg.msg }}
-				<i flex="10" ng-click="formMsg.display = !formMsg.display" class="material-icons ng-binding FormBuilderMsgClose">close</i>
-			</div>
+      <div md-whiteframe="4" class="FormBuilderMsg" ng-show="formMsg.display" ng-class="{'error': formMsg.status == 'error', 'success': formMsg.status == 'success', 'processing': formMsg.status == 'processing'}">
+        {{ formMsg.msg }}
+        <i flex="10" ng-click="formMsg.display = !formMsg.display" class="material-icons ng-binding FormBuilderMsgClose">close</i>
+      </div>
 
-			<div ng-if="FormBuilder.displayType === null">
-		    <div ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" ng-class="section.class" style="{{section.styles}}">
-		      <h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
-		    	<div ng-repeat="row in section.rows" layout-padding ng-class="row.class" style="position: relative;">
-						<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
-						<md-icon class="remove-row-button" ng-if="row.enableRowRemoval" ng-click="removeRow(row)">close</md-icon>
-						<div layout="{{ row.layout }}" layout-wrap layout-align="start start" style="{{row.styles}}">
-							<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" ng-class="field.class" flex="{{ field.flex }}" flex-xs="100" style="{{field.styles}} padding: 0px 10px;">
+      <div ng-if="FormBuilder.displayType === null">
+        <div ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" ng-class="section.class" style="{{section.styles}}">
+          <h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
+          <div ng-repeat="row in section.rows" layout-padding ng-class="row.class" style="position: relative;">
+            <h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
+            <md-icon class="remove-row-button" ng-if="row.enableRowRemoval" ng-click="removeRow(row)">close</md-icon>
+            <div layout="{{ row.layout }}" layout-wrap layout-align="start start" style="{{row.styles}}">
+              <div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" ng-class="field.class" flex="{{ field.flex }}" flex-xs="100" style="{{field.styles}} padding: 0px 10px;">
 
-								<mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
-								<mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
-								<mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
-								<mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
-								<mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
-								<mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
-								<mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
-								<mdfb-email ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
-								<mdfb-time ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="time"></mdfb-time>
-								<mdfb-password ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
-								<mdfb-datepicker ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
-								<mdfb-checkboxes ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
-								<mdfb-radio ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
-	              <mdfb-radio-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
-								<mdfb-select ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
-								<mdfb-select-search ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
-	              <mdfb-matrix ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
-								<mdfb-matrix-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
-								<mdfb-chips ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
-								<mdfb-webcam ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
+                <mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
+                <mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
+                <mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
+                <mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
+                <mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
+                <mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
+                <mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
+                <mdfb-email ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
+                <mdfb-time ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="time"></mdfb-time>
+                <mdfb-password ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
+                <mdfb-datepicker ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
+                <mdfb-checkboxes ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
+                <mdfb-radio ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
+                <mdfb-radio-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
+                <mdfb-select ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
+                <mdfb-select-search ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
+                <mdfb-matrix ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
+                <mdfb-matrix-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
+                <mdfb-chips ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
+                <mdfb-webcam ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
 
-							</div>
-						</div>
-					</div>
+              </div>
+            </div>
+          </div>
 
-		    </div>
-		  </div>
+        </div>
+      </div>
 
-			<md-tabs md-dynamic-height md-border-bottom md-selected="tabs.selectedIndex" ng-if="FormBuilder.displayType === 'tabs'">
-		    <md-tab ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" label="" ng-class="section.class" style="{{section.styles}}">
-			    <md-tab-label>
-					  <notification-icon animation='shake' count='tabErrors[section.key]' ng-class="{'errorTab': tabErrors[section.key] > 0}">
-					  	{{ section.name }}
-					  </notification-icon>
-					</md-tab-label>
+      <md-tabs md-dynamic-height md-border-bottom md-selected="tabs.selectedIndex" ng-if="FormBuilder.displayType === 'tabs'">
+        <md-tab ng-repeat="section in FormBuilder.sections" flex="{{ section.flex }}" label="" ng-class="section.class" style="{{section.styles}}">
+          <md-tab-label>
+            <notification-icon animation="shake" count="tabErrors[section.key]" ng-class="{'errorTab': tabErrors[section.key] > 0}">
+              {{ section.name }}
+            </notification-icon>
+          </md-tab-label>
 
-					<md-tab-body>
-						<h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
+          <md-tab-body>
+            <h3 style="padding: 15px 25px; margin: 0px; border-bottom: 1px dashed #ccc" ng-if="section.displayName">{{ section.displayName }}</h3>
 
-			    	<div ng-repeat="row in section.rows" style="{{ row.styles }}" layout-padding ng-class="row.class" style="{{row.styles}}">
-							<h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
-							<div layout="{{ row.layout }}" layout-wrap layout-align="start start">
+            <div ng-repeat="row in section.rows" style="{{ row.styles }}" layout-padding ng-class="row.class">
+              <h4 style="margin: 0px 10px; font-size: 14px;" ng-if="row.title">{{ row.title }}</h4>
+              <div layout="{{ row.layout }}" layout-wrap layout-align="start start">
 
-								<div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{field.flex}}" flex-xs="100" ng-class="field.class" style="{{field.styles}} padding: 0px 10px;">
-									<mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
-									<mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
-									<mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
-									<mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
-									<mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
-									<mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
-									<mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
-									<mdfb-email ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
-									<mdfb-time ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="time"></mdfb-time>
-									<mdfb-password ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
-									<mdfb-datepicker ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
-									<mdfb-checkboxes ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
-	                <mdfb-radio ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
-									<mdfb-radio-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
-									<mdfb-select ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
-									<mdfb-select-search ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
-									<mdfb-matrix ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
-	                <mdfb-matrix-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
-									<mdfb-chips ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
-									<mdfb-webcam ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
-								</div>
-							</div>
-						</div>
-					</md-tab-body>
+                <div ng-repeat="field in row.fields" layout="column" ng-switch="field.type" flex="{{field.flex}}" flex-xs="100" ng-class="field.class" style="{{field.styles}} padding: 0px 10px;">
+                  <mdfb-accordian ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="accordian"></mdfb-accordian>
+                  <mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
+                  <mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
+                  <mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
+                  <mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
+                  <mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
+                  <mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
+                  <mdfb-email ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="email"></mdfb-email>
+                  <mdfb-time ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="time"></mdfb-time>
+                  <mdfb-password ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="password"></mdfb-password>
+                  <mdfb-datepicker ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="date"></mdfb-datepicker>
+                  <mdfb-checkboxes ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="checkboxes"></mdfb-checkboxes>
+                  <mdfb-radio ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radio"></mdfb-radio>
+                  <mdfb-radio-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="radioCustom"></mdfb-radio-custom>
+                  <mdfb-select ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="select"></mdfb-select>
+                  <mdfb-select-search ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="selectSearch"></mdfb-select-search>
+                  <mdfb-matrix ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrix"></mdfb-matrix>
+                  <mdfb-matrix-custom ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="matrixCustom"></mdfb-matrix-custom>
+                  <mdfb-chips ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="chips"></mdfb-chips>
+                  <mdfb-webcam ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="webcam"></mdfb-webcam>
+                </div>
+              </div>
+            </div>
+          </md-tab-body>
 
-		    </md-tab>
-		  </md-tabs>
+        </md-tab>
+      </md-tabs>
 
-			<md-input-container style="padding: 10px 15px; margin: 0px; border-top: 1px dashed #ccc" class="md-block" layout-align="center center">
-		    <div layout="row" layout-sm="column" flex>
-		    	<div layout="row" ng-show="FormBuilder.displayType === 'tabs'">
-			    	<md-button style="background-color: #FF8F35; padding-right: 10px;" class="md-raised md-primary" ng-if="tabs.selectedIndex > 0" ng-click="moveTabBack(tabs.selectedIndex)" type="button">
-			    		<span><i class="material-icons ng-binding" style="font-size: 26px; margin-top: 5px; float: left;">arrow_back</i></span>
-			    		<span>Previous</span>
-			    	</md-button>
-			    	<div flex></div>
-			    	<md-button style="background-color: #FF8F35; padding-left: 10px;" class="md-raised md-primary" ng-if="tabs.selectedIndex !== FormBuilder.sections.length - 1" ng-click="moveTabForward(tabs.selectedIndex)" type="button">
-			    		<span>Next</span>
-			    		<span><i class="material-icons ng-binding" style="font-size: 26px; margin-top: 5px; float: right;">arrow_forward</i></span>
-			    	</md-button>
-			    </div>
-		    	<div flex></div>
+      <md-input-container style="padding: 10px 15px; margin: 0px; border-top: 1px dashed #ccc" class="md-block" layout-align="center center">
+        <div layout="row" layout-sm="column" flex>
+          <div layout="row" ng-show="FormBuilder.displayType === 'tabs'">
+            <md-button style="background-color: #FF8F35; padding-right: 10px;" class="md-raised md-primary" ng-if="tabs.selectedIndex > 0" ng-click="moveTabBack(tabs.selectedIndex)" type="button">
+              <span><i class="material-icons ng-binding" style="font-size: 26px; margin-top: 5px; float: left;">arrow_back</i></span>
+              <span>Previous</span>
+            </md-button>
+            <div flex></div>
+            <md-button style="background-color: #FF8F35; padding-left: 10px;" class="md-raised md-primary" ng-if="tabs.selectedIndex !== FormBuilder.sections.length - 1" ng-click="moveTabForward(tabs.selectedIndex)" type="button">
+              <span>Next</span>
+              <span><i class="material-icons ng-binding" style="font-size: 26px; margin-top: 5px; float: right;">arrow_forward</i></span>
+            </md-button>
+          </div>
+          <div flex></div>
 
+          <div ng-if="FormBuilder.globals.showDraftSubmitButton">
+            <div>
+              <md-checkbox ng-init="saveAsDraft = false" name="saveAsDraft" ng-model="saveAsDraft" aria-label="Save as draft?">
+                Save as draft?
+                <md-tooltip md-direction="top">
+                  Save as draft allows for changes later on
+                </md-tooltip>
+              </md-checkbox>
+              <md-button ng-disabled="form.globals.validating" class="md-raised md-primary" type="submit">{{ (form.globals.validating) ? 'validating ...' : submitButtonText }}</md-button>
+            </div>
+          </div>
 
-		    	<div ng-if="FormBuilder.globals.showDraftSubmitButton">
-		    		<div>
-		    			<md-checkbox ng-init="saveAsDraft = false" name="saveAsDraft" ng-model="saveAsDraft" aria-label="Save as draft?">
-		            Save as draft?
-		            <md-tooltip md-direction="top">
-				          Save as draft allows for changes later on
-				        </md-tooltip>
-		          </md-checkbox>
-				    	<md-button ng-disabled="form.globals.validating" class="md-raised md-primary" type="submit">{{ (form.globals.validating) ? 'validating ...' : submitButtonText }}</md-button>
-		    		</div>
-		    	</div>
+          <div ng-if="!FormBuilder.globals.showDraftSubmitButton && !FormBuilder.globals.normalDisplay && !FormBuilder.globals.viewModeOnly">
+            <md-button ng-disabled="form.globals.validating" class="md-raised md-accent" type="submit">{{ (form.globals.validating) ? 'validating ...' : submitButtonText }}</md-button>
+          </div>
 
-		    	<div ng-if="!FormBuilder.globals.showDraftSubmitButton && !FormBuilder.globals.normalDisplay && !FormBuilder.globals.viewModeOnly">
-		    		<md-button ng-disabled="form.globals.validating" class="md-raised md-accent" type="submit">{{  (form.globals.validating) ? 'validating ...' : submitButtonText }}</md-button>
-		    	</div>
+          <div ng-if="FormBuilder.globals.showReviewButton && tabs.selectedIndex === ( FormBuilder.sections.length - 1)">
+            <md-button ng-disabled="form.globals.validating" class="md-raised md-accent" type="submit">{{ (form.globals.validating) ? 'validating ...' :submitButtonText }}</md-button>
+          </div>
+        </div>
+      </md-input-container>
+    </div>
 
-		    	<div ng-if="FormBuilder.globals.showReviewButton && tabs.selectedIndex === ( FormBuilder.sections.length - 1)">
-		    		<md-button ng-disabled="form.globals.validating" class="md-raised md-accent" type="submit">{{ (form.globals.validating) ? 'validating ...' :submitButtonText }}</md-button>
-		    	</div>
-		    </div>
-		  </md-input-container>
-		</div>
-
-	</form>
+  </form>
 </md-content>
