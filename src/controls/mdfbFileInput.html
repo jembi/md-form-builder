@@ -1,0 +1,13 @@
+<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
+  <input
+    name="{{field.name}}"
+    onchange="angular.element(this).scope().change()"
+    ng-model="field.value"
+    ng-disabled="field.settings.disabled || globals.viewModeOnly"
+    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
+    type="file" />
+  <div ng-messages="form[field.name].$error">
+    <div ng-message="required">This field is required</div>
+    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
+  </div>
+</md-input-container>
