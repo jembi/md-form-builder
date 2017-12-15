@@ -1,9 +1,8 @@
 'use strict'
 
 var skipLogic = require('../utils/skipLogic')()
-var asyncValidator = require('../validators/asyncValidator')()
 
-module.exports = function ($compile) {
+module.exports = function ($http, $compile) {
   return {
     restrict: 'E',
     replace: true,
@@ -15,23 +14,55 @@ module.exports = function ($compile) {
     },
     link: function (scope, elem, attrs) {
       scope.field.show = true
+      scope.file = {}
 
       if (scope.field.skipLogic) {
         skipLogic.init(scope, elem, attrs, scope.field)
       }
 
-      if (scope.field.validation) {
-        asyncValidator.init(scope, scope.field, scope.globals)
+      if (scope.field.value) {
+        scope.file.pdfData = 'data:application/pdf;base64,' + scope.field.value
       }
 
-      scope.change = function () {
-        var file = scope.form.file.$$element[0].files[0]
-        var reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = function () {
-          var base64String = reader.result
-          scope.field.value = base64String
+      scope.inputClick = function () {
+        document.getElementById('filePickerLabel').click()
+      }
+
+      scope.removePDF = function () {
+        scope.file.name = null
+        scope.file.pdfData = null
+        scope.field.value = null
+        document.getElementById('filePicker').value = null
+      }
+
+      var handleFileSelect = function (evt) {
+        var files = evt.target.files
+        var file = files[0]
+        scope.file.name = files[0].name
+
+        if (files && file) {
+          var reader = new window.FileReader()
+
+          reader.onload = function (readerEvt) {
+            var binaryString = readerEvt.target.result
+
+            var base64EncodedPdf = window.btoa(binaryString)
+            scope.file.pdfData = 'data:application/pdf;base64,' + base64EncodedPdf
+            scope.field.value = base64EncodedPdf
+
+            document.getElementById('base64input').value = base64EncodedPdf
+
+            scope.$apply()
+          }
+
+          reader.readAsBinaryString(file)
         }
+      }
+
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
+        document.getElementById('filePicker').addEventListener('change', handleFileSelect, false)
+      } else {
+        console.error('The File APIs are not fully supported in this browser.')
       }
     }
   }

@@ -1,13 +1,20 @@
-<md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
-  <input
-    name="{{field.name}}"
-    onchange="angular.element(this).scope().change()"
-    ng-model="field.value"
-    ng-disabled="field.settings.disabled || globals.viewModeOnly"
-    ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
-    type="file" />
-  <div ng-messages="form[field.name].$error">
-    <div ng-message="required">This field is required</div>
-    <div ng-repeat="validation in field.validation" ng-message-exp="[validation.key]">{{validation.message}}</div>
+<div ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
+  <div>
+    <input type="file" id="filePicker" class="ng-hide">
+    <label for="filePicker" id="filePickerLabel" class="md-button md-raised md-primary">Choose Files</label>
+    <md-input-container md-no-float style="margin: 20px 0px 0px 0px; width: calc(100% - 220px)">
+      <input ng-click="inputClick()" id="textInput" ng-model="file.name" type="text" placeholder="No file chosen" ng-readonly="true">
+    </md-input-container>
+    <md-button ng-click="removePDF()" class="md-button md-raised md-primary" style="margin-left: 10px; min-width: auto; padding: 0px 15px;">X</md-button>
+    <input 
+      type="hidden"
+      id="base64input"
+      name="{{field.name}}"
+      ng-model="field.value"></input>
+
+    <div ng-if="field.settings.filePreview === true">
+      <object ng-if="file.pdfData" width="100%" height="100%" data="{{file.pdfData}}" type="application/pdf" class="internal"></object>
+    </div>
+    
   </div>
-</md-input-container>
+</div>
