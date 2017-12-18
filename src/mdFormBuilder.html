@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" data-href="mdFormBuilder.css" />
     <link rel="stylesheet" type="text/css" data-href="node_modules/mdPickers/dist/mdPickers.min.css" />
 
+    <link rel="stylesheet" type="text/css" data-href="../node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.min.css" />
+
     <div ng-if="FormBuilder.sections.length === 0" class="loadingContainer">
       <div class="loadingDiv" style="padding: 22px;">
         <md-progress-linear md-mode="indeterminate"></md-progress-linear>
@@ -30,6 +32,7 @@
                 <mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
                 <mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
                 <mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
+                <mdfb-file-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="fileInput"></mdfb-file-input>
                 <mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
                 <mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
                 <mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
@@ -74,6 +77,7 @@
                   <mdfb-display ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="display"></mdfb-display>
                   <mdfb-popup-link ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="popupLink"></mdfb-popup-link>
                   <mdfb-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="input"></mdfb-input>
+                  <mdfb-file-input ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="fileInput"></mdfb-file-input>
                   <mdfb-input-id ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputID"></mdfb-input-id>
                   <mdfb-input-phone-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputPhoneNumber"></mdfb-input-phone-number>
                   <mdfb-input-number ng-show="field.show" form="$eval(FormBuilder.name)" field="field" globals="FormBuilder.globals" ng-switch-when="inputNumber"></mdfb-input-number>
