@@ -20,9 +20,11 @@ module.exports = function ($http, $compile) {
         skipLogic.init(scope, elem, attrs, scope.field)
       }
 
-      if (scope.field.value) {
-        scope.file.pdfData = 'data:application/pdf;base64,' + scope.field.value
-      }
+      scope.$watch('field.value', function (file) {
+        if (file) {
+          scope.file.pdfData = 'data:application/pdf;base64,' + file
+        }
+      })
 
       scope.inputClick = function () {
         document.getElementById('filePickerLabel').click()
