@@ -558,7 +558,7 @@ The submit button is disabled and its label changes to 'validating ...' while th
   "name": "patientPdf", // A name which will be used to reference the value of this field in the form
   "title": "Patients PDF", // The title of the file input control
   "settings": {
-    "filePreview": true // // (optional) whether to display the preview of the file or not
+    "filePreview": true // (optional) whether to display the preview of the file or not
   },
   "value": null
 }
