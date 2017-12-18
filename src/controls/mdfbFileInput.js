@@ -36,6 +36,7 @@ module.exports = function ($http, $compile) {
       }
 
       var handleFileSelect = function (evt) {
+        // TODO: Handle more than PDF file inputs, and possibly multiple inputs - Enhancements to file input control
         var files = evt.target.files
         var file = files[0]
         scope.file.name = files[0].name
