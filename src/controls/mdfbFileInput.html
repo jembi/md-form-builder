@@ -1,4 +1,5 @@
 <div ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
+  <label ng-bind-html="field.title"></label>
   <div>
     <input type="file" id="filePicker" class="ng-hide">
     <label for="filePicker" id="filePickerLabel" class="md-button md-raised md-primary">Choose Files</label>
