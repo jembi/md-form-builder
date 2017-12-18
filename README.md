@@ -548,3 +548,18 @@ The submit button is disabled and its label changes to 'validating ...' while th
   "value": "<b>Terms and Conditions</b><p>Text ...</p>" // the content of the popup dialog
 }
 ```
+
+### fileInput (Currently only PDFs are supported)
+
+```js
+{
+  "type": "fileInput",
+  "flex": "100", // the flex width of the input
+  "name": "linkedProviderInformation", // A name which will be used to reference the value of this field in the form
+  "title": "Linked Provider Information", // The title of the popup dialog
+  "settings": {
+    "filePreview": true // // (optional) whether to display the preview of the file or not
+  },
+  "value": null
+}
+```
