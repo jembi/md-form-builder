@@ -4,22 +4,21 @@
   <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
     <label ng-bind-html="field.title"></label>
 
-    <md-chips 
-      name="procedureCodes"
+    <md-chips
       ng-model="field.value"
-      ng-if="!field.transformFunc" 
-      ng-init="$parent[field.name] = []" 
-      placeholder="Type to add option" 
-      md-add-on-blur='true'
+      ng-if="!field.transformFunc"
+      ng-init="$parent[field.name] = []"
+      placeholder="Type to add option"
+      md-add-on-blur="true"
       readonly="field.settings.disabled || globals.viewModeOnly"></md-chips>
 
-    <md-chips 
+    <md-chips
       ng-model="field.value"
-      ng-if="field.transformFunc" 
-      ng-init="$parent[field.name] = []" 
-      md-transform-chip="transformFunc($chip)" 
-      placeholder="Type to add option" 
-      md-add-on-blur='true'
+      ng-if="field.transformFunc"
+      ng-init="$parent[field.name] = []"
+      md-transform-chip="transformFunc($chip)"
+      placeholder="Type to add option"
+      md-add-on-blur="true"
       readonly="field.settings.disabled || globals.viewModeOnly">
       <md-chip-template>
         <span ng-style="!$chip.valid && {'color':'red'}">
