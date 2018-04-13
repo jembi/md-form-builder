@@ -23,7 +23,8 @@ module.exports = function ($compile, $mdDialog, $injector) {
         $mdDialog.show({
           contentElement: '#popup_' + scope.field.name,
           targetEvent: ev,
-          clickOutsideToClose: true
+          clickOutsideToClose: true,
+          fullscreen: true
         })
       }
 

@@ -1,6 +1,7 @@
 <md-input-container ng-class="{ 'md-input-invalid' : form[field.name].$invalid && form[field.name].$touched }">
   <div style="margin-bottom: 10px;" ng-bind-html="field.title"></div>
   <md-radio-group
+    layout-wrap
     name="{{field.name}}"
     ng-model="field.value"
     ng-required="field.settings.required && !form.saveAsDraft.$modelValue && field.show"
