@@ -20,7 +20,6 @@
 
   require('angular-animate')
   require('angular-aria')
-  // require('angular-hotkeys')
   require('angular-material')
   require('angular-messages')
   require('angular-notification-icons')
@@ -39,7 +38,6 @@
     'ngMessages',
     'ngSanitize',
     'ngMaterial',
-    // 'cfp.hotkeys',
     'angular-notification-icons',
     'vAccordion',
     'webcam'
