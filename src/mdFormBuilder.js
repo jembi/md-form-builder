@@ -2,7 +2,7 @@
 
 'use strict'
 
-module.exports = function ($window, $timeout, $anchorScroll, $location, hotkeys) {
+module.exports = function ($window, $timeout, $anchorScroll, $location) {
   return {
     restrict: 'E',
     replace: true,
@@ -20,10 +20,6 @@ module.exports = function ($window, $timeout, $anchorScroll, $location, hotkeys)
             status: null
           }
 
-          if (formConfig.globals.viewModeOnly) {
-            hotkeys.del('shift+s')
-          }
-
           $timeout(function () {
             scope[scope.FormBuilder.name].$setPristine()
             scope.tabs.selectedIndex = 0
@@ -38,8 +34,7 @@ module.exports = function ($window, $timeout, $anchorScroll, $location, hotkeys)
   }
 }
 
-function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, hotkeys) {
-  /* Hotkeys */
+function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location) {
   $scope.tabs = {}
   $scope.tabs.selectedIndex = 0
   $scope.submitButtonText = 'Submit'
@@ -49,40 +44,6 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
       $scope.submitButtonText = $scope.FormBuilder.buttons.submit || 'Submit'
     }
   })
-
-  hotkeys.add({
-    combo: 'shift+left',
-    description: 'Go to the previous section',
-    callback: function () {
-      $scope.moveTabBack($scope.tabs.selectedIndex)
-    }
-  })
-
-  hotkeys.add({
-    combo: 'shift+right',
-    description: 'Go to the next section',
-    callback: function () {
-      $scope.moveTabForward($scope.tabs.selectedIndex)
-    }
-  })
-
-  hotkeys.add({
-    combo: 'shift+s',
-    description: 'Submit the form',
-    callback: function () {
-      $scope[$scope.FormBuilder.name].$setSubmitted()
-      $scope.submitForm()
-    }
-  })
-
-  hotkeys.add({
-    combo: 'shift+x',
-    description: 'Close Notification Bar',
-    callback: function () {
-      $scope.formMsg.display = false
-    }
-  })
-  /* Hotkeys */
 
   $scope.moveTabBack = function (selectedIndex) {
     if ($scope.tabs.selectedIndex > 0) {
@@ -158,7 +119,6 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
 
   $scope.submitForm = function () {
     if ($scope.FormBuilder.globals.showReviewButton) {
-      console.log('setPristine to remove errors - Need to find better way')
       $scope[$scope.FormBuilder.name].$setPristine()
     }
 
@@ -228,7 +188,6 @@ function FormBuilderCtrl ($scope, $window, $timeout, $anchorScroll, $location, h
       promise.then(function (result) {
         $scope.setFormMessage(result)
       }).catch(function (err) {
-        console.log(err)
         $scope.setFormMessage(err)
       })
     }
