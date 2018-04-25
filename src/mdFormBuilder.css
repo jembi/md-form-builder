@@ -50,16 +50,13 @@ md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-
 	color: inherit;
 }
 
-
 md-chips-wrap .md-errors-spacer { display: none; }
-
 
 md-input-container.md-has-icon {
   padding-left: 0px;
 }
 
-.selectdemoSelectHeader {
-/* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ }
+/* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
 .selectdemoSelectHeader .demo-header-searchbox {
   border: none;
   outline: none;
@@ -119,7 +116,6 @@ md-input-container [disabled], .fieldDisabled{
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-
 /* popupLink control */
 
 .popupLinkContainer a:hover {
@@ -127,3 +123,21 @@ md-input-container [disabled], .fieldDisabled{
 }
 
 /* popupLink control */
+
+#FormBuilder .md-chips .md-chip-input-container {
+  clear: both;
+}
+
+#FormBuilder .md-chips md-chip .md-chip-content {
+  white-space: initial;
+  line-height: initial;
+}
+
+#FormBuilder .md-chips md-chip .md-chip-remove-container {
+  right: -5px;
+  top: -7px;
+}
+
+#FormBuilder .md-chips.md-removable md-chip {
+  height: auto;
+}

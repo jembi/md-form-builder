@@ -44,6 +44,7 @@
   ])
 
   require('./mdFormBuilder.css')
+  require('../node_modules/v-accordion/dist/v-accordion.min.css')
 
   require('./mdFormBuilder.html')
   require('./controls/mdfbAccordian.html')
