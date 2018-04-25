@@ -26,7 +26,7 @@
   require('angular-sanitize')
   require('angular-touch')
   require('moment')
-  require('v-accordion/dist/v-accordion.min.js')
+  require('v-accordion')
   require('webcam/dist/webcam.min.js')
 
   var moduleName = 'md-form-builder'
@@ -44,7 +44,6 @@
   ])
 
   require('./mdFormBuilder.css')
-  require('../node_modules/v-accordion/dist/v-accordion.min.css')
 
   require('./mdFormBuilder.html')
   require('./controls/mdfbAccordian.html')
