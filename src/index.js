@@ -26,7 +26,7 @@
   require('angular-sanitize')
   require('angular-touch')
   require('moment')
-  require('v-accordion')
+  require('v-accordion/dist/v-accordion.min.js')
   require('webcam/dist/webcam.min.js')
 
   var moduleName = 'md-form-builder'
