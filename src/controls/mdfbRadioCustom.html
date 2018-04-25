@@ -153,8 +153,8 @@
             <span><strong>Findings:</strong></span>
             <span flex></span>
             <div ng-if="!globals.normalDisplay">
-              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="!field.data.findings"><span><i class="material-icons ng-binding read-only-icon">add</i></span> Add</md-button>
-              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'findings', field.data.findings)" flex-sm="100" ng-show="field.data.findings"><span><i class="material-icons ng-binding read-only-icon">edit</i></span> Edit</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'findings', field.data.findings)" ng-show="!field.data.findings"><span><i class="material-icons ng-binding read-only-icon">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'findings', field.data.findings)" ng-show="field.data.findings"><span><i class="material-icons ng-binding read-only-icon">edit</i></span> Edit</md-button>
             </div>
           </div>
           <input type="hidden" name="{{field.name}}_findings" ng-model="field.data.findings" />
@@ -165,8 +165,8 @@
             <span><strong>Recommendations:</strong></span>
             <span flex></span>
             <div ng-if="!globals.normalDisplay">
-              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="!field.data.recommendations"><span><i class="material-icons ng-binding read-only-icon">add</i></span> Add</md-button>
-              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" flex-sm="100" ng-show="field.data.recommendations"><span><i class="material-icons ng-binding read-only-icon">edit</i></span> Edit</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" ng-show="!field.data.recommendations"><span><i class="material-icons ng-binding read-only-icon">add</i></span> Add</md-button>
+              <md-button class="md-raised md-accent read-only-button" ng-click="showPrompt($index, 'recommendations', field.data.recommendations)" ng-show="field.data.recommendations"><span><i class="material-icons ng-binding read-only-icon">edit</i></span> Edit</md-button>
             </div>
           </div>
           <input type="hidden" name="{{field.name}}_recommendations" ng-model="field.data.recommendations" />

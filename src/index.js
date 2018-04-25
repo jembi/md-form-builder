@@ -20,14 +20,13 @@
 
   require('angular-animate')
   require('angular-aria')
-  require('angular-hotkeys')
   require('angular-material')
   require('angular-messages')
   require('angular-notification-icons')
   require('angular-sanitize')
   require('angular-touch')
   require('moment')
-  require('v-accordion')
+  require('v-accordion/dist/v-accordion.min.js')
   require('webcam/dist/webcam.min.js')
 
   var moduleName = 'md-form-builder'
@@ -39,13 +38,13 @@
     'ngMessages',
     'ngSanitize',
     'ngMaterial',
-    'cfp.hotkeys',
     'angular-notification-icons',
     'vAccordion',
     'webcam'
   ])
 
   require('./mdFormBuilder.css')
+  require('../node_modules/v-accordion/dist/v-accordion.min.css')
 
   require('./mdFormBuilder.html')
   require('./controls/mdfbAccordian.html')
