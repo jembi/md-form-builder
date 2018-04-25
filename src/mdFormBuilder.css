@@ -1,9 +1,9 @@
-@import url("../node_modules/v-accordion/dist/v-accordion.css");
+/* @import url("../node_modules/v-accordion/dist/v-accordion.css"); */
 
 md-input-container {
 	margin: 15px 0px;
 }
-md-input-container label{
+md-input-container label{ 
 	color: #666;
 }
 

@@ -1,6 +1,8 @@
 <!doctype html>
 <md-content style="width: 100%">
   <form ng-submit="submitForm()" id="FormBuilder" name="{{FormBuilder.name}}" ng-class="FormBuilder.class" style="{{FormBuilder.styles}}" novalidate>
+    <link rel="stylesheet" href="./node_modules/v-accordion/dist/v-accordion.css" />
+
     <div ng-if="FormBuilder.sections.length === 0" class="loadingContainer">
       <div class="loadingDiv" style="padding: 22px;">
         <md-progress-linear md-mode="indeterminate"></md-progress-linear>
