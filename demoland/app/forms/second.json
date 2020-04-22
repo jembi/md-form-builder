@@ -1,0 +1,54 @@
+{
+  "key": "tab2",
+  "name": "Tab 2",
+  "displayName": "Tab 2",
+  "flex": "100",
+  "rows": [{
+    "name": "Row 2",
+    "title": "This section shows some skip logic and functional input",
+    "layout": "row",
+    "fields": [{
+      "type": "inputNumber",
+      "flex": "30",
+      "name": "weight",
+      "title": "What is your weight? (kg)",
+      "settings": {
+        "valueType": "valueDecimal",
+        "required": true
+      },
+      "value": null
+    }, {
+      "type": "inputNumber",
+      "flex": "30",
+      "name": "height",
+      "title": "What is your height? (cm)",
+      "settings": {
+        "valueType": "valueInteger",
+        "required": true
+      },
+      "value": null
+    }, {
+      "type": "inputNumber",
+      "flex": "30",
+      "name": "bmi",
+      "title": "BMI",
+      "settings": {
+        "valueType": "valueDecimal",
+        "disabled": true
+      },
+      "skipLogic": {
+        "func": {
+          "execute": "calculateBMI",
+          "params": ["weight", "height"],
+          "watchingVars": ["weight", "height"]
+        },
+        "checks": [{
+          "variable": "form.bmi.$modelValue",
+          "operand": ">",
+          "value": 0
+        }]
+      },
+      "value": null
+    }]
+  }]
+}
